@@ -1,0 +1,5 @@
+#!/bin/sh
+concurrently \
+  --names fe \
+  --prefix-colors blue \
+  "yarn:frontend:dev" 
