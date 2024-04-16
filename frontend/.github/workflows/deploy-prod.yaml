@@ -1,0 +1,12 @@
+name: Deploy Production
+on:
+  push:
+    # Pattern matched against refs/tags
+    tags:
+      - 'release/*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -X POST -d {} https://api.vercel.com/v1/integrations/deploy/prj_EtqGUybeWffFe3fkTbin1OA7hSwO/h8cyDPSYMp
