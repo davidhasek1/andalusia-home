@@ -1,0 +1,25 @@
+{
+	"name": "apigw",
+	"type": "module",
+	"packageManager": "yarn@4.1.1",
+	"scripts": {
+		"start": "tsx watch src/index.ts",
+		"build": "tsc",
+		"check:types": "tsc --noEmit",
+		"gql:generate": "graphql-codegen --config graphql-codegen.config.ts",
+		"extract-schema": "graphql-inspector introspect --write ../apigw_schema.graphql http://localhost:4000/graphql"
+	},
+	"dependencies": {
+		"@apollo/server": "^4.10.4",
+		"graphql": "^16.8.1"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "5.0.2",
+		"@graphql-codegen/typescript": "4.0.6",
+		"@graphql-codegen/typescript-resolvers": "4.0.6",
+		"@graphql-inspector/cli": "^4.0.3",
+		"@graphql-inspector/introspect-command": "^4.0.3",
+		"tsx": "^4.7.2",
+		"typescript": "^5.4.5"
+	}
+}
