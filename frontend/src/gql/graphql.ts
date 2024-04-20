@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -46,3 +47,11 @@ export type QueryAuthorArgs = {
 export type QueryBookArgs = {
   id: Scalars['ID']['input'];
 };
+
+export type ListBooksQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ListBooksQueryQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, title: string }> };
+
+
+export const ListBooksQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"listBooksQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"books"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<ListBooksQueryQuery, ListBooksQueryQueryVariables>;

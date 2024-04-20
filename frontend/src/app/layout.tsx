@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { IntlProvider, FormattedMessage, FormattedNumber } from 'react-intl';
-import { Locales } from '../locales/Locales';
+import { LocalesContext } from '../locales/LocalesContext';
+import { ApolloClientContext } from '../contexts/ApolloClientContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<Locales>{children}</Locales>
+				<ApolloClientContext>
+					<LocalesContext>{children}</LocalesContext>
+				</ApolloClientContext>
 			</body>
 		</html>
 	);

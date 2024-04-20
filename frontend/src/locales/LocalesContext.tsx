@@ -6,7 +6,7 @@ const loadLocales = (locale: string) => {
 	return import('./en.json');
 };
 
-export const Locales: FC<PropsWithChildren> = ({ children }) => {
+export const LocalesContext: FC<PropsWithChildren> = ({ children }) => {
 	const [messages, setMessages] = useState<Record<string, string> | Record<string, MessageFormatElement[]>>();
 
 	useEffect(() => {
