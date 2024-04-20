@@ -3,7 +3,7 @@
 	"type": "module",
 	"packageManager": "yarn@4.1.1",
 	"scripts": {
-		"start": "tsx watch src/index.ts",
+		"apigw:start": "tsx watch src/index.ts",
 		"build": "tsc",
 		"check:types": "tsc --noEmit",
 		"gql:generate": "graphql-codegen --config graphql-codegen.config.ts",

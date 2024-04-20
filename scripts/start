@@ -1,5 +1,6 @@
 #!/bin/sh
 concurrently \
-  --names fe \
-  --prefix-colors blue \
+  --names gw,fe \
+  --prefix-colors yellow,blue \
+  "yarn apigw:start" \
   "yarn:frontend:dev" 
