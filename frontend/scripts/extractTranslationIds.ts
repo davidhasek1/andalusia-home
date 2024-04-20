@@ -4,19 +4,18 @@ import { promisify } from 'util';
 
 const execAsync = promisify(exec);
 
-const enLocaleFile = `${__dirname}/../src/utils/locales/en.json`;
+const enLocaleFile = `src/locales/en.json`;
 
 const main = async () => {
-	await execAsync(`yarn formatjs extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file ${process.env.TMPDIR}/ood/ids.json`);
+	await execAsync(`yarn formatjs extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file ${process.env.TMPDIR}/andalusiahome/ids.json`);
 
 	const [idsContent, originalContent] = await Promise.all([
-		readFile(`${process.env.TMPDIR}/ood/ids.json`, 'utf8'),
+		readFile(`${process.env.TMPDIR}/andalusiahome/ids.json`, 'utf8'),
 		readFile(enLocaleFile, 'utf8'),
 	]);
 
 	const idsData = JSON.parse(idsContent);
 	const originalData = JSON.parse(originalContent);
-
 	const ids = Object.keys(idsData).sort();
 
 	const resultData = Object.fromEntries(

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { IntlProvider, FormattedMessage, FormattedNumber } from 'react-intl';
+import { Locales } from '../locales/Locales';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,7 +18,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<Locales>{children}</Locales>
+			</body>
 		</html>
 	);
 }
