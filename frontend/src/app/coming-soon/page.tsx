@@ -1,6 +1,4 @@
-import Image from 'next/image';
-
-export default function Home() {
+const ComingSoon = () => {
 	return (
 		<main className="flex min-h-screen flex-col items-center py-10 gap-16">
 			<h1 className={'text-6xl font-semibold'}>Andalusia Home</h1>
@@ -142,4 +140,6 @@ export default function Home() {
 			</svg>
 		</main>
 	);
-}
+};
+
+export default ComingSoon;

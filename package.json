@@ -10,7 +10,8 @@
 		"start": "scripts/start",
 		"check:lint": "yarn workspaces foreach --all run check:lint",
 		"check:types": "yarn workspaces foreach --all run check:types",
-		"check:all": "yarn workspaces foreach --all run check:all"
+		"check:all": "yarn workspaces foreach --all run check:all",
+		"api:generate-schema": "yarn workspace apigw run extract-schema"
 	},
 	"devDependencies": {
 		"concurrently": "^8.2.2"
