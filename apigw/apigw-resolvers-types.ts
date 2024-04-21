@@ -16,36 +16,23 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type Author = {
-  readonly __typename?: 'Author';
-  readonly books: ReadonlyArray<Book>;
-  readonly id: Scalars['ID']['output'];
-  readonly name: Scalars['String']['output'];
-};
-
-export type Book = {
-  readonly __typename?: 'Book';
-  readonly author: Author;
-  readonly id: Scalars['ID']['output'];
-  readonly title: Scalars['String']['output'];
-};
-
 export type Query = {
   readonly __typename?: 'Query';
-  readonly author: Author;
-  readonly authors: ReadonlyArray<Author>;
-  readonly book: Book;
-  readonly books: ReadonlyArray<Book>;
+  readonly getTodo: Todo;
+  readonly listTodo: ReadonlyArray<Maybe<Todo>>;
 };
 
 
-export type QueryAuthorArgs = {
+export type QueryGetTodoArgs = {
   id: Scalars['ID']['input'];
 };
 
-
-export type QueryBookArgs = {
-  id: Scalars['ID']['input'];
+export type Todo = {
+  readonly __typename?: 'Todo';
+  readonly completed?: Maybe<Scalars['Boolean']['output']>;
+  readonly id?: Maybe<Scalars['Int']['output']>;
+  readonly title?: Maybe<Scalars['String']['output']>;
+  readonly userId?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -119,48 +106,39 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Author: ResolverTypeWrapper<Author>;
-  Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  Todo: ResolverTypeWrapper<Todo>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Author: Author;
-  Book: Book;
   Boolean: Scalars['Boolean']['output'];
   ID: Scalars['ID']['output'];
+  Int: Scalars['Int']['output'];
   Query: {};
   String: Scalars['String']['output'];
-};
-
-export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
-  books?: Resolver<ReadonlyArray<ResolversTypes['Book']>, ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type BookResolvers<ContextType = any, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = {
-  author?: Resolver<ResolversTypes['Author'], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+  Todo: Todo;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  author?: Resolver<ResolversTypes['Author'], ParentType, ContextType, RequireFields<QueryAuthorArgs, 'id'>>;
-  authors?: Resolver<ReadonlyArray<ResolversTypes['Author']>, ParentType, ContextType>;
-  book?: Resolver<ResolversTypes['Book'], ParentType, ContextType, RequireFields<QueryBookArgs, 'id'>>;
-  books?: Resolver<ReadonlyArray<ResolversTypes['Book']>, ParentType, ContextType>;
+  getTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<QueryGetTodoArgs, 'id'>>;
+  listTodo?: Resolver<ReadonlyArray<Maybe<ResolversTypes['Todo']>>, ParentType, ContextType>;
+};
+
+export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = {
+  completed?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  userId?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
-  Author?: AuthorResolvers<ContextType>;
-  Book?: BookResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Todo?: TodoResolvers<ContextType>;
 };
 

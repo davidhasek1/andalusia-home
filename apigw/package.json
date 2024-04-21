@@ -10,6 +10,7 @@
 		"extract-schema": "graphql-inspector introspect --write ../apigw_schema.graphql http://localhost:4000/graphql"
 	},
 	"dependencies": {
+		"@apollo/datasource-rest": "^6.2.2",
 		"@apollo/server": "^4.10.4",
 		"graphql": "^16.8.1"
 	},

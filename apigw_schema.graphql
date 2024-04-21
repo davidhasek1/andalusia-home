@@ -1,18 +1,11 @@
-type Author {
-  books: [Book!]!
-  id: ID!
-  name: String!
-}
-
-type Book {
-  author: Author!
-  id: ID!
-  title: String!
-}
-
 type Query {
-  author(id: ID!): Author!
-  authors: [Author!]!
-  book(id: ID!): Book!
-  books: [Book!]!
+  getTodo(id: ID!): Todo!
+  listTodo: [Todo]!
+}
+
+type Todo {
+  completed: Boolean
+  id: Int
+  title: String
+  userId: Int
 }

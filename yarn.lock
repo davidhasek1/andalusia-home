@@ -75,6 +75,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@apollo/datasource-rest@npm:^6.2.2":
+  version: 6.2.2
+  resolution: "@apollo/datasource-rest@npm:6.2.2"
+  dependencies:
+    "@apollo/utils.fetcher": "npm:^3.0.0"
+    "@apollo/utils.keyvaluecache": "npm:^3.1.0"
+    "@apollo/utils.logger": "npm:^3.0.0"
+    "@apollo/utils.withrequired": "npm:^3.0.0"
+    "@types/http-cache-semantics": "npm:^4.0.1"
+    http-cache-semantics: "npm:^4.1.1"
+    lodash.clonedeep: "npm:^4.5.0"
+    lodash.isplainobject: "npm:^4.0.6"
+    node-fetch: "npm:^2.6.7"
+  peerDependencies:
+    graphql: ^16.5.0
+  checksum: 10c0/996088c23bc2c5b3701632d30551246bc2d0359ba6a3119845a1908d4a52e17b145d27cdb84727ab8ab210fb25140b5f7161d1c07c4278ab30b1b3ca593a70a4
+  languageName: node
+  linkType: hard
+
 "@apollo/protobufjs@npm:1.2.7":
   version: 1.2.7
   resolution: "@apollo/protobufjs@npm:1.2.7"
@@ -182,6 +201,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@apollo/utils.fetcher@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "@apollo/utils.fetcher@npm:3.1.0"
+  checksum: 10c0/5afef2015cce6a372b1309399ce884a325cb0fb548e80779a52916b039de3076a39d38a037ad1075588eb79ea9c41338990c27a5cbe40306e067ed4997aaff62
+  languageName: node
+  linkType: hard
+
 "@apollo/utils.isnodelike@npm:^2.0.0, @apollo/utils.isnodelike@npm:^2.0.1":
   version: 2.0.1
   resolution: "@apollo/utils.isnodelike@npm:2.0.1"
@@ -199,10 +225,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@apollo/utils.keyvaluecache@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@apollo/utils.keyvaluecache@npm:3.1.0"
+  dependencies:
+    "@apollo/utils.logger": "npm:^3.0.0"
+    lru-cache: "npm:^10.0.0"
+  checksum: 10c0/aea41af9f8df0218577ba656bfbb51b3125bf03ead2688f002106050d454c0f634bea449610d705d80926620bada4516423d3fd7381f4020655aabb1ea93109d
+  languageName: node
+  linkType: hard
+
 "@apollo/utils.logger@npm:^2.0.0, @apollo/utils.logger@npm:^2.0.1":
   version: 2.0.1
   resolution: "@apollo/utils.logger@npm:2.0.1"
   checksum: 10c0/7fcf72fdce95540907647ed99b878e2b84f82b963ab00e3bcfea082597d51a5b825411659e378c1497485f858e4e0bb7eb55369c502d96a0b87375d5036a92ba
+  languageName: node
+  linkType: hard
+
+"@apollo/utils.logger@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@apollo/utils.logger@npm:3.0.0"
+  checksum: 10c0/728336edaeba310ca9ffc63d58b8dde53357d094ea764e895881d1d90e11b51cd53732d77ed3bfe256ba1943996f1613f069112be9f319dc7503500ffed21be6
   languageName: node
   linkType: hard
 
@@ -264,6 +307,13 @@ __metadata:
   version: 2.0.1
   resolution: "@apollo/utils.withrequired@npm:2.0.1"
   checksum: 10c0/04d871f5934e3b9cacc28bc36ae44f640bfbfd147ad83088e26013f7444377449f1dde8d4bee665e86342a49cd4698e8d0c9aba46a532a5fab41b98e39fb1f9a
+  languageName: node
+  linkType: hard
+
+"@apollo/utils.withrequired@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@apollo/utils.withrequired@npm:3.0.0"
+  checksum: 10c0/49829534ba710aca9b0136eec6a31527135d965941686fae3a11dda93f2128f4cebdaa166a9a46e2d6033fda56de03fccaf6bdb5d07b3a1fddcdddaacecc36f4
   languageName: node
   linkType: hard
 
@@ -3013,6 +3063,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/http-cache-semantics@npm:^4.0.1":
+  version: 4.0.4
+  resolution: "@types/http-cache-semantics@npm:4.0.4"
+  checksum: 10c0/51b72568b4b2863e0fe8d6ce8aad72a784b7510d72dc866215642da51d84945a9459fa89f49ec48f1e9a1752e6a78e85a4cda0ded06b1c73e727610c925f9ce6
+  languageName: node
+  linkType: hard
+
 "@types/http-errors@npm:*":
   version: 2.0.4
   resolution: "@types/http-errors@npm:2.0.4"
@@ -3485,6 +3542,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "apigw@workspace:apigw"
   dependencies:
+    "@apollo/datasource-rest": "npm:^6.2.2"
     "@apollo/server": "npm:^4.10.4"
     "@graphql-codegen/cli": "npm:5.0.2"
     "@graphql-codegen/typescript": "npm:4.0.6"
@@ -6809,6 +6867,20 @@ __metadata:
   dependencies:
     p-locate: "npm:^5.0.0"
   checksum: 10c0/d3972ab70dfe58ce620e64265f90162d247e87159b6126b01314dd67be43d50e96a50b517bce2d9452a79409c7614054c277b5232377de50416564a77ac7aad3
+  languageName: node
+  linkType: hard
+
+"lodash.clonedeep@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.clonedeep@npm:4.5.0"
+  checksum: 10c0/2caf0e4808f319d761d2939ee0642fa6867a4bbf2cfce43276698828380756b99d4c4fa226d881655e6ac298dd453fe12a5ec8ba49861777759494c534936985
+  languageName: node
+  linkType: hard
+
+"lodash.isplainobject@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "lodash.isplainobject@npm:4.0.6"
+  checksum: 10c0/afd70b5c450d1e09f32a737bed06ff85b873ecd3d3d3400458725283e3f2e0bb6bf48e67dbe7a309eb371a822b16a26cca4a63c8c52db3fc7dc9d5f9dd324cbb
   languageName: node
   linkType: hard
 
