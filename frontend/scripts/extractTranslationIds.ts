@@ -4,14 +4,14 @@ import { promisify } from 'util';
 
 const execAsync = promisify(exec);
 
-const enLocaleFile = `src/locales/en.json`;
+const csLocaleFile = `src/locales/cs.json`;
 
 const main = async () => {
 	await execAsync(`yarn formatjs extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file ${process.env.TMPDIR}/andalusiahome/ids.json`);
 
 	const [idsContent, originalContent] = await Promise.all([
 		readFile(`${process.env.TMPDIR}/andalusiahome/ids.json`, 'utf8'),
-		readFile(enLocaleFile, 'utf8'),
+		readFile(csLocaleFile, 'utf8'),
 	]);
 
 	const idsData = JSON.parse(idsContent);
@@ -25,7 +25,7 @@ const main = async () => {
 	);
 	const resultContent = JSON.stringify(resultData, null, '\t');
 
-	await writeFile(enLocaleFile, `${resultContent}\n`, 'utf8');
+	await writeFile(csLocaleFile, `${resultContent}\n`, 'utf8');
 };
 
 main().catch(console.error);

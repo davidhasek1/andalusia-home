@@ -3,7 +3,7 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react';
 import { IntlProvider, MessageFormatElement } from 'react-intl';
 
 const loadLocales = (locale: string) => {
-	return import('./en.json');
+	return import('./cs.json');
 };
 
 export const LocalesContext: FC<PropsWithChildren> = ({ children }) => {
@@ -16,7 +16,7 @@ export const LocalesContext: FC<PropsWithChildren> = ({ children }) => {
 	}, []);
 	return (
 		/* It takes a while to load locals and console show MISSING TRANSLATION. prop onError IntlProvider turns that off like this onError={() => null} */
-		<IntlProvider messages={messages} locale="en" defaultLocale="en">
+		<IntlProvider messages={messages} locale={"cs"} defaultLocale={"en"}>
 			{children}
 		</IntlProvider>
 	);

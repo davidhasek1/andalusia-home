@@ -5,8 +5,8 @@ import chalk from 'chalk';
 
 const execAsync = promisify(exec);
 
-const enLocaleFile = `${__dirname}/../src/utils/locales/en.json`;
-const originalEnLocaleFile = `${process.env.TMPDIR}/ood/original_en.json`;
+const csLocaleFile = `${__dirname}/../src/utils/locales/cs.json`;
+const originalCsLocaleFile = `${process.env.TMPDIR}/ood/original_cs.json`;
 
 const fail = (lines: readonly string[]): void => {
 	process.stdout.write([...lines, ''].join('\n'));
@@ -14,11 +14,11 @@ const fail = (lines: readonly string[]): void => {
 };
 
 const main = async (): Promise<void> => {
-	await cp(enLocaleFile, originalEnLocaleFile);
+	await cp(csLocaleFile, originalCsLocaleFile);
 
 	await execAsync('yarn workspace frontend trans:extract');
 
-	const [originalData, actualData] = await Promise.all([readFile(originalEnLocaleFile, 'utf8'), readFile(enLocaleFile, 'utf8')]);
+	const [originalData, actualData] = await Promise.all([readFile(originalCsLocaleFile, 'utf8'), readFile(csLocaleFile, 'utf8')]);
 
 	if (originalData !== actualData) {
 		fail([

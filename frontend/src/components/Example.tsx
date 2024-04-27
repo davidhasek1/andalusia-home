@@ -3,24 +3,28 @@ import { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { graphql } from '../gql';
 import { useQuery } from '@apollo/client';
-const listBooksQuery = graphql(`
-	query listBooksQuery {
-		books {
-			id
-			title
+const example = graphql(`
+	query example {
+		getExample {
+			QueryInfo {
+				ApiId
+				PropertyCount
+				SearchType
+			}
 		}
 	}
 `);
 
 export const Example: FC = () => {
-	const { data } = useQuery(listBooksQuery);
+	const { data } = useQuery(example);
 
 	return (
 		<div>
-			<FormattedMessage id="test" />
+			<FormattedMessage id={'test'} />
 			<br />
-			<FormattedMessage id="test2" />
-			GQL data fetch: {JSON.stringify(data?.books)}
+			{/*  eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
+			<FormattedMessage id={'test2'} />
+			GQL data fetch: {JSON.stringify(data?.getExample)}
 		</div>
 	);
 };

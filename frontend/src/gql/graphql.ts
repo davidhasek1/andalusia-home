@@ -16,42 +16,30 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type Author = {
-  __typename?: 'Author';
-  books: Array<Book>;
-  id: Scalars['ID']['output'];
-  name: Scalars['String']['output'];
+export type ExampleType = {
+  __typename?: 'ExampleType';
+  ApiId: Scalars['Int']['output'];
+  CurrentPage: Scalars['Int']['output'];
+  PropertiesPerPage: Scalars['Int']['output'];
+  PropertyCount: Scalars['Int']['output'];
+  QueryId: Scalars['Int']['output'];
+  SearchType: Scalars['String']['output'];
 };
 
-export type Book = {
-  __typename?: 'Book';
-  author: Author;
-  id: Scalars['ID']['output'];
-  title: Scalars['String']['output'];
+export type GetExample = {
+  __typename?: 'GetExample';
+  QueryInfo: ExampleType;
 };
 
 export type Query = {
   __typename?: 'Query';
-  author: Author;
-  authors: Array<Author>;
-  book: Book;
-  books: Array<Book>;
+  getExample: GetExample;
 };
 
-
-export type QueryAuthorArgs = {
-  id: Scalars['ID']['input'];
-};
+export type ExampleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type QueryBookArgs = {
-  id: Scalars['ID']['input'];
-};
-
-export type ListBooksQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type ExampleQuery = { __typename?: 'Query', getExample: { __typename?: 'GetExample', QueryInfo: { __typename?: 'ExampleType', ApiId: number, PropertyCount: number, SearchType: string } } };
 
 
-export type ListBooksQueryQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, title: string }> };
-
-
-export const ListBooksQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"listBooksQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"books"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<ListBooksQueryQuery, ListBooksQueryQueryVariables>;
+export const ExampleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"example"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getExample"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"QueryInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ApiId"}},{"kind":"Field","name":{"kind":"Name","value":"PropertyCount"}},{"kind":"Field","name":{"kind":"Name","value":"SearchType"}}]}}]}}]}}]} as unknown as DocumentNode<ExampleQuery, ExampleQueryVariables>;

@@ -1,30 +1,19 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { navLinks } from '../menu-items';
+import Logo from '../../../public/logo_light.svg';
 
 const Footer = () => {
-	const footerLinks = [
-		{
-			name: 'Nemovitosti',
-			href: '/properties',
-		},
-		{
-			name: 'Nabídnout nemovitost',
-			href: '/offer-property',
-		},
-		{
-			name: 'Náš tým',
-			href: '/our-team',
-		},
-	];
-
 	return (
 		<div className={'flex justify-center gap-20 items-center bg-primary py-20 px-5'}>
-			<div className={'relative w-[10rem] h-[6rem]'}>
-				<Image src={'/Logo_AH.png'} alt={'logo'} fill sizes={'25vw'} objectFit={'cover'} />
+			<div className={'relative w-[15rem] h-[8rem]'}>
+				<Image src={Logo} alt={'logo'} fill sizes={'25vw'} objectFit={'cover'} />
 			</div>
 			<ul className={'flex flex-col gap-10 text-white'}>
-				{footerLinks.map((item, index) => {
+				{navLinks.map((item, index) => {
 					return (
 						<li key={index}>
 							<Link className={'font-semibold uppercase text-xl'} href={item.href}>
