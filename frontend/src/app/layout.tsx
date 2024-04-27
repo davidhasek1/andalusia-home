@@ -4,6 +4,9 @@ import './globals.css';
 import { IntlProvider, FormattedMessage, FormattedNumber } from 'react-intl';
 import { LocalesContext } from '../locales/LocalesContext';
 import { ApolloClientContext } from '../contexts/ApolloClientContext';
+import { ReactNode } from 'react';
+import Header from 'components/header/Header';
+import Footer from 'components/footer/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,13 +18,17 @@ export const metadata: Metadata = {
 export default function RootLayout({
 	children,
 }: Readonly<{
-	children: React.ReactNode;
+	children: ReactNode;
 }>) {
 	return (
 		<html lang="en">
 			<body className={inter.className}>
 				<ApolloClientContext>
-					<LocalesContext>{children}</LocalesContext>
+					<LocalesContext>
+						<Header />
+						{children}
+						<Footer />
+					</LocalesContext>
 				</ApolloClientContext>
 			</body>
 		</html>
