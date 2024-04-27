@@ -3,26 +3,28 @@ import { Resolvers } from '../apigw-resolvers-types';
 
 const typeDefs = `#graphql
 
-  type Todo {
-    userId: Int,
-    id: Int,
-    title: String
-    completed: Boolean
+  
+  type ExampleType {
+    ApiId: Int!,
+    QueryId: Int!
+    SearchType: String!
+    PropertyCount: Int!,
+    CurrentPage: Int!,
+    PropertiesPerPage: Int!
+  }
+  type GetExample {
+    QueryInfo: ExampleType!
   }
 
   type Query {
-    listTodo: [Todo]!
-    getTodo(id: ID!): Todo!
+    getExample: GetExample!
   }
 `;
 
 const resolvers = {
 	Query: {
-		listTodo: async (parent, {}, context) => {
-			return context.dataSource.resalesOnlineAPI.listTodo();
-		},
-		getTodo: async (parent, { id }, context) => {
-			return context.dataSource.resalesOnlineAPI.getTodo(id);
+		getExample: async (parent, {}, context) => {
+			return await context.dataSource.resalesOnlineAPI.getExample();
 		},
 	},
 } as Resolvers<Context>;

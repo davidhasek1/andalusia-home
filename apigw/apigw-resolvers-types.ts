@@ -6,7 +6,6 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -16,23 +15,24 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type ExampleType = {
+  readonly __typename?: 'ExampleType';
+  readonly ApiId: Scalars['Int']['output'];
+  readonly CurrentPage: Scalars['Int']['output'];
+  readonly PropertiesPerPage: Scalars['Int']['output'];
+  readonly PropertyCount: Scalars['Int']['output'];
+  readonly QueryId: Scalars['Int']['output'];
+  readonly SearchType: Scalars['String']['output'];
+};
+
+export type GetExample = {
+  readonly __typename?: 'GetExample';
+  readonly QueryInfo: ExampleType;
+};
+
 export type Query = {
   readonly __typename?: 'Query';
-  readonly getTodo: Todo;
-  readonly listTodo: ReadonlyArray<Maybe<Todo>>;
-};
-
-
-export type QueryGetTodoArgs = {
-  id: Scalars['ID']['input'];
-};
-
-export type Todo = {
-  readonly __typename?: 'Todo';
-  readonly completed?: Maybe<Scalars['Boolean']['output']>;
-  readonly id?: Maybe<Scalars['Int']['output']>;
-  readonly title?: Maybe<Scalars['String']['output']>;
-  readonly userId?: Maybe<Scalars['Int']['output']>;
+  readonly getExample: GetExample;
 };
 
 
@@ -107,38 +107,45 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  ExampleType: ResolverTypeWrapper<ExampleType>;
+  GetExample: ResolverTypeWrapper<GetExample>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
-  Todo: ResolverTypeWrapper<Todo>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
-  ID: Scalars['ID']['output'];
+  ExampleType: ExampleType;
+  GetExample: GetExample;
   Int: Scalars['Int']['output'];
   Query: {};
   String: Scalars['String']['output'];
-  Todo: Todo;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  getTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<QueryGetTodoArgs, 'id'>>;
-  listTodo?: Resolver<ReadonlyArray<Maybe<ResolversTypes['Todo']>>, ParentType, ContextType>;
-};
-
-export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = {
-  completed?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  userId?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+export type ExampleTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['ExampleType'] = ResolversParentTypes['ExampleType']> = {
+  ApiId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  CurrentPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  PropertiesPerPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  PropertyCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  QueryId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  SearchType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type GetExampleResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetExample'] = ResolversParentTypes['GetExample']> = {
+  QueryInfo?: Resolver<ResolversTypes['ExampleType'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getExample?: Resolver<ResolversTypes['GetExample'], ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
+  ExampleType?: ExampleTypeResolvers<ContextType>;
+  GetExample?: GetExampleResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
-  Todo?: TodoResolvers<ContextType>;
 };
 

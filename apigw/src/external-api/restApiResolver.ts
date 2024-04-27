@@ -1,14 +1,21 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
-import { Todo } from '../../apigw-resolvers-types';
+import { KeyValueCache } from '@apollo/utils.keyvaluecache';
+import { GetExample } from '../../apigw-resolvers-types';
 
 class ResaleOnlineAPI extends RESTDataSource {
-	override baseURL = 'https://jsonplaceholder.typicode.com/'; /* 'https://webapi.resales-online.com/V6/'; */
+	override baseURL = 'https://webapi.resales-online.com/V6/';
 
-	async listTodo(): Promise<Todo[]> {
-		return await this.get(`todos`);
+	private contactId: string;
+	private token: string;
+
+	constructor(options: { token?: string; contactId?: string; cache: KeyValueCache }) {
+		super(options);
+		this.contactId = options.contactId ?? '';
+		this.token = options.token ?? '';
 	}
-	async getTodo(id: string): Promise<Todo[]> {
-		return await this.get(`todos/${encodeURIComponent(id)}`);
+
+	async getExample(): Promise<GetExample> {
+		return await this.get(`SearchProperties?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}&P_sandbox=true`);
 	}
 }
 

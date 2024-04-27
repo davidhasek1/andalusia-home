@@ -2,7 +2,7 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { ResaleOnlineAPI } from './external-api/restApiResolver';
 import { resolvers, typeDefs } from './schema';
-
+import 'dotenv/config';
 export type Context = {
 	dataSource: {
 		resalesOnlineAPI: ResaleOnlineAPI;
@@ -20,7 +20,7 @@ const run = async () => {
 			const { cache } = server;
 			return {
 				dataSource: {
-					resalesOnlineAPI: new ResaleOnlineAPI({ cache }),
+					resalesOnlineAPI: new ResaleOnlineAPI({ contactId: process.env.CONTACT_ID_P1, token: process.env.API_TOKEN_P2, cache }),
 				},
 			};
 		},

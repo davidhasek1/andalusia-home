@@ -1,11 +1,16 @@
-type Query {
-  getTodo(id: ID!): Todo!
-  listTodo: [Todo]!
+type ExampleType {
+  ApiId: Int!
+  CurrentPage: Int!
+  PropertiesPerPage: Int!
+  PropertyCount: Int!
+  QueryId: Int!
+  SearchType: String!
 }
 
-type Todo {
-  completed: Boolean
-  id: Int
-  title: String
-  userId: Int
+type GetExample {
+  QueryInfo: ExampleType!
+}
+
+type Query {
+  getExample: GetExample!
 }
