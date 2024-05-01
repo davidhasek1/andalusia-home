@@ -16,30 +16,77 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type ExampleType = {
-  __typename?: 'ExampleType';
-  ApiId: Scalars['Int']['output'];
-  CurrentPage: Scalars['Int']['output'];
-  PropertiesPerPage: Scalars['Int']['output'];
-  PropertyCount: Scalars['Int']['output'];
-  QueryId: Scalars['Int']['output'];
-  SearchType: Scalars['String']['output'];
+export enum CurrencyType {
+  Eur = 'EUR'
+}
+
+export enum DimensionsType {
+  Meters = 'METERS'
+}
+
+export type Properties = {
+  __typename?: 'Properties';
+  Property: Array<PropertyType>;
+  QueryInfo: QueryInfoType;
 };
 
-export type GetExample = {
-  __typename?: 'GetExample';
-  QueryInfo: ExampleType;
+export type PropertyType = {
+  __typename?: 'PropertyType';
+  AgencyRef: Scalars['String']['output'];
+  Area: Scalars['String']['output'];
+  Bathrooms: Scalars['String']['output'];
+  Bedrooms: Scalars['String']['output'];
+  Built: Scalars['Int']['output'];
+  CO2Rated: Scalars['String']['output'];
+  Country: Scalars['String']['output'];
+  Currency: CurrencyType;
+  Description: Scalars['String']['output'];
+  Dimensions?: Maybe<DimensionsType>;
+  EnergyRated: Scalars['String']['output'];
+  Garden: Scalars['Int']['output'];
+  GardenPlot: Scalars['Int']['output'];
+  Location: Scalars['String']['output'];
+  MainImage?: Maybe<Scalars['String']['output']>;
+  OriginalPrice: Scalars['Int']['output'];
+  OwnProperty: Scalars['String']['output'];
+  Parking: Scalars['Int']['output'];
+  Pool: Scalars['Int']['output'];
+  Price: Scalars['Int']['output'];
+  PropertyType: PropertyTypeType;
+  Province: Scalars['String']['output'];
+  Reference: Scalars['String']['output'];
+  SubLocation?: Maybe<Scalars['String']['output']>;
+  Terrace: Scalars['Int']['output'];
+};
+
+export type PropertyTypeType = {
+  __typename?: 'PropertyTypeType';
+  NameType: Scalars['String']['output'];
+  Subtype1: Scalars['String']['output'];
+  SubtypeId1: Scalars['String']['output'];
+  Type: Scalars['String']['output'];
+  TypeId: Scalars['String']['output'];
 };
 
 export type Query = {
   __typename?: 'Query';
-  getExample: GetExample;
+  listPropertiesForSale: Properties;
+};
+
+export type QueryInfoType = {
+  __typename?: 'QueryInfoType';
+  ApiId: Scalars['Int']['output'];
+  CurrentPage: Scalars['Int']['output'];
+  PropertiesPerPage: Scalars['Int']['output'];
+  PropertyCount: Scalars['Int']['output'];
+  QueryId: Scalars['ID']['output'];
+  SearchType: Scalars['String']['output'];
 };
 
 export type ExampleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ExampleQuery = { __typename?: 'Query', getExample: { __typename?: 'GetExample', QueryInfo: { __typename?: 'ExampleType', ApiId: number, PropertyCount: number, SearchType: string } } };
+export type ExampleQuery = { __typename?: 'Query', listPropertiesForSale: { __typename?: 'Properties', Property: Array<{ __typename?: 'PropertyType', Price: number, Area: string, Location: string }> } };
 
 
-export const ExampleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"example"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getExample"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"QueryInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ApiId"}},{"kind":"Field","name":{"kind":"Name","value":"PropertyCount"}},{"kind":"Field","name":{"kind":"Name","value":"SearchType"}}]}}]}}]}}]} as unknown as DocumentNode<ExampleQuery, ExampleQueryVariables>;
+export const ExampleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"example"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"listPropertiesForSale"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Property"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Price"}},{"kind":"Field","name":{"kind":"Name","value":"Area"}},{"kind":"Field","name":{"kind":"Name","value":"Location"}}]}}]}}]}}]} as unknown as DocumentNode<ExampleQuery, ExampleQueryVariables>;

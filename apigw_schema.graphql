@@ -1,16 +1,61 @@
-type ExampleType {
+enum CurrencyType {
+  EUR
+}
+
+enum DimensionsType {
+  METERS
+}
+
+type Properties {
+  Property: [PropertyType!]!
+  QueryInfo: QueryInfoType!
+}
+
+type PropertyType {
+  AgencyRef: String!
+  Area: String!
+  Bathrooms: String!
+  Bedrooms: String!
+  Built: Int!
+  CO2Rated: String!
+  Country: String!
+  Currency: CurrencyType!
+  Description: String!
+  Dimensions: DimensionsType
+  EnergyRated: String!
+  Garden: Int!
+  GardenPlot: Int!
+  Location: String!
+  MainImage: String
+  OriginalPrice: Int!
+  OwnProperty: String!
+  Parking: Int!
+  Pool: Int!
+  Price: Int!
+  PropertyType: PropertyTypeType!
+  Province: String!
+  Reference: String!
+  SubLocation: String
+  Terrace: Int!
+}
+
+type PropertyTypeType {
+  NameType: String!
+  Subtype1: String!
+  SubtypeId1: String!
+  Type: String!
+  TypeId: String!
+}
+
+type Query {
+  listPropertiesForSale: Properties!
+}
+
+type QueryInfoType {
   ApiId: Int!
   CurrentPage: Int!
   PropertiesPerPage: Int!
   PropertyCount: Int!
-  QueryId: Int!
+  QueryId: ID!
   SearchType: String!
-}
-
-type GetExample {
-  QueryInfo: ExampleType!
-}
-
-type Query {
-  getExample: GetExample!
 }

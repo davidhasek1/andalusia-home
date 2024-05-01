@@ -15,24 +15,71 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type ExampleType = {
-  readonly __typename?: 'ExampleType';
-  readonly ApiId: Scalars['Int']['output'];
-  readonly CurrentPage: Scalars['Int']['output'];
-  readonly PropertiesPerPage: Scalars['Int']['output'];
-  readonly PropertyCount: Scalars['Int']['output'];
-  readonly QueryId: Scalars['Int']['output'];
-  readonly SearchType: Scalars['String']['output'];
+export enum CurrencyType {
+  Eur = 'EUR'
+}
+
+export enum DimensionsType {
+  Meters = 'METERS'
+}
+
+export type Properties = {
+  readonly __typename?: 'Properties';
+  readonly Property: ReadonlyArray<PropertyType>;
+  readonly QueryInfo: QueryInfoType;
 };
 
-export type GetExample = {
-  readonly __typename?: 'GetExample';
-  readonly QueryInfo: ExampleType;
+export type PropertyType = {
+  readonly __typename?: 'PropertyType';
+  readonly AgencyRef: Scalars['String']['output'];
+  readonly Area: Scalars['String']['output'];
+  readonly Bathrooms: Scalars['String']['output'];
+  readonly Bedrooms: Scalars['String']['output'];
+  readonly Built: Scalars['Int']['output'];
+  readonly CO2Rated: Scalars['String']['output'];
+  readonly Country: Scalars['String']['output'];
+  readonly Currency: CurrencyType;
+  readonly Description: Scalars['String']['output'];
+  readonly Dimensions?: Maybe<DimensionsType>;
+  readonly EnergyRated: Scalars['String']['output'];
+  readonly Garden: Scalars['Int']['output'];
+  readonly GardenPlot: Scalars['Int']['output'];
+  readonly Location: Scalars['String']['output'];
+  readonly MainImage?: Maybe<Scalars['String']['output']>;
+  readonly OriginalPrice: Scalars['Int']['output'];
+  readonly OwnProperty: Scalars['String']['output'];
+  readonly Parking: Scalars['Int']['output'];
+  readonly Pool: Scalars['Int']['output'];
+  readonly Price: Scalars['Int']['output'];
+  readonly PropertyType: PropertyTypeType;
+  readonly Province: Scalars['String']['output'];
+  readonly Reference: Scalars['String']['output'];
+  readonly SubLocation?: Maybe<Scalars['String']['output']>;
+  readonly Terrace: Scalars['Int']['output'];
+};
+
+export type PropertyTypeType = {
+  readonly __typename?: 'PropertyTypeType';
+  readonly NameType: Scalars['String']['output'];
+  readonly Subtype1: Scalars['String']['output'];
+  readonly SubtypeId1: Scalars['String']['output'];
+  readonly Type: Scalars['String']['output'];
+  readonly TypeId: Scalars['String']['output'];
 };
 
 export type Query = {
   readonly __typename?: 'Query';
-  readonly getExample: GetExample;
+  readonly listPropertiesForSale: Properties;
+};
+
+export type QueryInfoType = {
+  readonly __typename?: 'QueryInfoType';
+  readonly ApiId: Scalars['Int']['output'];
+  readonly CurrentPage: Scalars['Int']['output'];
+  readonly PropertiesPerPage: Scalars['Int']['output'];
+  readonly PropertyCount: Scalars['Int']['output'];
+  readonly QueryId: Scalars['ID']['output'];
+  readonly SearchType: Scalars['String']['output'];
 };
 
 
@@ -107,45 +154,94 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  ExampleType: ResolverTypeWrapper<ExampleType>;
-  GetExample: ResolverTypeWrapper<GetExample>;
+  CurrencyType: CurrencyType;
+  DimensionsType: DimensionsType;
+  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  Properties: ResolverTypeWrapper<Properties>;
+  PropertyType: ResolverTypeWrapper<PropertyType>;
+  PropertyTypeType: ResolverTypeWrapper<PropertyTypeType>;
   Query: ResolverTypeWrapper<{}>;
+  QueryInfoType: ResolverTypeWrapper<QueryInfoType>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
-  ExampleType: ExampleType;
-  GetExample: GetExample;
+  ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
+  Properties: Properties;
+  PropertyType: PropertyType;
+  PropertyTypeType: PropertyTypeType;
   Query: {};
+  QueryInfoType: QueryInfoType;
   String: Scalars['String']['output'];
 };
 
-export type ExampleTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['ExampleType'] = ResolversParentTypes['ExampleType']> = {
-  ApiId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  CurrentPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  PropertiesPerPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  PropertyCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  QueryId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  SearchType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+export type PropertiesResolvers<ContextType = any, ParentType extends ResolversParentTypes['Properties'] = ResolversParentTypes['Properties']> = {
+  Property?: Resolver<ReadonlyArray<ResolversTypes['PropertyType']>, ParentType, ContextType>;
+  QueryInfo?: Resolver<ResolversTypes['QueryInfoType'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type GetExampleResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetExample'] = ResolversParentTypes['GetExample']> = {
-  QueryInfo?: Resolver<ResolversTypes['ExampleType'], ParentType, ContextType>;
+export type PropertyTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyType'] = ResolversParentTypes['PropertyType']> = {
+  AgencyRef?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Area?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Bathrooms?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Bedrooms?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Built?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  CO2Rated?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Country?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Currency?: Resolver<ResolversTypes['CurrencyType'], ParentType, ContextType>;
+  Description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Dimensions?: Resolver<Maybe<ResolversTypes['DimensionsType']>, ParentType, ContextType>;
+  EnergyRated?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Garden?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  GardenPlot?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  Location?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  MainImage?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  OriginalPrice?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  OwnProperty?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Parking?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  Pool?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  Price?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  PropertyType?: Resolver<ResolversTypes['PropertyTypeType'], ParentType, ContextType>;
+  Province?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Reference?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  SubLocation?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  Terrace?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type PropertyTypeTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyTypeType'] = ResolversParentTypes['PropertyTypeType']> = {
+  NameType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Subtype1?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  SubtypeId1?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  TypeId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  getExample?: Resolver<ResolversTypes['GetExample'], ParentType, ContextType>;
+  listPropertiesForSale?: Resolver<ResolversTypes['Properties'], ParentType, ContextType>;
+};
+
+export type QueryInfoTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueryInfoType'] = ResolversParentTypes['QueryInfoType']> = {
+  ApiId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  CurrentPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  PropertiesPerPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  PropertyCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  QueryId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  SearchType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
-  ExampleType?: ExampleTypeResolvers<ContextType>;
-  GetExample?: GetExampleResolvers<ContextType>;
+  Properties?: PropertiesResolvers<ContextType>;
+  PropertyType?: PropertyTypeResolvers<ContextType>;
+  PropertyTypeType?: PropertyTypeTypeResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  QueryInfoType?: QueryInfoTypeResolvers<ContextType>;
 };
 

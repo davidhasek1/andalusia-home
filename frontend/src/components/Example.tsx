@@ -5,11 +5,11 @@ import { graphql } from '../gql';
 import { useQuery } from '@apollo/client';
 const example = graphql(`
 	query example {
-		getExample {
-			QueryInfo {
-				ApiId
-				PropertyCount
-				SearchType
+		listPropertiesForSale {
+			Property {
+				Price
+				Area
+				Location
 			}
 		}
 	}
@@ -24,7 +24,7 @@ export const Example: FC = () => {
 			<br />
 			{/*  eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
 			<FormattedMessage id={'test2'} />
-			GQL data fetch: {JSON.stringify(data?.getExample)}
+			GQL data fetch: {JSON.stringify(data?.listPropertiesForSale)}
 		</div>
 	);
 };

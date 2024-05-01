@@ -20,3 +20,10 @@ Filter Alias : 3
 Predefined filter for Featured:
 (P_Agency_FilterId)	Province/Area : Málaga
 Filter Alias : 4
+
+
+## What means what if you look at filters table in RO vs API docs
+
+- P_Agency_FilterId == ALIAS (small number in table)
+
+- P_ApiId == Filter ID (big number in table)
