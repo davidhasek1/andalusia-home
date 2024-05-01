@@ -21,7 +21,6 @@ const typeDefs = `#graphql
     Location: String!
     SubLocation: String
     PropertyType: PropertyTypeType!
-
     Bedrooms: String!
     Bathrooms: String!
     Currency: CurrencyType!

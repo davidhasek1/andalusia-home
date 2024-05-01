@@ -15,7 +15,7 @@ class ResaleOnlineAPI extends RESTDataSource {
 	}
 
 	async listProperties(): Promise<Properties> {
-		return await this.get(`SearchProperties?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}`);
+		return await this.get(`SearchProperties?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}&P_sandbox=true`);
 	}
 }
 

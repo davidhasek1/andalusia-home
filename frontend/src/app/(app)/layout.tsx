@@ -23,7 +23,7 @@ export default function AppLayout({
 }>) {
 	return (
 		<html lang={'en'}>
-			<body className={inter.className}>
+			<body className={inter.className} style={{ minHeight: '100vh' }}>
 				<ApolloClientContext>
 					<LocalesContext>
 						<Navbar />

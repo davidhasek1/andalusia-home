@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '../globals.css';
-import { IntlProvider, FormattedMessage, FormattedNumber } from 'react-intl';
 import { LocalesContext } from '../../locales/LocalesContext';
 import { ApolloClientContext } from '../../contexts/ApolloClientContext';
 import { ReactNode } from 'react';
@@ -21,7 +20,7 @@ export default function RootLayout({
 	children: ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang={'en'}>
 			<body className={inter.className}>
 				<ApolloClientContext>
 					<LocalesContext>
