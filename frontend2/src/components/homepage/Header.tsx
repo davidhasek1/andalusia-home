@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 export const Header: FC = () => {
 	return (
 		<Stack
+			position={'relative'}
 			px={10}
 			sx={{
 				backgroundImage: `url("assets/main-image.webp")`,
@@ -21,7 +22,7 @@ export const Header: FC = () => {
 					top: 0,
 					left: 0,
 					width: '100%',
-					height: '85%',
+					height: '100%',
 					backgroundColor: 'rgba(255, 255, 255, 0.4)',
 				}}
 			/>

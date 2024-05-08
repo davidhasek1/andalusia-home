@@ -6,7 +6,8 @@ import Logo from '../../public/logo_dark.svg';
 import Image from 'next/image';
 import MenuIcon from '@mui/icons-material/Menu';
 import { usePathname } from 'next/navigation';
-const navigation = [
+
+export const navigation = [
 	{
 		title: <FormattedMessage id={'menu.home'} />,
 		url: '/',
@@ -47,7 +48,8 @@ export const Navigation: FC = () => {
 	return (
 		<Stack
 			position={path === '/' ? 'fixed' : 'unset'}
-			width={'100%'}
+			top={changeBg ? 0 : 'unset'}
+			width={{ lg: 'calc(100% - 80px)', xs: '100%' }}
 			direction={'row'}
 			alignItems={'center'}
 			justifyContent={'space-between'}

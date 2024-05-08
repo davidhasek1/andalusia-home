@@ -21,6 +21,10 @@ const theme = createTheme({
 			fontWeight: 200,
 			textTransform: 'none',
 		},
+		caption: {
+			fontFamily: roboto.style.fontFamily,
+			fontSize: 14
+		},
 	},
 	components: {
 		MuiButton: {
