@@ -17,8 +17,26 @@ const theme = createTheme({
 		fontFamily: ourFont.style.fontFamily,
 		fontSize: 16,
 
-		caption: {
+		button: {
 			fontFamily: roboto.style.fontFamily,
+			fontWeight: 200,
+			textTransform: 'none',
+		},
+	},
+	components: {
+		MuiButton: {
+			styleOverrides: {
+				contained: {
+					border: 'none',
+					borderRadius: 20,
+					backgroundColor: '#000',
+					'&:hover': {
+						backgroundColor: '#fff',
+						outline: '1px solid #000',
+						color: '#000',
+					},
+				},
+			},
 		},
 	},
 });

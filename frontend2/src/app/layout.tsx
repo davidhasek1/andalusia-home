@@ -7,6 +7,7 @@ import { LocalesContext } from '../locales/LocalesContext';
 import { ApolloClientContext } from '../contexts/ApolloClientContext';
 import { ReactNode } from 'react';
 import localFont from 'next/font/local';
+import { Navigation } from '../components/Navigation';
 
 const ourFont = localFont({ src: '../fonts/eurostarregularextended.ttf' });
 export const metadata: Metadata = {
@@ -25,7 +26,10 @@ export default function AppLayout({
 				<ApolloClientContext>
 					<AppRouterCacheProvider>
 						<ThemeProvider theme={theme}>
-							<LocalesContext>{children}</LocalesContext>
+							<LocalesContext>
+								<Navigation />
+								{children}
+							</LocalesContext>
 						</ThemeProvider>
 					</AppRouterCacheProvider>
 				</ApolloClientContext>

@@ -1,7 +1,8 @@
 {
-	"menu.offer-property": "Nabídnout nemovitost",
-	"menu.our-team": "Náš tým",
-	"menu.properties": "Nemovitosti",
-	"test": "Test title2",
-	"test2": "Message"
+	"header.button.list-properties": "Seznam nemovitostí",
+	"menu.about-us": "O nás",
+	"menu.blog": "Blog",
+	"menu.contact": "Kontakt",
+	"menu.home": "Domů",
+	"menu.properties": "Nemovitosti"
 }
