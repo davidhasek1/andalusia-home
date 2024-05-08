@@ -8,8 +8,6 @@ import { ApolloClientContext } from '../contexts/ApolloClientContext';
 import { ReactNode } from 'react';
 import localFont from 'next/font/local';
 import { Navigation } from '../components/Navigation';
-import { Stack } from '@mui/material';
-import { Footer } from '../components/Footer';
 
 const ourFont = localFont({ src: '../fonts/eurostarregularextended.ttf' });
 export const metadata: Metadata = {
@@ -24,31 +22,13 @@ export default function AppLayout({
 }>) {
 	return (
 		<html lang={'en'}>
-			<body className={ourFont.className}>
-				<style>
-					{/*  eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
-					{`
-          body {
-            min-height: 100vh;
-            margin: 40px;
-            background-color: #000;
-          }
-          @media (max-width: 1025px) {
-            body {
-              margin: 0;
-            }
-          }
-        `}
-				</style>
+			<body className={ourFont.className} style={{ minHeight: '100vh' }}>
 				<ApolloClientContext>
 					<AppRouterCacheProvider>
 						<ThemeProvider theme={theme}>
 							<LocalesContext>
-								<Stack sx={{ backgroundColor: '#fff' }}>
-									<Navigation />
-									{children}
-								</Stack>
-								<Footer />
+								<Navigation />
+								{children}
 							</LocalesContext>
 						</ThemeProvider>
 					</AppRouterCacheProvider>

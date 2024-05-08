@@ -48,8 +48,7 @@ export const Navigation: FC = () => {
 	return (
 		<Stack
 			position={path === '/' ? 'fixed' : 'unset'}
-			top={changeBg ? 0 : 'unset'}
-			width={{ lg: 'calc(100% - 80px)', xs: '100%' }}
+			width={'100%'}
 			direction={'row'}
 			alignItems={'center'}
 			justifyContent={'space-between'}

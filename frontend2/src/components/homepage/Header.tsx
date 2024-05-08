@@ -2,6 +2,7 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Searchbox } from './Searchbox/Searchbox';
 
 export const Header: FC = () => {
 	return (
@@ -9,10 +10,10 @@ export const Header: FC = () => {
 			position={'relative'}
 			px={10}
 			sx={{
-				backgroundImage: `url("assets/main-image.webp")`,
+				backgroundImage: `url("assets/main-image-heart.webp")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
-				backgroundPosition: 'center center',
+				backgroundPosition: 'top center',
 				height: '85vh',
 			}}
 		>
@@ -23,7 +24,7 @@ export const Header: FC = () => {
 					left: 0,
 					width: '100%',
 					height: '100%',
-					backgroundColor: 'rgba(255, 255, 255, 0.4)',
+					backgroundColor: 'rgba(255, 255, 255, 0)',
 				}}
 			/>
 			<Stack zIndex={0} height={'100%'} alignItems={'center'} justifyContent={'center'}>
@@ -58,6 +59,7 @@ export const Header: FC = () => {
 					</Stack>
 				</Stack>
 			</Stack>
+			<Searchbox />
 		</Stack>
 	);
 };

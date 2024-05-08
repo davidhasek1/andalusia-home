@@ -1,5 +1,4 @@
-import { Box, Divider, Stack, Typography } from '@mui/material';
-import { FormattedMessage } from 'react-intl';
+import { Stack } from '@mui/material';
 import { Header } from '../components/homepage/Header';
 import { AboutUs } from '../components/homepage/AboutUs';
 import { WhyChooseUs } from '../components/homepage/WhyChooseUs';
