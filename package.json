@@ -2,11 +2,14 @@
 	"private": true,
 	"workspaces": [
 		"apigw",
-		"frontend"
+		"frontend",
+		"frontend2"
 	],
 	"scripts": {
 		"frontend:dev": "yarn workspace frontend dev",
 		"frontend:start": "yarn workspace frontend start",
+		"frontend2:dev": "yarn workspace frontend2 dev",
+		"frontend2:start": "yarn workspace frontend2 start",
 		"start": "scripts/start",
 		"check:lint": "yarn workspaces foreach --all run check:lint",
 		"check:types": "yarn workspaces foreach --all run check:types",
