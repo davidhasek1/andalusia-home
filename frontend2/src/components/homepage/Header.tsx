@@ -21,7 +21,7 @@ export const Header: FC = () => {
 					top: 0,
 					left: 0,
 					width: '100%',
-					height: '100%',
+					height: '85%',
 					backgroundColor: 'rgba(255, 255, 255, 0.4)',
 				}}
 			/>
@@ -49,7 +49,9 @@ export const Header: FC = () => {
 							exercitation.
 						</Typography>
 						<Stack direction={'row'} gap={2}>
+							{/* eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
 							<Button variant={'contained'}>Discover more</Button>
+							{/* eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
 							<Button variant={'outlined'}>Some noraml text</Button>
 						</Stack>
 					</Stack>

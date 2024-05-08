@@ -1,6 +1,10 @@
 {
 	"header.button.list-properties": "Seznam nemovitostí",
 	"header.title": "Najděte svoji ideální nemovitost",
+	"homepage.section.about-us.title": "O nás",
+	"homepage.section.blog.title": " Výběr z blogu",
+	"homepage.section.reviews.title": "Jak o nás mluví...",
+	"homepage.section.why-choose-us.title": "Proč právě my?",
 	"menu.about-us": "O nás",
 	"menu.blog": "Blog",
 	"menu.contact": "Kontakt",

@@ -36,7 +36,7 @@ export const Navigation: FC = () => {
 
 	useEffect(() => {
 		addEventListener('scroll', () => {
-			if (window.scrollY > 600) {
+			if (window !== undefined && window.scrollY > 600) {
 				setChangeBg(true);
 			} else {
 				setChangeBg(false);
