@@ -1,13 +1,21 @@
-import { Typography } from '@mui/material';
+import { Box, Divider, Stack, Typography } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
+import { Header } from '../components/homepage/Header';
 
 const Homepage = () => {
-	// eslint-disable-next-line formatjs/no-literal-string-in-jsx
 	return (
-		<>
-			<Typography variant={"h1"} fontWeight={300}>text</Typography>
-			<Typography>text</Typography>
-			<Typography variant={'caption'}>caption</Typography>
-		</>
+		<Stack>
+			<Header />
+
+			<Stack mt={20}>fii</Stack>
+			<Stack mt={20}>fii</Stack>
+			<Stack mt={20}>fii</Stack>
+			<Stack mt={20}>fii</Stack>
+			<Stack mt={20}>fii</Stack>
+			<Stack mt={20}>fii</Stack>
+			<Stack mt={20}>fii</Stack>
+			<Stack mt={20}>fii</Stack>
+		</Stack>
 	);
 };
 

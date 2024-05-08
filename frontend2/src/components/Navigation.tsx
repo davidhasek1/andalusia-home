@@ -1,10 +1,11 @@
 'use client';
 import { Button, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import Logo from '../../public/logo_dark.svg';
 import Image from 'next/image';
 import MenuIcon from '@mui/icons-material/Menu';
+import { usePathname } from 'next/navigation';
 const navigation = [
 	{
 		title: <FormattedMessage id={'menu.home'} />,
@@ -30,13 +31,30 @@ const navigation = [
 
 export const Navigation: FC = () => {
 	const [openDrawer, setOpenDrawer] = useState(false);
+	const path = usePathname();
+	const [changeBg, setChangeBg] = useState(false);
+
+	useEffect(() => {
+		addEventListener('scroll', () => {
+			if (window.scrollY > 600) {
+				setChangeBg(true);
+			} else {
+				setChangeBg(false);
+			}
+		});
+	}, []);
+
 	return (
 		<Stack
+			position={path === '/' ? 'fixed' : 'unset'}
+			width={'100%'}
 			direction={'row'}
 			alignItems={'center'}
 			justifyContent={'space-between'}
 			p={2}
 			borderBottom={(theme) => `1px solid ${theme.palette.grey[300]}`}
+			zIndex={1}
+			bgcolor={(theme) => (changeBg ? theme.palette.common.white : 'transparent')}
 		>
 			<Image src={Logo} alt={'logo'} width={150} objectFit={'cover'} />
 			<Stack direction={'row'} display={{ xs: 'none', lg: 'flex' }}>
