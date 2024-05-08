@@ -10,5 +10,6 @@
 	"menu.blog": "Blog",
 	"menu.contact": "Kontakt",
 	"menu.home": "Domů",
-	"menu.properties": "Nemovitosti"
+	"menu.properties": "Nemovitosti",
+	"properties.filters.title": "Filtry"
 }
