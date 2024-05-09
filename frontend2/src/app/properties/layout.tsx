@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material';
 import { FC, ReactNode } from 'react';
-import { FiltersPanel } from '../../components/properties/FiltersPanel';
+import { FiltersPanel } from '../../components/properties/Filters/FiltersPanel';
 
 const PropertiesLayout: FC<
 	Readonly<{
