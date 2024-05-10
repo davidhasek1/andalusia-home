@@ -1,3 +1,4 @@
+/* eslint-disable formatjs/no-literal-string-in-jsx */
 'use client';
 import { MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
 import { FC, useState } from 'react';

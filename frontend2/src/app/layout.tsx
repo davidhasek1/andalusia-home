@@ -8,6 +8,7 @@ import { ApolloClientContext } from '../contexts/ApolloClientContext';
 import { ReactNode } from 'react';
 import localFont from 'next/font/local';
 import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 
 const ourFont = localFont({ src: '../fonts/eurostarregularextended.ttf' });
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function AppLayout({
 							<LocalesContext>
 								<Navigation />
 								{children}
+								<Footer />
 							</LocalesContext>
 						</ThemeProvider>
 					</AppRouterCacheProvider>
