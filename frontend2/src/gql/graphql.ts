@@ -30,6 +30,10 @@ export type Properties = {
   QueryInfo: QueryInfoType;
 };
 
+export type PropertiesFilterInput = {
+  bedsCount?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type PropertyType = {
   __typename?: 'PropertyType';
   AgencyRef: Scalars['String']['output'];
@@ -71,6 +75,11 @@ export type PropertyTypeType = {
 export type Query = {
   __typename?: 'Query';
   listPropertiesForSale: Properties;
+};
+
+
+export type QueryListPropertiesForSaleArgs = {
+  filter?: InputMaybe<PropertiesFilterInput>;
 };
 
 export type QueryInfoType = {

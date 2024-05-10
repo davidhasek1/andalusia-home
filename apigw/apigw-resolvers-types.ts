@@ -29,6 +29,10 @@ export type Properties = {
   readonly QueryInfo: QueryInfoType;
 };
 
+export type PropertiesFilterInput = {
+  readonly bedsCount?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type PropertyType = {
   readonly __typename?: 'PropertyType';
   readonly AgencyRef: Scalars['String']['output'];
@@ -70,6 +74,11 @@ export type PropertyTypeType = {
 export type Query = {
   readonly __typename?: 'Query';
   readonly listPropertiesForSale: Properties;
+};
+
+
+export type QueryListPropertiesForSaleArgs = {
+  filter?: InputMaybe<PropertiesFilterInput>;
 };
 
 export type QueryInfoType = {
@@ -159,6 +168,7 @@ export type ResolversTypes = {
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Properties: ResolverTypeWrapper<Properties>;
+  PropertiesFilterInput: PropertiesFilterInput;
   PropertyType: ResolverTypeWrapper<PropertyType>;
   PropertyTypeType: ResolverTypeWrapper<PropertyTypeType>;
   Query: ResolverTypeWrapper<{}>;
@@ -172,6 +182,7 @@ export type ResolversParentTypes = {
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
   Properties: Properties;
+  PropertiesFilterInput: PropertiesFilterInput;
   PropertyType: PropertyType;
   PropertyTypeType: PropertyTypeType;
   Query: {};
@@ -224,7 +235,7 @@ export type PropertyTypeTypeResolvers<ContextType = any, ParentType extends Reso
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  listPropertiesForSale?: Resolver<ResolversTypes['Properties'], ParentType, ContextType>;
+  listPropertiesForSale?: Resolver<ResolversTypes['Properties'], ParentType, ContextType, Partial<QueryListPropertiesForSaleArgs>>;
 };
 
 export type QueryInfoTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueryInfoType'] = ResolversParentTypes['QueryInfoType']> = {

@@ -11,6 +11,10 @@ type Properties {
   QueryInfo: QueryInfoType!
 }
 
+input PropertiesFilterInput {
+  bedsCount: Int
+}
+
 type PropertyType {
   AgencyRef: String!
   Area: String!
@@ -48,7 +52,7 @@ type PropertyTypeType {
 }
 
 type Query {
-  listPropertiesForSale: Properties!
+  listPropertiesForSale(filter: PropertiesFilterInput): Properties!
 }
 
 type QueryInfoType {

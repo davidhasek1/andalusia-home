@@ -54,15 +54,23 @@ const typeDefs = `#graphql
     Property: [PropertyType!]!
   }
 
+
+  input PropertiesFilterInput {
+    bedsCount: Int
+  }
+
   type Query {
-    listPropertiesForSale: Properties!
+    listPropertiesForSale(filter: PropertiesFilterInput): Properties!
   }
 `;
 
 const resolvers = {
 	Query: {
-		listPropertiesForSale: async (parent, {}, context) => {
-			return await context.dataSource.resalesOnlineAPI.listProperties();
+		//TAdy budou naše definice filtrů a ty pak v dataSourceu převedeme na jejich mrdku
+    //Filtery budou odpovídat těm filtrům, které máme na frontendu
+		listPropertiesForSale: async (parent, { filter }, context) => {
+			console.log('[MY FILTER]', filter);
+			return await context.dataSource.resalesOnlineAPI.listProperties(filter);
 		},
 	},
 } as Resolvers<Context>;

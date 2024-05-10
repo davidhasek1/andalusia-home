@@ -1,6 +1,7 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
 import { KeyValueCache } from '@apollo/utils.keyvaluecache';
-import { Properties } from '../../apigw-resolvers-types';
+import { InputMaybe, Properties, PropertiesFilterInput } from '../../apigw-resolvers-types';
+import { createFilterQueryString } from './createFilterQueryString';
 
 class ResaleOnlineAPI extends RESTDataSource {
 	override baseURL = 'https://webapi.resales-online.com/V6/';
@@ -14,8 +15,12 @@ class ResaleOnlineAPI extends RESTDataSource {
 		this.token = options.token ?? '';
 	}
 
-	async listProperties(): Promise<Properties> {
-		return await this.get(`SearchProperties?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}&P_sandbox=true`);
+	async listProperties(filter?: InputMaybe<PropertiesFilterInput>): Promise<Properties> {
+		console.log('FILTER QS RESULT', createFilterQueryString(filter));
+		URL;
+		return await this.get(
+			`SearchProperties?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}&P_sandbox=true${createFilterQueryString(filter)}`,
+		);
 	}
 }
 
