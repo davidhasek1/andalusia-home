@@ -9,6 +9,7 @@ import { ReactNode } from 'react';
 import localFont from 'next/font/local';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
+import { FiltersProvider } from '../contexts/FiltersContext';
 
 const ourFont = localFont({ src: '../fonts/eurostarregularextended.ttf' });
 export const metadata: Metadata = {
@@ -28,9 +29,11 @@ export default function AppLayout({
 					<AppRouterCacheProvider>
 						<ThemeProvider theme={theme}>
 							<LocalesContext>
-								<Navigation />
-								{children}
-								<Footer />
+								<FiltersProvider>
+									<Navigation />
+									{children}
+									<Footer />
+								</FiltersProvider>
 							</LocalesContext>
 						</ThemeProvider>
 					</AppRouterCacheProvider>

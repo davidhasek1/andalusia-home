@@ -12,6 +12,7 @@ type Properties {
 }
 
 input PropertiesFilterInput {
+  bathsCount: Int
   bedsCount: Int
 }
 

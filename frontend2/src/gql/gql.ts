@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n\tquery listProperties {\n\t\tlistPropertiesForSale {\n\t\t\tQueryInfo {\n\t\t\t\tPropertyCount\n\t\t\t\tCurrentPage\n\t\t\t\tPropertiesPerPage\n\t\t\t}\n\t\t\tProperty {\n\t\t\t\tAgencyRef\n\t\t\t\tLocation\n\t\t\t\tProvince\n\t\t\t\tArea\n\t\t\t\tBedrooms\n\t\t\t\tBathrooms\n\t\t\t\tPrice\n\t\t\t\tCurrency\n\t\t\t\tDescription\n\t\t\t\tBuilt\n\t\t\t\tGardenPlot\n\t\t\t}\n\t\t}\n\t}\n": types.ListPropertiesDocument,
+    "\n\tquery listProperties($filter: PropertiesFilterInput) {\n\t\tlistPropertiesForSale(filter: $filter) {\n\t\t\tQueryInfo {\n\t\t\t\tPropertyCount\n\t\t\t\tCurrentPage\n\t\t\t\tPropertiesPerPage\n\t\t\t}\n\t\t\tProperty {\n\t\t\t\tAgencyRef\n\t\t\t\tLocation\n\t\t\t\tProvince\n\t\t\t\tArea\n\t\t\t\tBedrooms\n\t\t\t\tBathrooms\n\t\t\t\tPrice\n\t\t\t\tCurrency\n\t\t\t\tDescription\n\t\t\t\tBuilt\n\t\t\t\tGardenPlot\n\t\t\t}\n\t\t}\n\t}\n": types.ListPropertiesDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n\tquery listProperties {\n\t\tlistPropertiesForSale {\n\t\t\tQueryInfo {\n\t\t\t\tPropertyCount\n\t\t\t\tCurrentPage\n\t\t\t\tPropertiesPerPage\n\t\t\t}\n\t\t\tProperty {\n\t\t\t\tAgencyRef\n\t\t\t\tLocation\n\t\t\t\tProvince\n\t\t\t\tArea\n\t\t\t\tBedrooms\n\t\t\t\tBathrooms\n\t\t\t\tPrice\n\t\t\t\tCurrency\n\t\t\t\tDescription\n\t\t\t\tBuilt\n\t\t\t\tGardenPlot\n\t\t\t}\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery listProperties {\n\t\tlistPropertiesForSale {\n\t\t\tQueryInfo {\n\t\t\t\tPropertyCount\n\t\t\t\tCurrentPage\n\t\t\t\tPropertiesPerPage\n\t\t\t}\n\t\t\tProperty {\n\t\t\t\tAgencyRef\n\t\t\t\tLocation\n\t\t\t\tProvince\n\t\t\t\tArea\n\t\t\t\tBedrooms\n\t\t\t\tBathrooms\n\t\t\t\tPrice\n\t\t\t\tCurrency\n\t\t\t\tDescription\n\t\t\t\tBuilt\n\t\t\t\tGardenPlot\n\t\t\t}\n\t\t}\n\t}\n"];
+export function graphql(source: "\n\tquery listProperties($filter: PropertiesFilterInput) {\n\t\tlistPropertiesForSale(filter: $filter) {\n\t\t\tQueryInfo {\n\t\t\t\tPropertyCount\n\t\t\t\tCurrentPage\n\t\t\t\tPropertiesPerPage\n\t\t\t}\n\t\t\tProperty {\n\t\t\t\tAgencyRef\n\t\t\t\tLocation\n\t\t\t\tProvince\n\t\t\t\tArea\n\t\t\t\tBedrooms\n\t\t\t\tBathrooms\n\t\t\t\tPrice\n\t\t\t\tCurrency\n\t\t\t\tDescription\n\t\t\t\tBuilt\n\t\t\t\tGardenPlot\n\t\t\t}\n\t\t}\n\t}\n"): (typeof documents)["\n\tquery listProperties($filter: PropertiesFilterInput) {\n\t\tlistPropertiesForSale(filter: $filter) {\n\t\t\tQueryInfo {\n\t\t\t\tPropertyCount\n\t\t\t\tCurrentPage\n\t\t\t\tPropertiesPerPage\n\t\t\t}\n\t\t\tProperty {\n\t\t\t\tAgencyRef\n\t\t\t\tLocation\n\t\t\t\tProvince\n\t\t\t\tArea\n\t\t\t\tBedrooms\n\t\t\t\tBathrooms\n\t\t\t\tPrice\n\t\t\t\tCurrency\n\t\t\t\tDescription\n\t\t\t\tBuilt\n\t\t\t\tGardenPlot\n\t\t\t}\n\t\t}\n\t}\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

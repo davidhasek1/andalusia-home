@@ -31,6 +31,7 @@ export type Properties = {
 };
 
 export type PropertiesFilterInput = {
+  bathsCount?: InputMaybe<Scalars['Int']['input']>;
   bedsCount?: InputMaybe<Scalars['Int']['input']>;
 };
 

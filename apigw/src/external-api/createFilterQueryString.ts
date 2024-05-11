@@ -10,14 +10,19 @@ const createFilterQueryString = (filter?: InputMaybe<PropertiesFilterInput>) => 
 	for (const [key, value] of Object.entries(filter)) {
 		switch (key) {
 			case 'bedsCount': {
-				return filterQs.concat(`&P_Beds=${value}`);
+				filterQs = filterQs.concat(`&P_Beds=${value}`);
+				continue;
+			}
+			case 'bathsCount': {
+				filterQs = filterQs.concat(`&P_Baths=${value}`);
+				continue;
 			}
 			default: {
 				return ''; // if error
 			}
 		}
 	}
-
+	console.log('test', filterQs);
 	return filterQs;
 };
 

@@ -31,6 +31,7 @@ export type Properties = {
 };
 
 export type PropertiesFilterInput = {
+  bathsCount?: InputMaybe<Scalars['Int']['input']>;
   bedsCount?: InputMaybe<Scalars['Int']['input']>;
 };
 
@@ -92,10 +93,12 @@ export type QueryInfoType = {
   SearchType: Scalars['String']['output'];
 };
 
-export type ListPropertiesQueryVariables = Exact<{ [key: string]: never; }>;
+export type ListPropertiesQueryVariables = Exact<{
+  filter?: InputMaybe<PropertiesFilterInput>;
+}>;
 
 
 export type ListPropertiesQuery = { __typename?: 'Query', listPropertiesForSale: { __typename?: 'Properties', QueryInfo: { __typename?: 'QueryInfoType', PropertyCount: number, CurrentPage: number, PropertiesPerPage: number }, Property: Array<{ __typename?: 'PropertyType', AgencyRef: string, Location: string, Province: string, Area: string, Bedrooms: string, Bathrooms: string, Price: number, Currency: CurrencyType, Description: string, Built: number, GardenPlot: number }> } };
 
 
-export const ListPropertiesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"listProperties"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"listPropertiesForSale"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"QueryInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"PropertyCount"}},{"kind":"Field","name":{"kind":"Name","value":"CurrentPage"}},{"kind":"Field","name":{"kind":"Name","value":"PropertiesPerPage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Property"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"AgencyRef"}},{"kind":"Field","name":{"kind":"Name","value":"Location"}},{"kind":"Field","name":{"kind":"Name","value":"Province"}},{"kind":"Field","name":{"kind":"Name","value":"Area"}},{"kind":"Field","name":{"kind":"Name","value":"Bedrooms"}},{"kind":"Field","name":{"kind":"Name","value":"Bathrooms"}},{"kind":"Field","name":{"kind":"Name","value":"Price"}},{"kind":"Field","name":{"kind":"Name","value":"Currency"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"Built"}},{"kind":"Field","name":{"kind":"Name","value":"GardenPlot"}}]}}]}}]}}]} as unknown as DocumentNode<ListPropertiesQuery, ListPropertiesQueryVariables>;
+export const ListPropertiesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"listProperties"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PropertiesFilterInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"listPropertiesForSale"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"QueryInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"PropertyCount"}},{"kind":"Field","name":{"kind":"Name","value":"CurrentPage"}},{"kind":"Field","name":{"kind":"Name","value":"PropertiesPerPage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Property"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"AgencyRef"}},{"kind":"Field","name":{"kind":"Name","value":"Location"}},{"kind":"Field","name":{"kind":"Name","value":"Province"}},{"kind":"Field","name":{"kind":"Name","value":"Area"}},{"kind":"Field","name":{"kind":"Name","value":"Bedrooms"}},{"kind":"Field","name":{"kind":"Name","value":"Bathrooms"}},{"kind":"Field","name":{"kind":"Name","value":"Price"}},{"kind":"Field","name":{"kind":"Name","value":"Currency"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"Built"}},{"kind":"Field","name":{"kind":"Name","value":"GardenPlot"}}]}}]}}]}}]} as unknown as DocumentNode<ListPropertiesQuery, ListPropertiesQueryVariables>;

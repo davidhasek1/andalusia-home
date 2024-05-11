@@ -5,10 +5,11 @@ import { PropertyCard } from './PropertyCard';
 import { useQuery } from '@apollo/client';
 import { graphql } from '../../gql';
 import { FormattedMessage } from 'react-intl';
+import { useFilters } from '../../contexts/FiltersContext';
 
 export const listProperties = graphql(`
-	query listProperties {
-		listPropertiesForSale {
+	query listProperties($filter: PropertiesFilterInput) {
+		listPropertiesForSale(filter: $filter) {
 			QueryInfo {
 				PropertyCount
 				CurrentPage
@@ -32,7 +33,8 @@ export const listProperties = graphql(`
 `);
 
 export const PropertiesList: FC = () => {
-	const { data, loading } = useQuery(listProperties);
+	const { filters } = useFilters();
+	const { data, loading } = useQuery(listProperties, { variables: { filter: filters } });
 	console.log(data);
 
 	if (loading) {
