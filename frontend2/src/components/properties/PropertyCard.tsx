@@ -18,7 +18,7 @@ type Props = Readonly<{ property: DocumentType<typeof listProperties>['listPrope
 
 export const PropertyCard: FC<Props> = ({ property }) => {
 	return (
-		<ButtonBase sx={{ textAlign: 'left' }} href={'/properties/test'}>
+		<ButtonBase sx={{ display: 'flex' }} href={`/properties/${property.AgencyRef}}`}>
 			<Stack direction={{ lg: 'row', xs: 'column' }} gap={2} border={(theme) => `1px solid ${theme.palette.grey[300]}`}>
 				{/* Preparation for clickable arrows for card lightbox */}
 				{/* <Button
@@ -32,7 +32,7 @@ export const PropertyCard: FC<Props> = ({ property }) => {
 					Btn
 				</Button> */}
 				<Image src={'/assets/property-placeholder.webp'} width={500} height={300} alt={'altertext'} />
-				<Stack gap={1} p={2}>
+				<Stack gap={1} p={2} flexGrow={1}>
 					<Stack direction={'row'} justifyContent={'space-between'} gap={2}>
 						<Typography variant={'h6'}>
 							{/* eslint-disable-next-line formatjs/no-literal-string-in-jsx */}

@@ -12,6 +12,8 @@
 	"menu.contact": "Kontakt",
 	"menu.home": "Domů",
 	"menu.properties": "Nemovitosti",
+	"properties.filters.baths-count": "Bathrooms",
+	"properties.filters.beds-count": "Bedrooms",
 	"properties.filters.title": "Filtry",
 	"properties.list.results-count": "{count} výsledků"
 }
