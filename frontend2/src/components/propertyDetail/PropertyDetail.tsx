@@ -1,13 +1,9 @@
 /* eslint-disable formatjs/no-literal-string-in-jsx */
 'use client';
-import { Button, Grid, IconButton, Stack, Typography } from '@mui/material';
+import { Button, CircularProgress, Grid, IconButton, Stack, Typography } from '@mui/material';
 import { FC, useState } from 'react';
-import Lightbox from 'yet-another-react-lightbox';
-import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
+import Lightbox, { SlideImage } from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
-import image1 from '../../../public/undraw_building_blocks_re_5ahy.svg';
-import image2 from '../../../public/assets/main-image.webp';
-import image3 from '../../../public/assets/main-image-heart.webp';
 import NextJsImage from './NextjsImage';
 import Image from 'next/image';
 import CollectionsIcon from '@mui/icons-material/Collections';
@@ -20,25 +16,55 @@ import {
 	ShowerOutlined,
 	ZoomOutMapOutlined,
 } from '@mui/icons-material';
+import { useQuery } from '@apollo/client';
+import { DocumentType, graphql } from '../../gql';
 
-export const PropertyDetail: FC = () => {
+const getPropertyDetail = graphql(`
+	query GetPropertyForSale($referenceId: ID!) {
+		getPropertyForSale(referenceId: $referenceId) {
+			Property {
+				Location
+				Province
+				Area
+				Pictures {
+					Picture {
+						PictureURL
+					}
+				}
+			}
+		}
+	}
+`);
+
+type PropertyDetail = DocumentType<typeof getPropertyDetail>['getPropertyForSale']['Property'];
+export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenceId }) => {
 	const [open, setOpen] = useState(false);
+	const { data, loading } = useQuery(getPropertyDetail, { variables: { referenceId } });
+
+	if (loading) {
+		return <CircularProgress />;
+	}
+	const property = data?.getPropertyForSale.Property;
+
+	const images =
+		property?.Pictures?.Picture?.map((img) => {
+			return {
+				src: img?.PictureURL,
+				width: 1,
+				height: 1,
+			};
+		}) ?? [];
+
 	return (
 		<Stack gap={3}>
-			<Lightbox
-				open={open}
-				close={() => setOpen(false)}
-				slides={[image1, image2, image3]}
-				render={{ slide: NextJsImage, thumbnail: NextJsImage }}
-				plugins={[Thumbnails]}
-			/>
+			<Lightbox open={open} close={() => setOpen(false)} slides={images as SlideImage[]} render={{ slide: NextJsImage }} />
 			<Stack>
 				<Stack position={'relative'} height={{ lg: '70vh', xs: '40vh' }} width={'100%'}>
 					<Typography
 						variant={'h2'}
 						sx={{ zIndex: 2, position: 'absolute', color: (theme) => theme.palette.common.white, left: 0, top: 0, mt: 2, ml: 2 }}
 					>
-						Elviria
+						{property?.Location}, {property?.Province}, {property?.Area}
 					</Typography>
 					<Button
 						variant={'outlined'}
@@ -57,7 +83,7 @@ export const PropertyDetail: FC = () => {
 						}}
 						disabled
 					>
-						Elviria, Malaga
+						{property?.Province}, {property?.Area}
 					</Button>
 					<IconButton
 						onClick={() => setOpen(true)}
@@ -84,7 +110,7 @@ export const PropertyDetail: FC = () => {
 						height={'100%'}
 						sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 					/>
-					<Image src={image3} alt={'foo'} fill objectFit={'cover'}></Image>
+					<Image src={images[0].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
 				</Stack>
 			</Stack>
 

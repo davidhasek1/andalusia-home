@@ -18,7 +18,7 @@ type Props = Readonly<{ property: DocumentType<typeof listProperties>['listPrope
 
 export const PropertyCard: FC<Props> = ({ property }) => {
 	return (
-		<ButtonBase sx={{ display: 'flex' }} href={`/properties/${property.AgencyRef}}`}>
+		<ButtonBase sx={{ display: 'flex' }} href={`/properties/${property.Reference}`}>
 			<Stack direction={{ lg: 'row', xs: 'column' }} gap={2} border={(theme) => `1px solid ${theme.palette.grey[300]}`}>
 				{/* Preparation for clickable arrows for card lightbox */}
 				{/* <Button

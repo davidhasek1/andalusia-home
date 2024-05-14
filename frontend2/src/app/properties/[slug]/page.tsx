@@ -1,6 +1,9 @@
+'use client';
 import React, { FC } from 'react';
 import { PropertyDetail } from '../../../components/propertyDetail/PropertyDetail';
-import { Stack } from '@mui/material';
+import { CircularProgress, Stack } from '@mui/material';
+import { graphql } from '../../../gql';
+import { useQuery } from '@apollo/client';
 
 type PropertyDetailPageProps = {
 	params: { slug: string };
@@ -9,9 +12,8 @@ type PropertyDetailPageProps = {
 const PropertyDetailPage: FC<PropertyDetailPageProps> = ({ params }) => {
 	return (
 		<>
-			{/* {params.slug} */}
 			<Stack width={'100%'} p={{ lg: 10, xs: 0 }}>
-				<PropertyDetail />
+				<PropertyDetail referenceId={params.slug} />
 			</Stack>
 		</>
 	);

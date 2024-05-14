@@ -16,6 +16,7 @@ export const listProperties = graphql(`
 				PropertiesPerPage
 			}
 			Property {
+				Reference
 				AgencyRef
 				Location
 				Province
@@ -46,7 +47,7 @@ export const PropertiesList: FC = () => {
 		<Stack width={'100%'} position={'relative'} gap={5} p={5}>
 			<FormattedMessage id={`properties.list.results-count`} values={{ count: data?.listPropertiesForSale.QueryInfo.PropertyCount }} />
 			{properties.map((property) => (
-				<PropertyCard key={property.AgencyRef} property={property} />
+				<PropertyCard key={property.Reference} property={property} />
 			))}
 		</Stack>
 	);
