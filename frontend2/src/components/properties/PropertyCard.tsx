@@ -17,6 +17,7 @@ import {
 type Props = Readonly<{ property: DocumentType<typeof listProperties>['listPropertiesForSale']['Property'][number] }>;
 
 export const PropertyCard: FC<Props> = ({ property }) => {
+	console.log(property.MainImage);
 	return (
 		<ButtonBase sx={{ display: 'flex' }} href={`/properties/${property.Reference}`}>
 			<Stack direction={{ lg: 'row', xs: 'column' }} gap={2} border={(theme) => `1px solid ${theme.palette.grey[300]}`}>
@@ -31,7 +32,7 @@ export const PropertyCard: FC<Props> = ({ property }) => {
 					
 					Btn
 				</Button> */}
-				<Image src={'/assets/property-placeholder.webp'} width={500} height={300} alt={'altertext'} />
+				<Image src={property.MainImage ?? '/assets/property-placeholder.webp'} width={500} height={300} alt={'altertext'} />
 				<Stack gap={1} p={2} flexGrow={1}>
 					<Stack direction={'row'} justifyContent={'space-between'} gap={2}>
 						<Typography variant={'h6'}>

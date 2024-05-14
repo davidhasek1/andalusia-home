@@ -28,6 +28,7 @@ export const listProperties = graphql(`
 				Description
 				Built
 				GardenPlot
+				MainImage
 			}
 		}
 	}

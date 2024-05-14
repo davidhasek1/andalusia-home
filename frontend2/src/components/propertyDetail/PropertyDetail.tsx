@@ -26,6 +26,15 @@ const getPropertyDetail = graphql(`
 				Location
 				Province
 				Area
+				Description
+				Bedrooms
+				Bathrooms
+				Built
+				Terrace
+				GardenPlot
+				Garden
+				Price
+				Currency
 				Pictures {
 					Picture {
 						PictureURL
@@ -114,18 +123,52 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 				</Stack>
 			</Stack>
 
-			<Grid container flexDirection={'row'} justifyContent={'space-between'}>
+			<Grid container flexDirection={'row'} justifyContent={'space-between'} gap={3} p={2} flexWrap={{ lg: 'nowrap', xs: 'wrap' }}>
 				<Grid item xs={12} lg={8} border={(theme) => `1px solid ${theme.palette.grey[300]}`} p={3}>
-					Dscription in bodered box wit withd bg
+					<Typography variant={'caption'} fontSize={16} lineHeight={'2.5rem'}>
+						{property?.Description}
+					</Typography>
 				</Grid>
-				<Grid item xs={12} lg={4} bgcolor={(theme) => theme.palette.grey[200]} p={3} width={'100%'}>
-					<Stack gap={3}>
-						<Stack direction={'row'} alignItems={'center'} gap={2}>
-							<BedOutlined fontSize={'large'} />3 Bedrooms
-						</Stack>
-						<Stack direction={'row'} alignItems={'center'} gap={2}>
-							<ShowerOutlined fontSize={'large'} />2 Bathrooms
-						</Stack>
+				<Grid item xs={12} lg={4} bgcolor={(theme) => theme.palette.grey[200]} width={'100%'}>
+					<Stack>
+						{property?.Bedrooms != null && (
+							<Stack direction={'row'} alignItems={'center'} gap={2} p={3}>
+								<BedOutlined fontSize={'large'} />
+								{property.Bedrooms} Bedrooms
+							</Stack>
+						)}
+						{property?.Bathrooms != null && (
+							<Stack direction={'row'} alignItems={'center'} gap={2} p={3} borderTop={(theme) => `1px solid ${theme.palette.grey[400]}`}>
+								<ShowerOutlined fontSize={'large'} />
+								{property.Bathrooms} Bathrooms
+							</Stack>
+						)}
+						{property?.Built != null && (
+							<Stack direction={'row'} alignItems={'center'} gap={2} p={3} borderTop={(theme) => `1px solid ${theme.palette.grey[400]}`}>
+								<HomeOutlined fontSize={'large'} />
+								{property.Built} m2
+							</Stack>
+						)}
+						{property?.GardenPlot != null && (
+							<Stack direction={'row'} alignItems={'center'} gap={2} p={3} borderTop={(theme) => `1px solid ${theme.palette.grey[400]}`}>
+								<DeckOutlined fontSize={'large'} />
+								{property.GardenPlot} m2
+							</Stack>
+						)}
+						{property?.GardenPlot != null && property?.Built != null && (
+							<Stack direction={'row'} alignItems={'center'} gap={2} p={3} borderTop={(theme) => `1px solid ${theme.palette.grey[400]}`}>
+								<ZoomOutMapOutlined fontSize={'large'} />
+								{property?.GardenPlot + property?.Built} m2
+							</Stack>
+						)}
+
+						{property?.Price != null && (
+							<Stack direction={'row'} alignItems={'center'} gap={2} p={3} borderTop={(theme) => `1px solid ${theme.palette.grey[400]}`}>
+								<Typography variant={'h4'}>
+									{property.Price} {property.Currency}
+								</Typography>
+							</Stack>
+						)}
 					</Stack>
 				</Grid>
 			</Grid>
