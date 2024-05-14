@@ -1,0 +1,10 @@
+services:
+  apigw:
+    buildCommand: yarn install
+    env:
+      # Další konfigurace pro službu app
+    # Další konfigurace pro službu app
+
+# Nastavení cesty k lockfileu pro Yarn
+environment:
+  RAILWAY_INSTALL_COMMAND: yarn --frozen-lockfile
