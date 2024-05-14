@@ -1,5 +1,6 @@
 import { Context } from '.';
 import { Resolvers } from '../apigw-resolvers-types';
+import { typeDefsPropertyDetail } from './typedefs/propertyDetailTypeDefs';
 
 const typeDefs = `#graphql
   type PropertyTypeType {
@@ -12,7 +13,7 @@ const typeDefs = `#graphql
   enum CurrencyType { EUR }
   enum DimensionsType { METERS }
 
-  type PropertyType {
+  type PropertiesType {
     Reference: String!
     AgencyRef: String!
     Country: String!
@@ -40,7 +41,6 @@ const typeDefs = `#graphql
     MainImage: String
   }
 
-  
   type QueryInfoType {
     ApiId: Int!,
     QueryId: ID!
@@ -51,9 +51,13 @@ const typeDefs = `#graphql
   }
   type Properties {
     QueryInfo: QueryInfoType!
-    Property: [PropertyType!]!
+    Property: [PropertiesType!]!
   }
 
+  type Property {
+    QueryInfo: QueryInfoType!
+    Property: PropertyType!
+  }
 
   input PropertiesFilterInput {
     bedsCount: Int
@@ -62,6 +66,7 @@ const typeDefs = `#graphql
 
   type Query {
     listPropertiesForSale(filter: PropertiesFilterInput): Properties!
+    getPropertyForSale(referenceId: ID!): PropertyDetails!
   }
 `;
 
@@ -73,7 +78,11 @@ const resolvers = {
 			console.log('[MY FILTER]', filter);
 			return await context.dataSource.resalesOnlineAPI.listProperties(filter);
 		},
+		getPropertyForSale: async (parent, { referenceId }, context) => {
+			console.log(referenceId);
+			return await context.dataSource.resalesOnlineAPI.getProperty(referenceId);
+		},
 	},
 } as Resolvers<Context>;
 
-export { typeDefs, resolvers };
+export { typeDefs, typeDefsPropertyDetail, resolvers };

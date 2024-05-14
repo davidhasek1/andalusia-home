@@ -1,3 +1,8 @@
+type Category {
+  Type: String!
+  Value: [String!]!
+}
+
 enum CurrencyType {
   EUR
 }
@@ -6,8 +11,26 @@ enum DimensionsType {
   METERS
 }
 
+type EnergyRating {
+  CO2Rated: String!
+  CO2Value: String!
+  EnergyRated: String!
+  EnergyValue: String!
+  Image: String!
+}
+
+type Picture {
+  Id: Int
+  PictureURL: String
+}
+
+type Pictures {
+  Count: String
+  Picture: [Picture]
+}
+
 type Properties {
-  Property: [PropertyType!]!
+  Property: [PropertiesType!]!
   QueryInfo: QueryInfoType!
 }
 
@@ -16,7 +39,7 @@ input PropertiesFilterInput {
   bedsCount: Int
 }
 
-type PropertyType {
+type PropertiesType {
   AgencyRef: String!
   Area: String!
   Bathrooms: String!
@@ -44,6 +67,61 @@ type PropertyType {
   Terrace: Int!
 }
 
+type Property {
+  AgencyRef: String!
+  Area: String!
+  Basura_Tax_Year: String!
+  Bathrooms: String!
+  Bedrooms: String!
+  Built: Int!
+  BuiltYear: String!
+  Community_Fees_Year: String!
+  CompletionDate: String!
+  Country: String!
+  Currency: String!
+  Decree218: String!
+  Description: String!
+  Dimensions: String!
+  EnergyRating: EnergyRating!
+  Garden: Int!
+  GardenPlot: Int!
+  GpsX: String!
+  GpsY: String!
+  IBI_Fees_Year: String!
+  Location: String!
+  OriginalPrice: Int!
+  OwnProperty: String!
+  Parking: Int!
+  Pictures: Pictures!
+  Pool: Int!
+  Price: Int!
+  Property: PropertyType!
+  PropertyFeatures: PropertyFeatures!
+  PropertyType: PropertyType!
+  Province: String!
+  QueryInfo: QueryInfoType!
+  Reference: String!
+  SubLocation: String!
+  Terrace: Int!
+}
+
+type PropertyDetails {
+  Property: Property!
+  QueryInfo: QueryInfo!
+}
+
+type PropertyFeatures {
+  Category: [Category!]!
+}
+
+type PropertyType {
+  NameType: String!
+  Subtype1: String!
+  SubtypeId1: String!
+  Type: String!
+  TypeId: String!
+}
+
 type PropertyTypeType {
   NameType: String!
   Subtype1: String!
@@ -53,7 +131,13 @@ type PropertyTypeType {
 }
 
 type Query {
+  getPropertyForSale(referenceId: ID!): PropertyDetails!
   listPropertiesForSale(filter: PropertiesFilterInput): Properties!
+}
+
+type QueryInfo {
+  ApiId: String!
+  QueryId: String!
 }
 
 type QueryInfoType {

@@ -1,7 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { ResaleOnlineAPI } from './external-api/restApiResolver';
-import { resolvers, typeDefs } from './schema';
+import { resolvers, typeDefs, typeDefsPropertyDetail } from './schema';
 import 'dotenv/config';
 export type Context = {
 	dataSource: {
@@ -9,8 +9,12 @@ export type Context = {
 	};
 };
 
+const typeDefsMerged = `
+	${typeDefs}
+	${typeDefsPropertyDetail}
+`;
 const server = new ApolloServer<Context>({
-	typeDefs,
+	typeDefs: typeDefsMerged,
 	resolvers,
 });
 

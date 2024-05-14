@@ -16,6 +16,12 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type Category = {
+  __typename?: 'Category';
+  Type: Scalars['String']['output'];
+  Value: Array<Scalars['String']['output']>;
+};
+
 export enum CurrencyType {
   Eur = 'EUR'
 }
@@ -24,9 +30,30 @@ export enum DimensionsType {
   Meters = 'METERS'
 }
 
+export type EnergyRating = {
+  __typename?: 'EnergyRating';
+  CO2Rated: Scalars['String']['output'];
+  CO2Value: Scalars['String']['output'];
+  EnergyRated: Scalars['String']['output'];
+  EnergyValue: Scalars['String']['output'];
+  Image: Scalars['String']['output'];
+};
+
+export type Picture = {
+  __typename?: 'Picture';
+  Id?: Maybe<Scalars['Int']['output']>;
+  PictureURL?: Maybe<Scalars['String']['output']>;
+};
+
+export type Pictures = {
+  __typename?: 'Pictures';
+  Count?: Maybe<Scalars['String']['output']>;
+  Picture?: Maybe<Array<Maybe<Picture>>>;
+};
+
 export type Properties = {
   __typename?: 'Properties';
-  Property: Array<PropertyType>;
+  Property: Array<PropertiesType>;
   QueryInfo: QueryInfoType;
 };
 
@@ -35,8 +62,8 @@ export type PropertiesFilterInput = {
   bedsCount?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type PropertyType = {
-  __typename?: 'PropertyType';
+export type PropertiesType = {
+  __typename?: 'PropertiesType';
   AgencyRef: Scalars['String']['output'];
   Area: Scalars['String']['output'];
   Bathrooms: Scalars['String']['output'];
@@ -64,6 +91,65 @@ export type PropertyType = {
   Terrace: Scalars['Int']['output'];
 };
 
+export type Property = {
+  __typename?: 'Property';
+  AgencyRef: Scalars['String']['output'];
+  Area: Scalars['String']['output'];
+  Basura_Tax_Year: Scalars['String']['output'];
+  Bathrooms: Scalars['String']['output'];
+  Bedrooms: Scalars['String']['output'];
+  Built: Scalars['Int']['output'];
+  BuiltYear: Scalars['String']['output'];
+  Community_Fees_Year: Scalars['String']['output'];
+  CompletionDate: Scalars['String']['output'];
+  Country: Scalars['String']['output'];
+  Currency: Scalars['String']['output'];
+  Decree218: Scalars['String']['output'];
+  Description: Scalars['String']['output'];
+  Dimensions: Scalars['String']['output'];
+  EnergyRating: EnergyRating;
+  Garden: Scalars['Int']['output'];
+  GardenPlot: Scalars['Int']['output'];
+  GpsX: Scalars['String']['output'];
+  GpsY: Scalars['String']['output'];
+  IBI_Fees_Year: Scalars['String']['output'];
+  Location: Scalars['String']['output'];
+  OriginalPrice: Scalars['Int']['output'];
+  OwnProperty: Scalars['String']['output'];
+  Parking: Scalars['Int']['output'];
+  Pictures: Pictures;
+  Pool: Scalars['Int']['output'];
+  Price: Scalars['Int']['output'];
+  Property: PropertyType;
+  PropertyFeatures: PropertyFeatures;
+  PropertyType: PropertyType;
+  Province: Scalars['String']['output'];
+  QueryInfo: QueryInfoType;
+  Reference: Scalars['String']['output'];
+  SubLocation: Scalars['String']['output'];
+  Terrace: Scalars['Int']['output'];
+};
+
+export type PropertyDetails = {
+  __typename?: 'PropertyDetails';
+  Property: Property;
+  QueryInfo: QueryInfo;
+};
+
+export type PropertyFeatures = {
+  __typename?: 'PropertyFeatures';
+  Category: Array<Category>;
+};
+
+export type PropertyType = {
+  __typename?: 'PropertyType';
+  NameType: Scalars['String']['output'];
+  Subtype1: Scalars['String']['output'];
+  SubtypeId1: Scalars['String']['output'];
+  Type: Scalars['String']['output'];
+  TypeId: Scalars['String']['output'];
+};
+
 export type PropertyTypeType = {
   __typename?: 'PropertyTypeType';
   NameType: Scalars['String']['output'];
@@ -75,12 +161,24 @@ export type PropertyTypeType = {
 
 export type Query = {
   __typename?: 'Query';
+  getPropertyForSale: PropertyDetails;
   listPropertiesForSale: Properties;
+};
+
+
+export type QueryGetPropertyForSaleArgs = {
+  referenceId: Scalars['ID']['input'];
 };
 
 
 export type QueryListPropertiesForSaleArgs = {
   filter?: InputMaybe<PropertiesFilterInput>;
+};
+
+export type QueryInfo = {
+  __typename?: 'QueryInfo';
+  ApiId: Scalars['String']['output'];
+  QueryId: Scalars['String']['output'];
 };
 
 export type QueryInfoType = {
@@ -96,12 +194,12 @@ export type QueryInfoType = {
 export type ExampleQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ExampleQuery = { __typename?: 'Query', listPropertiesForSale: { __typename?: 'Properties', Property: Array<{ __typename?: 'PropertyType', Price: number, Area: string, Location: string }> } };
+export type ExampleQuery = { __typename?: 'Query', listPropertiesForSale: { __typename?: 'Properties', Property: Array<{ __typename?: 'PropertiesType', Price: number, Area: string, Location: string }> } };
 
 export type ListPropertiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ListPropertiesQuery = { __typename?: 'Query', listPropertiesForSale: { __typename?: 'Properties', Property: Array<{ __typename?: 'PropertyType', Reference: string, Price: number, Area: string, Location: string, MainImage?: string | null, Bedrooms: string, Bathrooms: string, GardenPlot: number, Built: number, Terrace: number, Currency: CurrencyType }> } };
+export type ListPropertiesQuery = { __typename?: 'Query', listPropertiesForSale: { __typename?: 'Properties', Property: Array<{ __typename?: 'PropertiesType', Reference: string, Price: number, Area: string, Location: string, MainImage?: string | null, Bedrooms: string, Bathrooms: string, GardenPlot: number, Built: number, Terrace: number, Currency: CurrencyType }> } };
 
 
 export const ExampleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"example"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"listPropertiesForSale"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Property"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Price"}},{"kind":"Field","name":{"kind":"Name","value":"Area"}},{"kind":"Field","name":{"kind":"Name","value":"Location"}}]}}]}}]}}]} as unknown as DocumentNode<ExampleQuery, ExampleQueryVariables>;
