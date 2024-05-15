@@ -1,9 +1,0 @@
-services:
-  apigw:
-    buildCommand: yarn install --modules-folder /node_modules
-    env:
-      # Další konfigurace pro službu apigw
-
-# Nastavení cesty k lockfileu pro Yarn
-environment:
-  RAILWAY_INSTALL_COMMAND: yarn --frozen-lockfile
