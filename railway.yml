@@ -1,9 +1,8 @@
 services:
   apigw:
-    buildCommand: yarn install
+    buildCommand: yarn install --cwd /apigw
     env:
-      # Další konfigurace pro službu app
-    # Další konfigurace pro službu app
+      # Další konfigurace pro službu apigw
 
 # Nastavení cesty k lockfileu pro Yarn
 environment:
