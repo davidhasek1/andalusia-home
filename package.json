@@ -11,6 +11,7 @@
 		"frontend2:dev": "yarn workspace frontend2 dev",
 		"frontend2:start": "yarn workspace frontend2 start",
 		"apigw:start": "yarn workspace apigw start",
+		"apigw:build": "yarn workspace apigw build",
 		"start": "scripts/start",
 		"check:lint": "yarn workspaces foreach --all run check:lint",
 		"check:types": "yarn workspaces foreach --all run check:types",
