@@ -2,8 +2,6 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { ResaleOnlineAPI } from './external-api/restApiResolver';
 import { resolvers, typeDefs, typeDefsPropertyDetail } from './schema';
-import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled';
-
 import 'dotenv/config';
 export type Context = {
 	dataSource: {
@@ -19,7 +17,6 @@ const typeDefsMerged = `
 const server = new ApolloServer<Context>({
 	typeDefs: typeDefsMerged,
 	resolvers,
-	plugins: [ApolloServerPluginLandingPageDisabled()],
 });
 
 const run = async () => {
