@@ -1,9 +1,8 @@
 {
 	"name": "apigw",
 	"type": "module",
-	"version": "1",
 	"scripts": {
-		"apigw:start": "tsx watch src/index.ts",
+		"start": "tsx watch src/index.ts",
 		"build": "tsc",
 		"check:types": "tsc --noEmit",
 		"gql:generate": "graphql-codegen --config graphql-codegen.config.ts",
