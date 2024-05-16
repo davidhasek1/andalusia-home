@@ -1,7 +1,0 @@
-build:
-  commands:
-    - yarn install
-    - yarn workspace apigw build
-
-start:
-  command: yarn workspace apigw start
