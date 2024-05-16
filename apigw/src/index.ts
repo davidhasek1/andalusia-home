@@ -9,6 +9,7 @@ export type Context = {
 	};
 };
 
+const PORT = process.env.PORT || 4000;
 const typeDefsMerged = `
 	${typeDefs}
 	${typeDefsPropertyDetail}
@@ -28,7 +29,7 @@ const run = async () => {
 				},
 			};
 		},
-		listen: { host: '0.0.0.0', port: parseInt(process.env.PORT || '4000') },
+		listen: { host: process.env.HOST, port: parseInt(PORT.toString()) },
 	});
 	console.log(`Server starts at: ${url}`);
 };
