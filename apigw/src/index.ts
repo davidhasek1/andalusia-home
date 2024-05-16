@@ -28,7 +28,7 @@ const run = async () => {
 				},
 			};
 		},
-		listen: { port: parseInt(process.env.PORT || '4000') },
+		listen: { host: '0.0.0.0', port: parseInt(process.env.PORT || '4000') },
 	});
 	console.log(`Server starts at: ${url}`);
 };
