@@ -1,5 +1,5 @@
 [services.apigw]
-buildCommand = "yarn install --verbose"
+buildCommand = "cd apigw && yarn install --frozen-lockfile"
 
 [environment]
 RAILWAY_INSTALL_COMMAND = "yarn --frozen-lockfile --verbose"
