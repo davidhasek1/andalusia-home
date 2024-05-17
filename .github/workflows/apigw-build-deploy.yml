@@ -13,15 +13,15 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
-    - name: List root directory contents
-      run: ls -la /home/runner/work/andalusia-home/andalusia-home
 
-    - name: List current directory contents
+    - name: List root directory contents after checkout
+      run: ls -la ${{ github.workspace }}
+
+    - name: List current directory contents after checkout
       run: ls -la
 
-    - name: List apigw directory contents
-      run: ls -la apigw
+    - name: List apigw directory contents after checkout
+      run: ls -la ${{ github.workspace }}/apigw
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -29,7 +29,7 @@ jobs:
         node-version: '20'
 
     - name: Install dependencies
-      working-directory: ./apigw
+      working-directory: ${{ github.workspace }}/apigw
       run: yarn
 
   build:
@@ -37,8 +37,14 @@ jobs:
     needs: prepare
 
     steps:
+    - name: List current directory contents before build
+      run: ls -la ${{ github.workspace }}
+
+    - name: List apigw directory contents before build
+      run: ls -la ${{ github.workspace }}/apigw
+
     - name: Build application
-      working-directory: ./apigw
+      working-directory: ${{ github.workspace }}/apigw
       run: yarn build
 
   deploy:
