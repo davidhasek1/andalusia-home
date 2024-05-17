@@ -3,7 +3,7 @@ name: Build and Deploy API Gateway
 on:
   push:
     paths:
-      - 'apigw/**'
+      - './apigw/**'
   workflow_dispatch:
 
 jobs:
