@@ -9,7 +9,7 @@ export type Context = {
 	};
 };
 
-const PORT = process.env.PORT || 4000;
+const PORT = parseInt(process.env.PORT ?? '') || 4000;
 const typeDefsMerged = `
 	${typeDefs}
 	${typeDefsPropertyDetail}
@@ -29,7 +29,7 @@ const run = async () => {
 				},
 			};
 		},
-		listen: { host: process.env.HOST, port: parseInt(PORT.toString()) },
+		listen: { port: PORT },
 	});
 	console.log(`Server starts at: ${url}`);
 };
