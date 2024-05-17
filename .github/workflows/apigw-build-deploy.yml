@@ -36,14 +36,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: List current directory contents before build
-        run: ls -la ${{ github.workspace }}
-
-      - name: List apigw directory contents before build
-        run: ls -la ${{ github.workspace }}/apigw || echo "apigw directory not found"
-
       - name: Build application
         working-directory: ${{ github.workspace }}/apigw
+        env:
+          NODE_PATH: ${{ github.workspace }}/node_modules
         run: yarn build || echo "Build failed"
 
   deploy:
