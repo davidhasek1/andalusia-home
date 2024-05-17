@@ -1,59 +1,31 @@
-name: Build and Deploy API Gateway
+name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - '*'
-  workflow_dispatch:  # umožňuje manuální spuštění celého workflow
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Clean node_modules
-        run: rm -rf ${{ github.workspace }}/apigw/node_modules || true
-
-      - name: Install dependencies
-        working-directory: ${{ github.workspace }}/apigw
-        run: yarn install || echo "Failed to install dependencies"
-
   build:
+
     runs-on: ubuntu-latest
-    needs: prepare
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Build application
-        working-directory: ${{ github.workspace }}/apigw
-        run: yarn build || echo "Build failed"
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.event_name == 'workflow_dispatch'  # nasazení pouze při manuálním spuštění
+    - name: Install dependencies
+      run: yarn
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Deploy to Render
-        env:
-          APIGW_DEPLOY_APIKEY: ${{ secrets.APIGW_DEPLOY_APIKEY }}
-          APIGW_DEPLOY_SERVICE_ID: ${{ secrets.APIGW_DEPLOY_SERVICE_ID }}
-          APIGW_DEPLOY_HOOK_SECRET: ${{ secrets.APIGW_DEPLOY_HOOK_SECRET }}
-        run: |
-          echo "Deploying APIGW to Render"
-          curl -X POST https://api.render.com/deploy/srv-$APIGW_DEPLOY_SERVICE_ID?key=$APIGW_DEPLOY_HOOK_SECRET
+    - name: Build project
+      run: yarn apigw:build
