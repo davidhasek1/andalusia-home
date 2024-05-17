@@ -2,9 +2,11 @@ name: Build and Deploy API Gateway
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'apigw/**'
-  workflow_dispatch:
+  workflow_dispatch:  # umožňuje ruční spuštění deploy jobu
 
 jobs:
   prepare:
