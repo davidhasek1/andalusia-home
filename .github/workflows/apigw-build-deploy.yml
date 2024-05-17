@@ -3,7 +3,7 @@ name: Build and Deploy API Gateway
 on:
   push:
     paths:
-      - './apigw/**'
+      - 'apigw/**'
   workflow_dispatch:
 
 jobs:
@@ -47,8 +47,8 @@ jobs:
       run: ls -la ${{ github.workspace }}/apigw || echo "apigw directory not found"
 
     - name: Build application
-      working-directory: ${{ github.workspace }}/apigw
-      run: yarn build || echo "Build failed"
+      working-directory: ${{ github.workspace }}
+      run: yarn apigw:build || echo "Build failed"
 
   deploy:
     runs-on: ubuntu-latest
