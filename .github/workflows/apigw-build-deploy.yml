@@ -25,7 +25,7 @@ jobs:
         run: yarn apigw:build
 
       - name: Check build success
-        if: ${{ failure() }}
+        if: ${{ success() }}
         run: |
           echo "Build failed!"
           exit 1
