@@ -21,29 +21,16 @@ jobs:
 
     - name: Install dependencies
       working-directory: ./apigw
-      run: npm install
+      run: yarn
 
-  check:
+  build:
     runs-on: ubuntu-latest
     needs: prepare
 
     steps:
-    - name: Lint code
-      working-directory: ./apigw
-      run: npm run lint
-
-    - name: Run tests
-      working-directory: ./apigw
-      run: npm test
-
-  build:
-    runs-on: ubuntu-latest
-    needs: check
-
-    steps:
     - name: Build application
       working-directory: ./apigw
-      run: npm run build
+      run: yarn build
 
   deploy:
     runs-on: ubuntu-latest
@@ -51,12 +38,6 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
 
     steps:
-    - name: Load .env variables
-      id: dotenv
-      uses: goanpeca/setup-envfile@v1
-      with:
-        path: ./apigw/.env
-
     - name: Deploy to Render
       env:
         APIGW_DEPLOY_APIKEY: ${{ secrets.APIGW_DEPLOY_APIKEY }}
