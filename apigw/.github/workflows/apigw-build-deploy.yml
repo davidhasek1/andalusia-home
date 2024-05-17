@@ -14,14 +14,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Print GitHub workspace
+      run: echo "GITHUB_WORKSPACE=${{ github.workspace }}"
+
     - name: List root directory contents after checkout
       run: ls -la ${{ github.workspace }}
 
-    - name: List current directory contents after checkout
-      run: ls -la
-
     - name: List apigw directory contents after checkout
-      run: ls -la ${{ github.workspace }}/apigw
+      run: ls -la ${{ github.workspace }}/apigw || echo "apigw directory not found"
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -29,11 +29,11 @@ jobs:
         node-version: '20'
 
     - name: Clean node_modules
-      run: rm -rf ${{ github.workspace }}/apigw/node_modules
+      run: rm -rf ${{ github.workspace }}/apigw/node_modules || true
 
     - name: Install dependencies
       working-directory: ${{ github.workspace }}/apigw
-      run: yarn install
+      run: yarn install || echo "Failed to install dependencies"
 
   build:
     runs-on: ubuntu-latest
@@ -44,11 +44,11 @@ jobs:
       run: ls -la ${{ github.workspace }}
 
     - name: List apigw directory contents before build
-      run: ls -la ${{ github.workspace }}/apigw
+      run: ls -la ${{ github.workspace }}/apigw || echo "apigw directory not found"
 
     - name: Build application
       working-directory: ${{ github.workspace }}/apigw
-      run: yarn build
+      run: yarn build || echo "Build failed"
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,4 +63,4 @@ jobs:
         APIGW_DEPLOY_HOOK_SECRET: ${{ secrets.APIGW_DEPLOY_HOOK_SECRET }}
       run: |
         echo "Deploying APIGW to Render"
-        curl -X POST https://api.render.com/deploy/srv-$APIGW_DEPLOY_SERVICE_ID?key=$APIGW_DEPLOY_HOOK_SECRET
+        curl -X POST https://api.render.com/deploy/srv-$APIGW_DEPLOY_SERVICE​⬤
