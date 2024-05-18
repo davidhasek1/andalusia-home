@@ -1,6 +1,6 @@
 'use client';
-import { CircularProgress, Stack } from '@mui/material';
-import { FC } from 'react';
+import { Button, CircularProgress, Stack } from '@mui/material';
+import { FC, useState } from 'react';
 import { PropertyCard } from './PropertyCard';
 import { useQuery } from '@apollo/client';
 import { graphql } from '../../gql';
@@ -8,8 +8,8 @@ import { FormattedMessage } from 'react-intl';
 import { useFilters } from '../../contexts/FiltersContext';
 
 export const listProperties = graphql(`
-	query listProperties($filter: PropertiesFilterInput) {
-		listPropertiesForSale(filter: $filter) {
+	query listProperties($filter: PropertiesFilterInput, $page: Int) {
+		listPropertiesForSale(filter: $filter, page: { page: $page }) {
 			QueryInfo {
 				PropertyCount
 				CurrentPage
@@ -36,20 +36,44 @@ export const listProperties = graphql(`
 
 export const PropertiesList: FC = () => {
 	const { filters } = useFilters();
-	const { data, loading } = useQuery(listProperties, { variables: { filter: filters } });
-	console.log(data);
+	const [page, setPage] = useState(1);
+	const { data, loading, fetchMore } = useQuery(listProperties, { variables: { filter: filters, page: page } });
+	const pageInfo = data?.listPropertiesForSale.QueryInfo;
+
+	//TODO: Somehow need to persist state of filters and page -- FE query params !!!
+
+	//TODO: Move this into some paginator component
+	const pages = [];
 
 	if (loading) {
 		return <CircularProgress />;
 	}
 
+	if (pageInfo == null) {
+		return null;
+	}
+
+	//TODO: Move this into some paginator component
+	for (let i = 0; i <= pageInfo.PropertyCount / pageInfo.PropertiesPerPage; i++) {
+		pages.push({ page: i + 1 });
+	}
+	//console.log('[QueryInfo]', data?.listPropertiesForSale.QueryInfo);
 	const properties = data?.listPropertiesForSale.Property ?? [];
+
 	return (
 		<Stack width={'100%'} position={'relative'} gap={5} p={5}>
 			<FormattedMessage id={`properties.list.results-count`} values={{ count: data?.listPropertiesForSale.QueryInfo.PropertyCount }} />
 			{properties.map((property) => (
 				<PropertyCard key={property.Reference} property={property} />
 			))}
+
+			<Stack direction={'row'} flexWrap={'wrap'}>
+				{pages.map((p) => (
+					<Button key={p.page} onClick={() => setPage(p.page)}>
+						{p.page}
+					</Button>
+				))}
+			</Stack>
 		</Stack>
 	);
 };

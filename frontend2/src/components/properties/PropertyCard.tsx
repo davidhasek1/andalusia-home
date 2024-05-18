@@ -17,7 +17,6 @@ import {
 type Props = Readonly<{ property: DocumentType<typeof listProperties>['listPropertiesForSale']['Property'][number] }>;
 
 export const PropertyCard: FC<Props> = ({ property }) => {
-	console.log(property.MainImage);
 	return (
 		<ButtonBase sx={{ display: 'flex' }} href={`/properties/${property.Reference}`}>
 			<Stack direction={{ lg: 'row', xs: 'column' }} gap={2} border={(theme) => `1px solid ${theme.palette.grey[300]}`}>
