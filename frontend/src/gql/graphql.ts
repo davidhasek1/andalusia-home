@@ -62,6 +62,10 @@ export type PropertiesFilterInput = {
   bedsCount?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type PropertiesPaginateInput = {
+  page?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type PropertiesType = {
   __typename?: 'PropertiesType';
   AgencyRef: Scalars['String']['output'];
@@ -173,6 +177,7 @@ export type QueryGetPropertyForSaleArgs = {
 
 export type QueryListPropertiesForSaleArgs = {
   filter?: InputMaybe<PropertiesFilterInput>;
+  page?: InputMaybe<PropertiesPaginateInput>;
 };
 
 export type QueryInfo = {

@@ -62,6 +62,10 @@ export type PropertiesFilterInput = {
   readonly bedsCount?: InputMaybe<Scalars['Int']['input']>;
 };
 
+export type PropertiesPaginateInput = {
+  readonly page?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type PropertiesType = {
   readonly __typename?: 'PropertiesType';
   readonly AgencyRef: Scalars['String']['output'];
@@ -173,6 +177,7 @@ export type QueryGetPropertyForSaleArgs = {
 
 export type QueryListPropertiesForSaleArgs = {
   filter?: InputMaybe<PropertiesFilterInput>;
+  page?: InputMaybe<PropertiesPaginateInput>;
 };
 
 export type QueryInfo = {
@@ -273,6 +278,7 @@ export type ResolversTypes = {
   Pictures: ResolverTypeWrapper<Pictures>;
   Properties: ResolverTypeWrapper<Properties>;
   PropertiesFilterInput: PropertiesFilterInput;
+  PropertiesPaginateInput: PropertiesPaginateInput;
   PropertiesType: ResolverTypeWrapper<PropertiesType>;
   Property: ResolverTypeWrapper<Property>;
   PropertyDetails: ResolverTypeWrapper<PropertyDetails>;
@@ -296,6 +302,7 @@ export type ResolversParentTypes = {
   Pictures: Pictures;
   Properties: Properties;
   PropertiesFilterInput: PropertiesFilterInput;
+  PropertiesPaginateInput: PropertiesPaginateInput;
   PropertiesType: PropertiesType;
   Property: Property;
   PropertyDetails: PropertyDetails;

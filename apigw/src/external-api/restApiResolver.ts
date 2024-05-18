@@ -1,6 +1,6 @@
 import { RESTDataSource } from '@apollo/datasource-rest';
 import { KeyValueCache } from '@apollo/utils.keyvaluecache';
-import { InputMaybe, Properties, PropertiesFilterInput, PropertyDetails } from '../../apigw-resolvers-types';
+import { InputMaybe, Properties, PropertiesFilterInput, PropertiesPaginateInput, PropertyDetails } from '../../apigw-resolvers-types';
 import { createFilterQueryString } from './createFilterQueryString';
 
 class ResaleOnlineAPI extends RESTDataSource {
@@ -15,10 +15,12 @@ class ResaleOnlineAPI extends RESTDataSource {
 		this.token = options.token ?? '';
 	}
 
-	async listProperties(filter?: InputMaybe<PropertiesFilterInput>): Promise<Properties> {
-		console.log('FILTER QS RESULT', createFilterQueryString(filter));
+	async listProperties(filter?: InputMaybe<PropertiesFilterInput>, page?: InputMaybe<PropertiesPaginateInput>): Promise<Properties> {
+		//console.log('FILTER QS RESULT', createFilterQueryString(filter));
+		const filters = createFilterQueryString(filter)
+		const pageNumber = page?.page ?? '';
 		return await this.get(
-			`SearchProperties?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}&P_sandbox=true${createFilterQueryString(filter)}`,
+			`SearchProperties?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}&P_sandbox=true${filters}&P_PageNo=${pageNumber}`,
 		);
 	}
 	async getProperty(referenceId: string): Promise<PropertyDetails> {

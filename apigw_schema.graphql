@@ -39,6 +39,10 @@ input PropertiesFilterInput {
   bedsCount: Int
 }
 
+input PropertiesPaginateInput {
+  page: Int
+}
+
 type PropertiesType {
   AgencyRef: String!
   Area: String!
@@ -132,7 +136,7 @@ type PropertyTypeType {
 
 type Query {
   getPropertyForSale(referenceId: ID!): PropertyDetails!
-  listPropertiesForSale(filter: PropertiesFilterInput): Properties!
+  listPropertiesForSale(filter: PropertiesFilterInput, page: PropertiesPaginateInput): Properties!
 }
 
 type QueryInfo {
