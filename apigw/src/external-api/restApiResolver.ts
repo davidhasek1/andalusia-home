@@ -20,12 +20,12 @@ class ResaleOnlineAPI extends RESTDataSource {
 		const filters = createFilterQueryString(filter)
 		const pageNumber = page?.page ?? '';
 		return await this.get(
-			`SearchProperties?p_agency_filterid=5&p1=${this.contactId}&p2=${this.token}&P_sandbox=true${filters}&P_PageNo=${pageNumber}`,
+			`SearchProperties?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}&P_sandbox=true${filters}&P_PageNo=${pageNumber}`,
 		);
 	}
 	async getProperty(referenceId: string): Promise<PropertyDetails> {
 		return await this.get(
-			`PropertyDetails?p_agency_filterid=5&p1=${this.contactId}&p2=${this.token}&P_sandbox=true&P_RefId=${referenceId}`,
+			`PropertyDetails?p_agency_filterid=1&p1=${this.contactId}&p2=${this.token}&P_sandbox=true&P_RefId=${referenceId}`,
 		);
 	}
 }
