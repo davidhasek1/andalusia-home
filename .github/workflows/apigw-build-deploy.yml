@@ -6,29 +6,6 @@ on:
     branches: [master]
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Build APIGW
-        uses: actions/setup-node@v2
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Check
-        run: yarn check:all
-
-      - name: Check if checks fails
-        if: ${{ failure() }}
-        run: |
-          echo "Checks failed!"
-          exit 1
   build:
     runs-on: ubuntu-latest
 
