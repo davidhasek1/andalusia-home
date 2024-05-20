@@ -1,19 +1,22 @@
 /* eslint-disable formatjs/no-literal-string-in-jsx */
 'use client';
-import { FormControl, InputLabel, MenuItem, Select, Stack, Typography, useTheme } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select, Stack, Typography, useTheme } from '@mui/material';
 import { FC, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PriceRange } from './PriceRange';
 import { useFilters } from '../../../contexts/FiltersContext';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useQueryParams } from '../../../hooks/useQueryParams';
 
 export const MIN_PRICE_RANGE = 0;
 export const MAX_PRICE_RANGE = 1000000;
 export const FiltersPanel: FC = () => {
 	const [rangeValue, setRangeValue] = useState<number[]>([MIN_PRICE_RANGE, MAX_PRICE_RANGE]);
-	const { filters, setFilters } = useFilters();
-	const path = usePathname();
 	const theme = useTheme();
+	const router = useRouter();
+	const path = usePathname();
+	const { createQueryString } = useQueryParams();
+	const { filters, setFilters } = useFilters();
 
 	if (path !== '/properties') {
 		return null;
@@ -37,12 +40,13 @@ export const FiltersPanel: FC = () => {
 				</InputLabel>
 				<Select
 					value={filters.bedsCount}
-					onChange={(e) =>
+					onChange={(e) => {
 						setFilters((prev) => ({
 							...prev,
 							bedsCount: parseInt(e.target.value.toString()),
-						}))
-					}
+						}));
+						router.push(path + '?' + createQueryString('bedsCount', e.target.value.toString()));
+					}}
 				>
 					<MenuItem value={1}>1</MenuItem>
 					<MenuItem value={2}>2</MenuItem>
@@ -57,12 +61,13 @@ export const FiltersPanel: FC = () => {
 				</InputLabel>
 				<Select
 					value={filters.bathsCount}
-					onChange={(e) =>
+					onChange={(e) => {
 						setFilters((prev) => ({
 							...prev,
 							bathsCount: parseInt(e.target.value.toString()),
-						}))
-					}
+						}));
+						router.push(path + '?' + createQueryString('bathsCount', e.target.value.toString()));
+					}}
 				>
 					<MenuItem value={1}>1</MenuItem>
 					<MenuItem value={2}>2</MenuItem>
@@ -71,6 +76,8 @@ export const FiltersPanel: FC = () => {
 					<MenuItem value={5}>5</MenuItem>
 				</Select>
 			</FormControl>
+
+			<Button href={'/properties'}>Clear all</Button>
 		</Stack>
 	);
 };

@@ -1,4 +1,4 @@
-import { Slider, Stack, TextField, Typography } from '@mui/material';
+import { Stack, TextField, Typography } from '@mui/material';
 import { ChangeEvent, FC, SetStateAction, useState } from 'react';
 import { MAX_PRICE_RANGE, MIN_PRICE_RANGE } from './FiltersPanel';
 import { FormattedMessage } from 'react-intl';
@@ -11,14 +11,6 @@ export const PriceRange: FC<Props> = ({ rangeValue, setRangeValue }) => {
 	const [minRangeValue, setMinRangeValue] = useState(MIN_PRICE_RANGE);
 	const [maxRangeValue, setMaxRangeValue] = useState(MAX_PRICE_RANGE);
 
-	const handlePriceRangeChange = (event: Event, newValue?: number | number[]) => {
-		setRangeValue(newValue as number[]);
-		if (Array.isArray(newValue)) {
-			console.log('is');
-			setMinRangeValue(newValue?.[0]);
-			setMaxRangeValue(newValue?.[1]);
-		}
-	};
 	const handleMinRangeRangeInputs = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, newValue: string) => {
 		if (isNaN(parseInt(newValue))) {
 			setMinRangeValue(MIN_PRICE_RANGE);
@@ -61,7 +53,6 @@ export const PriceRange: FC<Props> = ({ rangeValue, setRangeValue }) => {
 			<Typography variant={'body1'}>
 				<FormattedMessage id={'filters.price-range.title'} />
 			</Typography>
-			<Slider value={rangeValue} onChange={handlePriceRangeChange} valueLabelDisplay={'auto'} min={MIN_PRICE_RANGE} max={MAX_PRICE_RANGE} />
 			<TextField value={minRangeValue} onChange={(e) => handleMinRangeRangeInputs(e, e.target.value)} label={'Min price'} />
 			<TextField value={maxRangeValue} onChange={(e) => handleMaxRangeRangeInputs(e, e.target.value)} label={'Max price'} />
 		</Stack>
