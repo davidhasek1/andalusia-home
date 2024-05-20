@@ -1,6 +1,6 @@
 /* eslint-disable formatjs/no-literal-string-in-jsx */
 'use client';
-import { FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, Stack, Typography, useTheme } from '@mui/material';
 import { FC, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { PriceRange } from './PriceRange';
@@ -13,13 +13,14 @@ export const FiltersPanel: FC = () => {
 	const [rangeValue, setRangeValue] = useState<number[]>([MIN_PRICE_RANGE, MAX_PRICE_RANGE]);
 	const { filters, setFilters } = useFilters();
 	const path = usePathname();
+	const theme = useTheme();
 
 	if (path !== '/properties') {
 		return null;
 	}
 
 	return (
-		<Stack minWidth={300} px={2} py={5} gap={2} borderRight={(theme) => `1px solid ${theme.palette.grey[300]}`}>
+		<Stack minWidth={300} px={2} py={5} gap={2} borderRight={{ lg: `1px solid ${theme.palette.grey[300]}`, xs: 'none' }}>
 			<Typography variant={'h5'}>
 				<FormattedMessage id={'properties.filters.title'} />
 			</Typography>

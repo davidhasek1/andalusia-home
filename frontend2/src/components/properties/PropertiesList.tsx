@@ -1,11 +1,12 @@
 'use client';
-import { Button, CircularProgress, Stack } from '@mui/material';
+import { Button, CircularProgress, Drawer, Stack } from '@mui/material';
 import { FC, useState } from 'react';
 import { PropertyCard } from './PropertyCard';
 import { useQuery } from '@apollo/client';
 import { graphql } from '../../gql';
 import { FormattedMessage } from 'react-intl';
 import { useFilters } from '../../contexts/FiltersContext';
+import { FiltersPanel } from './Filters/FiltersPanel';
 
 export const listProperties = graphql(`
 	query listProperties($filter: PropertiesFilterInput, $page: Int) {
@@ -36,6 +37,7 @@ export const listProperties = graphql(`
 
 export const PropertiesList: FC = () => {
 	const { filters } = useFilters();
+	const [openDrawer, setOpenDrawer] = useState(false);
 	const [page, setPage] = useState(1);
 	const { data, loading, fetchMore } = useQuery(listProperties, { variables: { filter: filters, page: page } });
 	const pageInfo = data?.listPropertiesForSale.QueryInfo;
@@ -62,7 +64,25 @@ export const PropertiesList: FC = () => {
 
 	return (
 		<Stack width={'100%'} position={'relative'} gap={5} p={5}>
-			<FormattedMessage id={`properties.list.results-count`} values={{ count: data?.listPropertiesForSale.QueryInfo.PropertyCount }} />
+			<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+				<FormattedMessage id={`properties.list.results-count`} values={{ count: data?.listPropertiesForSale.QueryInfo.PropertyCount }} />
+				<Button variant={'outlined'} sx={{ display: { lg: 'none', xs: 'block' } }} onClick={() => setOpenDrawer(true)}>
+					<FormattedMessage id={'properties.filters.title'} />
+				</Button>
+			</Stack>
+			<Drawer
+				anchor={'left'}
+				open={openDrawer}
+				onClose={() => setOpenDrawer(false)}
+				sx={{
+					'.MuiPaper-root': {
+						p: 3,
+						alignItems: 'center',
+					},
+				}}
+			>
+				<FiltersPanel />
+			</Drawer>
 			{properties.map((property) => (
 				<PropertyCard key={property.Reference} property={property} />
 			))}
