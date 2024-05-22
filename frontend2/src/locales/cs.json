@@ -1,7 +1,7 @@
 {
 	"filters.price-range.title": "Cenové rozpětí",
 	"footer.rights": "Andalusia home. Všechna práva vyhrazena.",
-	"header.button.list-properties": "Seznam nemovitostí",
+	"header.button.watchlist": "Moje nemovitosti",
 	"header.title": "Najděte svoji ideální nemovitost",
 	"homepage.section.about-us.title": "O nás",
 	"homepage.section.blog.title": " Výběr z blogu",
@@ -15,5 +15,7 @@
 	"properties.filters.baths-count": "Bathrooms",
 	"properties.filters.beds-count": "Bedrooms",
 	"properties.filters.title": "Filtry",
-	"properties.list.results-count": "{count} výsledků"
+	"properties.list.results-count": "{count} výsledků",
+	"watchlist.no-properties": "Nemáte žádné nemovitosti ve sledovaných :-(",
+	"watchlist.title": "Sledované nemovitosti"
 }

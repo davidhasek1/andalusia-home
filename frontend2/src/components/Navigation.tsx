@@ -88,9 +88,9 @@ export const Navigation: FC = () => {
 				))}
 			</Stack>
 			<Stack display={{ xs: 'none', lg: 'flex' }}>
-				<Button variant={'contained'} href={navigation[1].url}>
+				<Button variant={'contained'} href={'/watchlist'}>
 					<Typography variant={'button'}>
-						<FormattedMessage id={'header.button.list-properties'} />
+						<FormattedMessage id={'header.button.watchlist'} />
 					</Typography>
 				</Button>
 			</Stack>

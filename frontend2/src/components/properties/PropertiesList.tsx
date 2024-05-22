@@ -60,7 +60,7 @@ export const PropertiesList: FC = () => {
 	for (let i = 0; i <= pageInfo.PropertyCount / pageInfo.PropertiesPerPage; i++) {
 		pages.push({ page: i + 1 });
 	}
-	//console.log('[QueryInfo]', data?.listPropertiesForSale.QueryInfo);
+
 	const properties = data?.listPropertiesForSale.Property ?? [];
 
 	return (

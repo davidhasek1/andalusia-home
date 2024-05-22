@@ -12,17 +12,19 @@ export const useLocalStorage = <TData,>(key: string, idKey?: keyof TData) => {
 		}
 	}, [key]);
 
+	//TODO: do some chceks if it is array value and for simplier values create separated function for set
 	const setLocalStorage = (value: TData | TData[]) => {
+		const formattedValue = [value];
 		const valFromStorage = localStorage.getItem(key);
 		if (localStorage.getItem(key) == null) {
-			localStorage.setItem(key, JSON.stringify(value));
+			localStorage.setItem(key, JSON.stringify(formattedValue));
 			setValue(JSON.parse(localStorage.getItem(key) ?? ''));
 			return;
 		}
 		const parsedValue = JSON.parse(valFromStorage ?? '');
 
-		if (Array.isArray(parsedValue) && Array.isArray(value)) {
-			const updatedValue = [...parsedValue, ...value];
+		if (Array.isArray(parsedValue) && Array.isArray(formattedValue)) {
+			const updatedValue = [...parsedValue, ...formattedValue];
 			localStorage.setItem(key, JSON.stringify(updatedValue));
 			setValue(updatedValue);
 			return;

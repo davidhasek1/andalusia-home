@@ -16,9 +16,9 @@ import {
 import { useLocalStorage } from '../../hooks/useLocalStoarge';
 import { useOpenSnackbar } from '../Snackbar';
 
-type Property = Readonly<{ property: DocumentType<typeof listProperties>['listPropertiesForSale']['Property'][number] }>;
+type PropertyItem = Readonly<{ property: DocumentType<typeof listProperties>['listPropertiesForSale']['Property'][number] }>;
 
-type Props = Property & { isWatchlisted: boolean };
+type Props = PropertyItem & { isWatchlisted: boolean };
 
 export const PropertyCard: FC<Props> = ({ property, isWatchlisted }) => {
 	const { setLocalStorage, removeFromLocalStorage } = useLocalStorage('watchlist', 'Reference');
@@ -52,7 +52,7 @@ export const PropertyCard: FC<Props> = ({ property, isWatchlisted }) => {
 									onClick={(e) => {
 										e.stopPropagation();
 										e.preventDefault();
-										!isWatchlistSelected ? setLocalStorage([property]) : removeFromLocalStorage(property.Reference as never);
+										!isWatchlistSelected ? setLocalStorage(property) : removeFromLocalStorage(property.Reference as never);
 										setIsWatchListSelected(!isWatchlistSelected);
 										openSnackbar(!isWatchlistSelected ? 'Added to watchlist' : 'Removed');
 									}}
