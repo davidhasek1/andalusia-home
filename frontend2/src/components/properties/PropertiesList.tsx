@@ -7,6 +7,8 @@ import { graphql } from '../../gql';
 import { FormattedMessage } from 'react-intl';
 import { useFilters } from '../../contexts/FiltersContext';
 import { FiltersPanel } from './Filters/FiltersPanel';
+import { useLocalStorage } from '../../hooks/useLocalStoarge';
+import { Property } from '../../gql/graphql';
 
 export const listProperties = graphql(`
 	query listProperties($filter: PropertiesFilterInput, $page: Int) {
@@ -39,10 +41,9 @@ export const PropertiesList: FC = () => {
 	const { filters } = useFilters();
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const [page, setPage] = useState(1);
+	const { value: watchlist } = useLocalStorage<Property>('watchlist');
 	const { data, loading, fetchMore } = useQuery(listProperties, { variables: { filter: filters, page: page } });
 	const pageInfo = data?.listPropertiesForSale.QueryInfo;
-
-	//TODO: Somehow need to persist state of filters and page -- FE query params !!!
 
 	//TODO: Move this into some paginator component
 	const pages = [];
@@ -83,9 +84,10 @@ export const PropertiesList: FC = () => {
 			>
 				<FiltersPanel />
 			</Drawer>
-			{properties.map((property) => (
-				<PropertyCard key={property.Reference} property={property} />
-			))}
+			{properties.map((property) => {
+				const isWatchlisted = watchlist && watchlist.some((wl) => wl.Reference === property.Reference);
+				return <PropertyCard key={property.Reference} property={property} isWatchlisted={isWatchlisted ?? false} />;
+			})}
 
 			<Stack direction={'row'} flexWrap={'wrap'}>
 				{pages.map((p) => (
