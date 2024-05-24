@@ -19,6 +19,25 @@ type EnergyRating {
   Image: String!
 }
 
+type LocationData {
+  Country: String!
+  ProvinceArea: ProvinceArea!
+}
+
+type LocationQueryInfo {
+  ApiId: String!
+  LocationCount: Int!
+}
+
+type LocationResponse {
+  LocationData: LocationData!
+  QueryInfo: LocationQueryInfo!
+}
+
+type Locations {
+  Location: [String!]!
+}
+
 type Picture {
   Id: Int
   PictureURL: String
@@ -134,8 +153,14 @@ type PropertyTypeType {
   TypeId: String!
 }
 
+type ProvinceArea {
+  Locations: Locations!
+  ProvinceAreaName: String!
+}
+
 type Query {
   getPropertyForSale(referenceId: ID!): PropertyDetail!
+  listLocations: LocationResponse!
   listPropertiesForSale(filter: PropertiesFilterInput, page: PropertiesPaginateInput): Properties!
 }
 

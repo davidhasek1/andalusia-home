@@ -39,6 +39,29 @@ export type EnergyRating = {
   Image: Scalars['String']['output'];
 };
 
+export type LocationData = {
+  __typename?: 'LocationData';
+  Country: Scalars['String']['output'];
+  ProvinceArea: ProvinceArea;
+};
+
+export type LocationQueryInfo = {
+  __typename?: 'LocationQueryInfo';
+  ApiId: Scalars['String']['output'];
+  LocationCount: Scalars['Int']['output'];
+};
+
+export type LocationResponse = {
+  __typename?: 'LocationResponse';
+  LocationData: LocationData;
+  QueryInfo: LocationQueryInfo;
+};
+
+export type Locations = {
+  __typename?: 'Locations';
+  Location: Array<Scalars['String']['output']>;
+};
+
 export type Picture = {
   __typename?: 'Picture';
   Id?: Maybe<Scalars['Int']['output']>;
@@ -163,9 +186,16 @@ export type PropertyTypeType = {
   TypeId: Scalars['String']['output'];
 };
 
+export type ProvinceArea = {
+  __typename?: 'ProvinceArea';
+  Locations: Locations;
+  ProvinceAreaName: Scalars['String']['output'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getPropertyForSale: PropertyDetail;
+  listLocations: LocationResponse;
   listPropertiesForSale: Properties;
 };
 

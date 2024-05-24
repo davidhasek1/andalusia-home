@@ -39,6 +39,29 @@ export type EnergyRating = {
   readonly Image: Scalars['String']['output'];
 };
 
+export type LocationData = {
+  readonly __typename?: 'LocationData';
+  readonly Country: Scalars['String']['output'];
+  readonly ProvinceArea: ProvinceArea;
+};
+
+export type LocationQueryInfo = {
+  readonly __typename?: 'LocationQueryInfo';
+  readonly ApiId: Scalars['String']['output'];
+  readonly LocationCount: Scalars['Int']['output'];
+};
+
+export type LocationResponse = {
+  readonly __typename?: 'LocationResponse';
+  readonly LocationData: LocationData;
+  readonly QueryInfo: LocationQueryInfo;
+};
+
+export type Locations = {
+  readonly __typename?: 'Locations';
+  readonly Location: ReadonlyArray<Scalars['String']['output']>;
+};
+
 export type Picture = {
   readonly __typename?: 'Picture';
   readonly Id?: Maybe<Scalars['Int']['output']>;
@@ -163,9 +186,16 @@ export type PropertyTypeType = {
   readonly TypeId: Scalars['String']['output'];
 };
 
+export type ProvinceArea = {
+  readonly __typename?: 'ProvinceArea';
+  readonly Locations: Locations;
+  readonly ProvinceAreaName: Scalars['String']['output'];
+};
+
 export type Query = {
   readonly __typename?: 'Query';
   readonly getPropertyForSale: PropertyDetail;
+  readonly listLocations: LocationResponse;
   readonly listPropertiesForSale: Properties;
 };
 
@@ -274,6 +304,10 @@ export type ResolversTypes = {
   EnergyRating: ResolverTypeWrapper<EnergyRating>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  LocationData: ResolverTypeWrapper<LocationData>;
+  LocationQueryInfo: ResolverTypeWrapper<LocationQueryInfo>;
+  LocationResponse: ResolverTypeWrapper<LocationResponse>;
+  Locations: ResolverTypeWrapper<Locations>;
   Picture: ResolverTypeWrapper<Picture>;
   Pictures: ResolverTypeWrapper<Pictures>;
   Properties: ResolverTypeWrapper<Properties>;
@@ -285,6 +319,7 @@ export type ResolversTypes = {
   PropertyFeatures: ResolverTypeWrapper<PropertyFeatures>;
   PropertyType: ResolverTypeWrapper<PropertyType>;
   PropertyTypeType: ResolverTypeWrapper<PropertyTypeType>;
+  ProvinceArea: ResolverTypeWrapper<ProvinceArea>;
   Query: ResolverTypeWrapper<{}>;
   QueryInfo: ResolverTypeWrapper<QueryInfo>;
   QueryInfoType: ResolverTypeWrapper<QueryInfoType>;
@@ -298,6 +333,10 @@ export type ResolversParentTypes = {
   EnergyRating: EnergyRating;
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
+  LocationData: LocationData;
+  LocationQueryInfo: LocationQueryInfo;
+  LocationResponse: LocationResponse;
+  Locations: Locations;
   Picture: Picture;
   Pictures: Pictures;
   Properties: Properties;
@@ -309,6 +348,7 @@ export type ResolversParentTypes = {
   PropertyFeatures: PropertyFeatures;
   PropertyType: PropertyType;
   PropertyTypeType: PropertyTypeType;
+  ProvinceArea: ProvinceArea;
   Query: {};
   QueryInfo: QueryInfo;
   QueryInfoType: QueryInfoType;
@@ -327,6 +367,29 @@ export type EnergyRatingResolvers<ContextType = any, ParentType extends Resolver
   EnergyRated?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   EnergyValue?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   Image?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type LocationDataResolvers<ContextType = any, ParentType extends ResolversParentTypes['LocationData'] = ResolversParentTypes['LocationData']> = {
+  Country?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  ProvinceArea?: Resolver<ResolversTypes['ProvinceArea'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type LocationQueryInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['LocationQueryInfo'] = ResolversParentTypes['LocationQueryInfo']> = {
+  ApiId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  LocationCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type LocationResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['LocationResponse'] = ResolversParentTypes['LocationResponse']> = {
+  LocationData?: Resolver<ResolversTypes['LocationData'], ParentType, ContextType>;
+  QueryInfo?: Resolver<ResolversTypes['LocationQueryInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type LocationsResolvers<ContextType = any, ParentType extends ResolversParentTypes['Locations'] = ResolversParentTypes['Locations']> = {
+  Location?: Resolver<ReadonlyArray<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -445,8 +508,15 @@ export type PropertyTypeTypeResolvers<ContextType = any, ParentType extends Reso
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type ProvinceAreaResolvers<ContextType = any, ParentType extends ResolversParentTypes['ProvinceArea'] = ResolversParentTypes['ProvinceArea']> = {
+  Locations?: Resolver<ResolversTypes['Locations'], ParentType, ContextType>;
+  ProvinceAreaName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getPropertyForSale?: Resolver<ResolversTypes['PropertyDetail'], ParentType, ContextType, RequireFields<QueryGetPropertyForSaleArgs, 'referenceId'>>;
+  listLocations?: Resolver<ResolversTypes['LocationResponse'], ParentType, ContextType>;
   listPropertiesForSale?: Resolver<ResolversTypes['Properties'], ParentType, ContextType, Partial<QueryListPropertiesForSaleArgs>>;
 };
 
@@ -469,6 +539,10 @@ export type QueryInfoTypeResolvers<ContextType = any, ParentType extends Resolve
 export type Resolvers<ContextType = any> = {
   Category?: CategoryResolvers<ContextType>;
   EnergyRating?: EnergyRatingResolvers<ContextType>;
+  LocationData?: LocationDataResolvers<ContextType>;
+  LocationQueryInfo?: LocationQueryInfoResolvers<ContextType>;
+  LocationResponse?: LocationResponseResolvers<ContextType>;
+  Locations?: LocationsResolvers<ContextType>;
   Picture?: PictureResolvers<ContextType>;
   Pictures?: PicturesResolvers<ContextType>;
   Properties?: PropertiesResolvers<ContextType>;
@@ -478,6 +552,7 @@ export type Resolvers<ContextType = any> = {
   PropertyFeatures?: PropertyFeaturesResolvers<ContextType>;
   PropertyType?: PropertyTypeResolvers<ContextType>;
   PropertyTypeType?: PropertyTypeTypeResolvers<ContextType>;
+  ProvinceArea?: ProvinceAreaResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   QueryInfo?: QueryInfoResolvers<ContextType>;
   QueryInfoType?: QueryInfoTypeResolvers<ContextType>;
