@@ -134,8 +134,8 @@ export type Property = {
   readonly Terrace: Scalars['Int']['output'];
 };
 
-export type PropertyDetails = {
-  readonly __typename?: 'PropertyDetails';
+export type PropertyDetail = {
+  readonly __typename?: 'PropertyDetail';
   readonly Property: Property;
   readonly QueryInfo: QueryInfo;
 };
@@ -165,7 +165,7 @@ export type PropertyTypeType = {
 
 export type Query = {
   readonly __typename?: 'Query';
-  readonly getPropertyForSale: PropertyDetails;
+  readonly getPropertyForSale: PropertyDetail;
   readonly listPropertiesForSale: Properties;
 };
 
@@ -281,7 +281,7 @@ export type ResolversTypes = {
   PropertiesPaginateInput: PropertiesPaginateInput;
   PropertiesType: ResolverTypeWrapper<PropertiesType>;
   Property: ResolverTypeWrapper<Property>;
-  PropertyDetails: ResolverTypeWrapper<PropertyDetails>;
+  PropertyDetail: ResolverTypeWrapper<PropertyDetail>;
   PropertyFeatures: ResolverTypeWrapper<PropertyFeatures>;
   PropertyType: ResolverTypeWrapper<PropertyType>;
   PropertyTypeType: ResolverTypeWrapper<PropertyTypeType>;
@@ -305,7 +305,7 @@ export type ResolversParentTypes = {
   PropertiesPaginateInput: PropertiesPaginateInput;
   PropertiesType: PropertiesType;
   Property: Property;
-  PropertyDetails: PropertyDetails;
+  PropertyDetail: PropertyDetail;
   PropertyFeatures: PropertyFeatures;
   PropertyType: PropertyType;
   PropertyTypeType: PropertyTypeType;
@@ -416,7 +416,7 @@ export type PropertyResolvers<ContextType = any, ParentType extends ResolversPar
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PropertyDetailsResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyDetails'] = ResolversParentTypes['PropertyDetails']> = {
+export type PropertyDetailResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyDetail'] = ResolversParentTypes['PropertyDetail']> = {
   Property?: Resolver<ResolversTypes['Property'], ParentType, ContextType>;
   QueryInfo?: Resolver<ResolversTypes['QueryInfo'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -446,7 +446,7 @@ export type PropertyTypeTypeResolvers<ContextType = any, ParentType extends Reso
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  getPropertyForSale?: Resolver<ResolversTypes['PropertyDetails'], ParentType, ContextType, RequireFields<QueryGetPropertyForSaleArgs, 'referenceId'>>;
+  getPropertyForSale?: Resolver<ResolversTypes['PropertyDetail'], ParentType, ContextType, RequireFields<QueryGetPropertyForSaleArgs, 'referenceId'>>;
   listPropertiesForSale?: Resolver<ResolversTypes['Properties'], ParentType, ContextType, Partial<QueryListPropertiesForSaleArgs>>;
 };
 
@@ -474,7 +474,7 @@ export type Resolvers<ContextType = any> = {
   Properties?: PropertiesResolvers<ContextType>;
   PropertiesType?: PropertiesTypeResolvers<ContextType>;
   Property?: PropertyResolvers<ContextType>;
-  PropertyDetails?: PropertyDetailsResolvers<ContextType>;
+  PropertyDetail?: PropertyDetailResolvers<ContextType>;
   PropertyFeatures?: PropertyFeaturesResolvers<ContextType>;
   PropertyType?: PropertyTypeResolvers<ContextType>;
   PropertyTypeType?: PropertyTypeTypeResolvers<ContextType>;

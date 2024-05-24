@@ -134,8 +134,8 @@ export type Property = {
   Terrace: Scalars['Int']['output'];
 };
 
-export type PropertyDetails = {
-  __typename?: 'PropertyDetails';
+export type PropertyDetail = {
+  __typename?: 'PropertyDetail';
   Property: Property;
   QueryInfo: QueryInfo;
 };
@@ -165,7 +165,7 @@ export type PropertyTypeType = {
 
 export type Query = {
   __typename?: 'Query';
-  getPropertyForSale: PropertyDetails;
+  getPropertyForSale: PropertyDetail;
   listPropertiesForSale: Properties;
 };
 

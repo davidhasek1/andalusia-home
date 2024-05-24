@@ -76,7 +76,7 @@ type QueryInfo {
   QueryId: String!
 }
 
-type PropertyDetails {
+type PropertyDetail {
   QueryInfo: QueryInfo!
   Property: Property!
 }

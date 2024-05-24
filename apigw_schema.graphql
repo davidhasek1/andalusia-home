@@ -109,7 +109,7 @@ type Property {
   Terrace: Int!
 }
 
-type PropertyDetails {
+type PropertyDetail {
   Property: Property!
   QueryInfo: QueryInfo!
 }
@@ -135,7 +135,7 @@ type PropertyTypeType {
 }
 
 type Query {
-  getPropertyForSale(referenceId: ID!): PropertyDetails!
+  getPropertyForSale(referenceId: ID!): PropertyDetail!
   listPropertiesForSale(filter: PropertiesFilterInput, page: PropertiesPaginateInput): Properties!
 }
 

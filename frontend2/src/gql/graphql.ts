@@ -134,8 +134,8 @@ export type Property = {
   Terrace: Scalars['Int']['output'];
 };
 
-export type PropertyDetails = {
-  __typename?: 'PropertyDetails';
+export type PropertyDetail = {
+  __typename?: 'PropertyDetail';
   Property: Property;
   QueryInfo: QueryInfo;
 };
@@ -165,7 +165,7 @@ export type PropertyTypeType = {
 
 export type Query = {
   __typename?: 'Query';
-  getPropertyForSale: PropertyDetails;
+  getPropertyForSale: PropertyDetail;
   listPropertiesForSale: Properties;
 };
 
@@ -209,7 +209,7 @@ export type GetPropertyForSaleQueryVariables = Exact<{
 }>;
 
 
-export type GetPropertyForSaleQuery = { __typename?: 'Query', getPropertyForSale: { __typename?: 'PropertyDetails', Property: { __typename?: 'Property', Location: string, Province: string, Area: string, Description: string, Bedrooms: string, Bathrooms: string, Built: number, Terrace: number, GardenPlot: number, Garden: number, Price: number, Currency: string, Pictures: { __typename?: 'Pictures', Picture?: Array<{ __typename?: 'Picture', PictureURL?: string | null } | null> | null } } } };
+export type GetPropertyForSaleQuery = { __typename?: 'Query', getPropertyForSale: { __typename?: 'PropertyDetail', Property: { __typename?: 'Property', Location: string, Province: string, Area: string, Description: string, Bedrooms: string, Bathrooms: string, Built: number, Terrace: number, GardenPlot: number, Garden: number, Price: number, Currency: string, Pictures: { __typename?: 'Pictures', Picture?: Array<{ __typename?: 'Picture', PictureURL?: string | null } | null> | null } } } };
 
 
 export const ListPropertiesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"listProperties"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PropertiesFilterInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"page"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"listPropertiesForSale"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}},{"kind":"Argument","name":{"kind":"Name","value":"page"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"page"},"value":{"kind":"Variable","name":{"kind":"Name","value":"page"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"QueryInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"PropertyCount"}},{"kind":"Field","name":{"kind":"Name","value":"CurrentPage"}},{"kind":"Field","name":{"kind":"Name","value":"PropertiesPerPage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Property"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Reference"}},{"kind":"Field","name":{"kind":"Name","value":"AgencyRef"}},{"kind":"Field","name":{"kind":"Name","value":"Location"}},{"kind":"Field","name":{"kind":"Name","value":"Province"}},{"kind":"Field","name":{"kind":"Name","value":"Area"}},{"kind":"Field","name":{"kind":"Name","value":"Bedrooms"}},{"kind":"Field","name":{"kind":"Name","value":"Bathrooms"}},{"kind":"Field","name":{"kind":"Name","value":"Price"}},{"kind":"Field","name":{"kind":"Name","value":"Currency"}},{"kind":"Field","name":{"kind":"Name","value":"Description"}},{"kind":"Field","name":{"kind":"Name","value":"Built"}},{"kind":"Field","name":{"kind":"Name","value":"GardenPlot"}},{"kind":"Field","name":{"kind":"Name","value":"MainImage"}}]}}]}}]}}]} as unknown as DocumentNode<ListPropertiesQuery, ListPropertiesQueryVariables>;

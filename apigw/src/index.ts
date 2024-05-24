@@ -1,7 +1,7 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { ResaleOnlineAPI } from './external-api/restApiResolver';
-import { resolvers, typeDefs, typeDefsPropertyDetail } from './schema';
+import { resolvers, typeDefs, typeDefsPropertyDetail, typeDefsProperties } from './schema';
 import 'dotenv/config';
 export type Context = {
 	dataSource: {
@@ -13,6 +13,7 @@ const PORT = parseInt(process.env.PORT ?? '') || 4000;
 const typeDefsMerged = `
 	${typeDefs}
 	${typeDefsPropertyDetail}
+	${typeDefsProperties}
 `;
 const server = new ApolloServer<Context>({
 	typeDefs: typeDefsMerged,
