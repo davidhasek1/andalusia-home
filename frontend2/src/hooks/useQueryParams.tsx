@@ -26,5 +26,14 @@ export const useQueryParams = () => {
 		[searchParams],
 	);
 
-	return { createQueryString };
+	const removeQueryParam = useCallback(
+		(name: string) => {
+			const params = new URLSearchParams(searchParams.toString());
+			params.delete(name);
+			return params;
+		},
+		[searchParams],
+	);
+
+	return { createQueryString, removeQueryParam };
 };

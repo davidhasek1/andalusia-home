@@ -17,6 +17,10 @@ const createFilterQueryString = (filter?: InputMaybe<PropertiesFilterInput>) => 
 				filterQs = filterQs.concat(`&P_Baths=${value}`);
 				continue;
 			}
+			case 'location': {
+				filterQs = filterQs.concat(`&P_Location=${value}`);
+				continue;
+			}
 			default: {
 				return ''; // if error
 			}

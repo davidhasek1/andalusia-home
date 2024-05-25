@@ -58,6 +58,7 @@ const typeDefsProperties = `#graphql
   }
 
   input PropertiesFilterInput {
+    location: String
     bedsCount: Int
     bathsCount: Int
   }

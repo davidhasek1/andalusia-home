@@ -83,6 +83,7 @@ export type Properties = {
 export type PropertiesFilterInput = {
   bathsCount?: InputMaybe<Scalars['Int']['input']>;
   bedsCount?: InputMaybe<Scalars['Int']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PropertiesPaginateInput = {
