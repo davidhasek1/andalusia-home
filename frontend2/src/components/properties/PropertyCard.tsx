@@ -1,5 +1,5 @@
 'use client';
-import { Button, ButtonBase, IconButton, Stack, Typography } from '@mui/material';
+import { Box, Button, ButtonBase, IconButton, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import { FC, useState } from 'react';
 import { DocumentType } from '../../gql';
@@ -40,7 +40,21 @@ export const PropertyCard: FC<Props> = ({ property, isWatchlisted }) => {
 					
 					Btn
 				</Button> */}
-					<Image src={property.MainImage ?? '/assets/property-placeholder.webp'} width={500} height={300} alt={'altertext'} />
+
+					<Box position={'relative'} minWidth={{ lg: 500, md: 350 }} height={{ lg: 350, xs: 400 }}>
+						<Image
+							src={property.MainImage ?? '/assets/property-placeholder.webp'}
+							fill
+							alt={''}
+							loading={'eager'}
+							draggable={false}
+							style={{
+								objectFit: 'cover',
+							}}
+							sizes={`${Math.ceil(50)}vw`}
+						/>
+					</Box>
+
 					<Stack gap={1} p={2} flexGrow={1}>
 						<Stack direction={'row'} justifyContent={'space-between'} gap={2}>
 							<Typography variant={'h6'}>
