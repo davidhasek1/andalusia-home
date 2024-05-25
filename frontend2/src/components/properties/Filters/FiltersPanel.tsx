@@ -34,7 +34,7 @@ export const FiltersPanel: FC = () => {
 	const router = useRouter();
 	const path = usePathname();
 	const { createQueryString, removeQueryParam } = useQueryParams();
-	const { data, loading } = useQuery(filters_listLocations);
+	const { data } = useQuery(filters_listLocations);
 
 	const { filters, setFilters } = useFilters();
 
@@ -42,7 +42,6 @@ export const FiltersPanel: FC = () => {
 		return null;
 	}
 	const locations = data?.listLocations.LocationData.ProvinceArea.Locations.Location ?? [];
-	console.log('[LOCATIONS]', data?.listLocations.LocationData.ProvinceArea.Locations);
 
 	return (
 		<Stack minWidth={300} px={2} py={5} gap={2} borderRight={{ lg: `1px solid ${theme.palette.grey[300]}`, xs: 'none' }}>

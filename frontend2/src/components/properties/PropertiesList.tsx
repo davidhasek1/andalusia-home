@@ -1,5 +1,5 @@
 'use client';
-import { Button, CircularProgress, Drawer, Stack } from '@mui/material';
+import { Button, CircularProgress, Drawer, Stack, Typography } from '@mui/material';
 import { FC, useState } from 'react';
 import { PropertyCard } from './PropertyCard';
 import { useQuery } from '@apollo/client';
@@ -84,10 +84,16 @@ export const PropertiesList: FC = () => {
 			>
 				<FiltersPanel />
 			</Drawer>
-			{properties.map((property) => {
-				const isWatchlisted = watchlist && watchlist.some((wl) => wl.Reference === property.Reference);
-				return <PropertyCard key={property.Reference} property={property} isWatchlisted={isWatchlisted ?? false} />;
-			})}
+			{properties.length > 0 ? (
+				properties.map((property) => {
+					const isWatchlisted = watchlist && watchlist.some((wl) => wl.Reference === property.Reference);
+					return <PropertyCard key={property.Reference} property={property} isWatchlisted={isWatchlisted ?? false} />;
+				})
+			) : (
+				<Typography variant={'h4'}>
+					<FormattedMessage id={'properties.filters.no-results'} />
+				</Typography>
+			)}
 
 			<Stack direction={'row'} flexWrap={'wrap'}>
 				{pages.map((p) => (

@@ -128,6 +128,11 @@ export const Navigation: FC = () => {
 							</Link>
 						</Stack>
 					))}
+					<Button variant={'contained'} href={'/watchlist'}>
+						<Typography variant={'button'}>
+							<FormattedMessage id={'header.button.watchlist'} />
+						</Typography>
+					</Button>
 				</Stack>
 				<Stack marginTop={'auto'}>
 					<Image src={Logo} alt={'logo'} width={150} objectFit={'cover'} />
