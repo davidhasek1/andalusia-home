@@ -4,36 +4,13 @@ import { FC } from 'react';
 
 export const Searchbox: FC = () => {
 	return (
-		<Stack flexDirection={{ lg: 'row', sx: 'column' }} justifyContent={'center'} position={'relative'} top={30}>
+		<Stack flexDirection={'row'} justifyContent={'center'} position={'relative'} width={{ md: '50%', xs: '100%' }} margin={'auto'}>
 			<Select
 				value={10}
 				sx={{
-					'& .MuiSelect-select': {
-						borderRadius: 0,
-						borderTopLeftRadius: 20,
-						borderBottomLeftRadius: 20,
-
-						overflow: 'hidden',
-					},
-					'& .MuiOutlinedInput-notchedOutline': {
-						borderRadius: 0,
-						borderTopLeftRadius: 20,
-						borderBottomLeftRadius: 20,
-						overflow: 'hidden',
-					},
 					'& .MuiInputBase-input': {
-						borderColor: 'unset',
-						position: 'relative',
-						backgroundColor: '#fff',
-						overflow: 'hidden',
-						fontSize: 16,
-						padding: '28px 25px',
-						'&:focus': {
-							borderColor: 'unset',
-						},
-						'&:focus:active': {
-							borderColor: 'unset',
-						},
+						backgroundColor: (theme) => (theme.palette.mode === 'light' ? '#ffffff' : '#1A2027'),
+						borderColor: (theme) => (theme.palette.mode === 'light' ? '#E0E3E7' : '#2D3843'),
 					},
 				}}
 			>
@@ -43,41 +20,17 @@ export const Searchbox: FC = () => {
 			</Select>
 			<TextField
 				sx={{
-					'& .MuiInputBase-root': {
-						borderRadius: 0,
-					},
 					'& .MuiInputBase-input': {
-						borderTopLeftRadius: 0,
-						borderBottomLeftRadius: 0,
-						position: 'relative',
 						backgroundColor: (theme) => (theme.palette.mode === 'light' ? '#ffffff' : '#1A2027'),
-
 						borderColor: (theme) => (theme.palette.mode === 'light' ? '#E0E3E7' : '#2D3843'),
-						fontSize: 16,
-
-						padding: '28px 25px',
-						'&:focus': {
-							borderColor: (theme) => theme.palette.primary.main,
-						},
 					},
 				}}
 			/>
 			<TextField
 				sx={{
-					'& .MuiInputBase-root': {
-						borderRadius: 0,
-					},
 					'& .MuiInputBase-input': {
-						position: 'relative',
 						backgroundColor: (theme) => (theme.palette.mode === 'light' ? '#ffffff' : '#1A2027'),
-
 						borderColor: (theme) => (theme.palette.mode === 'light' ? '#E0E3E7' : '#2D3843'),
-						fontSize: 16,
-
-						padding: '28px 25px',
-						'&:focus': {
-							borderColor: (theme) => theme.palette.primary.main,
-						},
 					},
 				}}
 			/>

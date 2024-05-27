@@ -17,7 +17,9 @@ const theme = createTheme({
 		fontFamily: ourFont.style.fontFamily,
 		h1: {
 			fontFamily: ourFont.style.fontFamily,
-
+			'@media (max-width:1024px)': {
+				fontSize: 48,
+			},
 			'@media (max-width:800px)': {
 				fontSize: 48,
 			},

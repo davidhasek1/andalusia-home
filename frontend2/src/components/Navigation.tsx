@@ -2,7 +2,8 @@
 import { Button, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
 import { FC, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import Logo from '../../public/logo_dark.svg';
+import LogoDark from '../../public/logo_dark.svg';
+import LogoLight from '../../public/logo_light.svg';
 import Image from 'next/image';
 import MenuIcon from '@mui/icons-material/Menu';
 import { usePathname } from 'next/navigation';
@@ -53,11 +54,12 @@ export const Navigation: FC = () => {
 			alignItems={'center'}
 			justifyContent={'space-between'}
 			p={2}
-			borderBottom={(theme) => `1px solid ${theme.palette.grey[300]}`}
+			borderBottom={(theme) => (!changeBg && path === '/' ? 'none' : `1px solid ${theme.palette.grey[300]}`)}
 			zIndex={1}
-			bgcolor={(theme) => (changeBg ? theme.palette.common.white : 'transparent')}
+			bgcolor={(theme) => (changeBg ? theme.palette.common.white : path === '/' ? 'rgba(0, 0, 0, 0.122)' : 'unset')}
+			sx={{ backdropFilter: path === '/' ? 'blur(3px)' : 'unset' }}
 		>
-			<Image src={Logo} alt={'logo'} width={150} objectFit={'cover'} />
+			<Image src={changeBg ? LogoDark : path === '/' ? LogoLight : LogoDark} alt={'logo'} width={150} objectFit={'cover'} />
 			<Stack direction={'row'} display={{ xs: 'none', lg: 'flex' }}>
 				{navigation.map((link, i) => (
 					<>
@@ -66,11 +68,11 @@ export const Navigation: FC = () => {
 							href={link.url}
 							sx={{
 								textDecoration: 'none',
-								color: '#000',
+								color: changeBg ? '#000' : path === '/' ? '#fff' : 'unset',
 								borderBottom: '1px solid transparent',
 								transition: 'border-bottom 0.3s ease',
 								'&:hover': {
-									borderBottom: '1px solid #000',
+									borderBottom: changeBg ? '1px solid #000' : '1px solid #fff',
 								},
 							}}
 						>
@@ -135,7 +137,7 @@ export const Navigation: FC = () => {
 					</Button>
 				</Stack>
 				<Stack marginTop={'auto'}>
-					<Image src={Logo} alt={'logo'} width={150} objectFit={'cover'} />
+					<Image src={LogoDark} alt={'logo'} width={150} objectFit={'cover'} />
 				</Stack>
 			</Drawer>
 		</Stack>

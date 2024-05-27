@@ -9,7 +9,7 @@ export const Footer = () => {
 	return (
 		<Stack direction={'column'} alignItems={'center'} p={10} gap={10} bgcolor={(theme) => theme.palette.common.black}>
 			<Image src={Logo} alt={'logo'} width={150} objectFit={'cover'} />
-			<Stack direction={'row'}>
+			<Stack direction={'row'} display={{ lg: 'flex', xs: 'none' }}>
 				{navigation.map((link, i) => (
 					<>
 						<Link

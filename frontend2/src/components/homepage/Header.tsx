@@ -1,20 +1,21 @@
 'use client';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Searchbox } from './Searchbox/Searchbox';
+//import { Searchbox } from './Searchbox/Searchbox';
 
 export const Header: FC = () => {
 	return (
 		<Stack
 			position={'relative'}
-			px={10}
+			px={{ lg: 10, xs: 2 }}
+			pt={15}
 			sx={{
 				backgroundImage: `url("assets/main-image-heart.webp")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
-				backgroundPosition: 'top center',
-				height: '85vh',
+				backgroundPosition: 'bottom center',
+				height: '90vh',
 			}}
 		>
 			<div
@@ -24,42 +25,34 @@ export const Header: FC = () => {
 					left: 0,
 					width: '100%',
 					height: '100%',
-					backgroundColor: 'rgba(255, 255, 255, 0)',
+					backgroundColor: 'rgba(255, 255, 255, 0.1)',
 				}}
 			/>
-			<Stack zIndex={0} height={'100%'} alignItems={'center'} justifyContent={'center'}>
+			<Stack
+				zIndex={0}
+				height={'100%'}
+				mt={10}
+				alignItems={'flex-start'}
+				justifyContent={'flex-start'}
+				alignSelf={'center'}
+				pt={{ lg: 10 }}
+			>
 				<Stack alignItems={'center'} direction={{ lg: 'row', xs: 'column' }} gap={10}>
-					<Stack justifyContent={'center'} width={{ lg: '50%', xs: '100%' }}>
-						<Typography variant={'h1'}>
+					<Stack justifyContent={'center'} width={'100%'}>
+						<Typography variant={'h1'} color={(theme) => theme.palette.common.white} sx={{ textShadow: '3px 3px 4px rgba(0, 0, 0, 0.5)' }}>
 							<FormattedMessage id={'header.title'} />
 						</Typography>
 					</Stack>
-					<Box
-						border={'none'}
-						borderLeft={{ lg: 1, xs: 0 }}
-						borderBottom={{ lg: 0, xs: 1 }}
-						height={{ lg: 'calc(100% - 100px)', xs: 'unset' }}
-						width={{ lg: 'unset', xs: 'calc(100% - 100px)' }}
-					/>
-
-					<Stack justifyContent={'center'} gap={2} width={{ lg: '50%', xs: '100%' }}>
-						{/*  eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
-						<Typography>
-							Nulla elit nostrud nostrud laboris reprehenderit et et tempor est ea magna culpa. Elit culpa adipisicing enim anim velit culpa
-							consectetur qui et officia nulla. Exercitation elit commodo nisi sint consectetur incididunt. Ea consectetur sunt enim id elit
-							culpa et elit elit mollit incididunt mollit. In fugiat elit aute reprehenderit excepteur cillum minim laboris id quis
-							exercitation.
-						</Typography>
-						<Stack direction={'row'} gap={2}>
-							{/* eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
-							<Button variant={'contained'}>Discover more</Button>
-							{/* eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
-							<Button variant={'outlined'}>Some noraml text</Button>
-						</Stack>
-					</Stack>
 				</Stack>
 			</Stack>
-			<Searchbox />
+			{/* 	<Stack display={{ md: 'flex', xs: 'none' }} position={'relative'} top={{ lg: '-25%', xs: 0 }} justifyContent={'center'}>
+				<Searchbox />
+			</Stack> */}
+			<Stack position={'relative'} top={{ lg: '-25%', xs: '-35%' }} justifyContent={'center'} alignItems={'center'} width={'100%'}>
+				<Button href={'/properties'} variant={'contained'} sx={{ width: { lg: '25%', sm: '40%', xs: '60%' } }}>
+					<FormattedMessage id={'header.button.search'} />
+				</Button>
+			</Stack>
 		</Stack>
 	);
 };
