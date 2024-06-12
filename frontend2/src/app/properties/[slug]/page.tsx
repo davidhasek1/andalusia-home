@@ -12,7 +12,7 @@ type PropertyDetailPageProps = {
 const PropertyDetailPage: FC<PropertyDetailPageProps> = ({ params }) => {
 	return (
 		<>
-			<Stack width={'100%'} p={{ lg: 10, xs: 0 }}>
+			<Stack width={'100%'}>
 				<PropertyDetail referenceId={params.slug} />
 			</Stack>
 		</>

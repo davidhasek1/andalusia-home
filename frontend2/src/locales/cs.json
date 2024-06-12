@@ -19,6 +19,16 @@
 	"properties.filters.no-results": "Nenašli jsme žádné výsledky :-( . Zkuste upravit Váš zvolený filter.",
 	"properties.filters.title": "Filtry",
 	"properties.list.results-count": "{count} výsledků",
+	"property.detail.caption.bathrooms": "Koupelny",
+	"property.detail.caption.bedrooms": "Ložnice",
+	"property.detail.caption.plot-built-size": "Pozemek",
+	"property.detail.caption.price": "Cena",
+	"property.detail.description": "Popis nemovitosti",
+	"property.detail.essential-info": "Základní informace",
+	"property.detail.features": "Vlastnosti",
+	"property.detail.tab.description": "Popis",
+	"property.detail.tab.essential-info": "Základní informace",
+	"property.detail.tab.features": "Vlastnosti",
 	"watchlist.no-properties": "Nemáte žádné nemovitosti ve sledovaných :-(",
 	"watchlist.title": "Sledované nemovitosti"
 }
