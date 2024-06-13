@@ -13,25 +13,55 @@ import { DocumentType, graphql } from '../../gql';
 import { GetMoreInfoForm } from './GetMoreInfoForm';
 import { PropertyEssentialInfo } from './PropertyEssentialInfo';
 import { FormattedMessage } from 'react-intl';
+import theme from '../../theme';
 
 const getPropertyDetail = graphql(`
 	query GetPropertyForSale($referenceId: ID!) {
 		getPropertyForSale(referenceId: $referenceId) {
 			Property {
-				Location
+				Reference
+				AgencyRef
+				Country
 				Province
 				Area
-				Description
+				Location
+				SubLocation
+				PropertyType {
+					NameType
+					Type
+					TypeId
+					Subtype1
+					SubtypeId1
+				}
 				Bedrooms
 				Bathrooms
+				Currency
+				Price
+				OriginalPrice
+				Community_Fees_Year
+				Basura_Tax_Year
+				IBI_Fees_Year
+				Dimensions
 				Built
 				Terrace
 				GardenPlot
+				OwnProperty
+				Pool
+				Parking
 				Garden
-				Price
-				Currency
+				CompletionDate
+				BuiltYear
+				Description
+				PropertyFeatures {
+					Category {
+						Type
+						Value
+					}
+				}
 				Pictures {
+					Count
 					Picture {
+						Id
 						PictureURL
 					}
 				}
@@ -64,6 +94,13 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 				height: 1,
 			};
 		}) ?? [];
+
+	const handleScrollToDescription = (e: any, id: string) => {
+		e.preventDefault();
+		if (document) {
+			document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
 
 	return (
 		<Stack>
@@ -127,29 +164,57 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 					</Stack>
 				</Stack>
 			</Stack>
-			<Grid display={'grid'} gridTemplateColumns={'auto 300px'} p={3}>
-				<Stack>
-					<Grid item xl={8} xs={12} border={(theme) => `1px solid ${theme.palette.grey[300]}`} p={1} mt={3}>
-						<PropertyEssentialInfo property={property} />
-					</Grid>
 
-					<Grid item xl={8} lg={12} p={1} mt={3}>
-						<Tabs
-							value={tab}
-							onChange={handleChange}
-							textColor={'inherit'}
-							indicatorColor={'primary'}
-							sx={{
-								marginBottom: 3,
-								'.MuiTabs-flexContainer': { borderBottom: (theme) => `1px solid ${theme.palette.grey[300]}` },
-								'.MuiTabs-indicator': { backgroundColor: (theme) => theme.palette.common.black },
-							}}
+			<Stack border={(theme) => `1px solid ${theme.palette.grey[300]}`} p={1} m={3}>
+				<PropertyEssentialInfo property={property} />
+			</Stack>
+
+			<Stack p={3}>
+				<Stack>
+					<Tabs
+						value={tab}
+						onChange={handleChange}
+						textColor={'inherit'}
+						indicatorColor={'primary'}
+						sx={{
+							marginBottom: 3,
+							'.MuiTabs-flexContainer': { borderBottom: (theme) => `1px solid ${theme.palette.grey[300]}` },
+							'.MuiTabs-indicator': { backgroundColor: (theme) => theme.palette.common.black },
+						}}
+					>
+						<Tab
+							href={'#description'}
+							onClick={(e) => handleScrollToDescription(e, '#description')}
+							value={0}
+							label={<FormattedMessage id={'property.detail.tab.description'} />}
+						/>
+
+						<Tab
+							href={'#essential-info'}
+							onClick={(e) => handleScrollToDescription(e, '#essential-info')}
+							value={1}
+							label={<FormattedMessage id={'property.detail.tab.essential-info'} />}
+						/>
+
+						<Tab
+							href={'#essential-info'}
+							onClick={(e) => handleScrollToDescription(e, '#features')}
+							value={2}
+							label={<FormattedMessage id={'property.detail.tab.features'} />}
+						/>
+					</Tabs>
+				</Stack>
+				<Stack gap={{ lg: 0, xs: 3 }}>
+					<Stack direction={'row'}>
+						<Stack
+							id={'description'}
+							gap={2}
+							p={3}
+							border={(theme) => `1px solid ${theme.palette.grey[200]}`}
+							width={{ lg: '50%', md: '100%', xs: '100%' }}
+							alignSelf={'flex-start'}
+							minHeight={500}
 						>
-							<Tab value={0} label={<FormattedMessage id={'property.detail.tab.description'} />} />
-							<Tab value={1} label={<FormattedMessage id={'property.detail.tab.essential-info'} />} />
-							<Tab value={2} label={<FormattedMessage id={'property.detail.tab.features'} />} />
-						</Tabs>
-						<Stack gap={2}>
 							<Typography variant={'h4'} lineHeight={'2.5rem'} textAlign={'justify'}>
 								<FormattedMessage id={'property.detail.description'} />
 							</Typography>
@@ -157,8 +222,38 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 								{property?.Description}
 							</Typography>
 						</Stack>
+						<Stack
+							display={{ lg: 'flex', md: 'none', xs: 'none' }}
+							p={2}
+							position={'relative'}
+							width={'50%'}
+							height={'100%'}
+							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+						>
+							<Image src={images[0].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+						</Stack>
+					</Stack>
 
-						<Stack gap={2}>
+					<Stack direction={'row'}>
+						<Stack
+							display={{ lg: 'flex', md: 'none', xs: 'none' }}
+							p={2}
+							position={'relative'}
+							width={'50%'}
+							height={'100%'}
+							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+						>
+							<Image src={images[1].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+						</Stack>
+						<Stack
+							id={'essential-info'}
+							gap={2}
+							p={3}
+							border={(theme) => `1px solid ${theme.palette.grey[200]}`}
+							width={{ lg: '50%', md: '100%', xs: '100%' }}
+							alignSelf={'flex-end'}
+							minHeight={500}
+						>
 							<Typography variant={'h4'} lineHeight={'2.5rem'} textAlign={'justify'}>
 								<FormattedMessage id={'property.detail.essential-info'} />
 							</Typography>
@@ -166,37 +261,47 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 								{property?.Description}
 							</Typography>
 						</Stack>
-						<Stack gap={2}>
-							<Typography variant={'h4'} lineHeight={'2.5rem'} textAlign={'justify'}>
-								<FormattedMessage id={'property.detail.features'} />
-							</Typography>
-							<Typography variant={'caption'} fontSize={16} lineHeight={'2.5rem'} textAlign={'justify'}>
-								{property?.Description}
-							</Typography>
-						</Stack>
-						<Stack gap={2}>
-							<Typography variant={'h4'} lineHeight={'2.5rem'} textAlign={'justify'}>
-								<FormattedMessage id={'property.detail.features'} />
-							</Typography>
-							<Typography variant={'caption'} fontSize={16} lineHeight={'2.5rem'} textAlign={'justify'}>
-								{property?.Description}
-							</Typography>
-						</Stack>
-					</Grid>
-				</Stack>
-				<Grid component={'div'} direction={'column'} item xl={4} display={{ xl: 'flex', lg: 'none', xs: 'none' }}>
-					<Stack>
+					</Stack>
+					<Stack direction={'row'}>
 						<Stack
-							sx={{
-								position: 'sticky',
-								top: 220,
-							}}
+							id={'features'}
+							gap={2}
+							p={3}
+							border={(theme) => `1px solid ${theme.palette.grey[200]}`}
+							width={{ lg: '50%', md: '100%', xs: '100%' }}
+							alignSelf={'flex-start'}
+							minHeight={500}
 						>
-							foo
+							<Typography variant={'h4'} lineHeight={'2.5rem'} textAlign={'justify'}>
+								<FormattedMessage id={'property.detail.features'} />
+							</Typography>
+
+							<Grid display={'grid'} gridTemplateColumns={'1fr 1fr 1fr'} gap={4}>
+								{property?.PropertyFeatures.Category.map((feature) => (
+									<Stack key={feature.Type}>
+										<Typography variant={'caption'} fontSize={14} color={'GrayText'}>
+											{feature.Type}
+										</Typography>
+										<Typography variant={'caption'} fontSize={18}>
+											{feature.Value[0]}
+										</Typography>
+									</Stack>
+								))}
+							</Grid>
+						</Stack>
+						<Stack
+							display={{ lg: 'flex', md: 'none', xs: 'none' }}
+							p={2}
+							position={'relative'}
+							width={'50%'}
+							height={'100%'}
+							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
+						>
+							<Image src={images[1].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
 						</Stack>
 					</Stack>
-				</Grid>
-			</Grid>
+				</Stack>
+			</Stack>
 		</Stack>
 	);
 };
