@@ -1,9 +1,11 @@
 {
+	"common.no": "Ne",
+	"common.yes": "Ano",
 	"filters.price-range.title": "Cenové rozpětí",
 	"footer.rights": "Andalusia home. Všechna práva vyhrazena.",
 	"header.button.search": "Začít hledat",
 	"header.button.watchlist": "Moje nemovitosti",
-	"header.title": "Najděte svoji ideální nemovitost",
+	"header.title": "Přestaňte snít, začnete žit",
 	"homepage.section.about-us.title": "O nás",
 	"homepage.section.blog.title": " Výběr z blogu",
 	"homepage.section.reviews.title": "Jak o nás mluví...",

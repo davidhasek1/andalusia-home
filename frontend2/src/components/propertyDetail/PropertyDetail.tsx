@@ -1,4 +1,3 @@
-/* eslint-disable formatjs/no-literal-string-in-jsx */
 'use client';
 import { Button, CircularProgress, Grid, IconButton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { FC, useRef, useState } from 'react';
@@ -12,8 +11,9 @@ import { useQuery } from '@apollo/client';
 import { DocumentType, graphql } from '../../gql';
 import { GetMoreInfoForm } from './GetMoreInfoForm';
 import { PropertyEssentialInfo } from './PropertyEssentialInfo';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import theme from '../../theme';
+import { booleanToText } from '../../helpers/booleanToText';
 
 const getPropertyDetail = graphql(`
 	query GetPropertyForSale($referenceId: ID!) {
@@ -74,7 +74,7 @@ export type PropertyDetail = DocumentType<typeof getPropertyDetail>['getProperty
 export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenceId }) => {
 	const [open, setOpen] = useState(false);
 	const { data, loading } = useQuery(getPropertyDetail, { variables: { referenceId } });
-
+	const intl = useIntl();
 	const [tab, setTab] = useState(0);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -101,6 +101,19 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 			document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
 		}
 	};
+
+	const essentialInfo = [
+		{ type: 'Type', value: property?.PropertyType.Type },
+		{ type: 'Property Type', value: property?.PropertyType.NameType },
+		{ type: 'Build Year', value: property?.BuiltYear },
+		{ type: 'Community Fees Year', value: property?.Community_Fees_Year },
+		{ type: 'Basura Tax Year', value: property?.Basura_Tax_Year },
+		{ type: 'IBI Fees Year', value: property?.IBI_Fees_Year },
+		{ type: 'Garden Plot', value: booleanToText(intl, property?.GardenPlot) },
+		{ type: 'Parking', value: booleanToText(intl, property?.Parking) },
+		{ type: 'Garden', value: booleanToText(intl, property?.Garden) },
+		{ type: 'Pool', value: booleanToText(intl, property?.Pool) },
+	];
 
 	return (
 		<Stack>
@@ -257,9 +270,18 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							<Typography variant={'h4'} lineHeight={'2.5rem'} textAlign={'justify'}>
 								<FormattedMessage id={'property.detail.essential-info'} />
 							</Typography>
-							<Typography variant={'caption'} fontSize={16} lineHeight={'2.5rem'} textAlign={'justify'}>
-								{property?.Description}
-							</Typography>
+							<Grid display={'grid'} gridTemplateColumns={'1fr 1fr 1fr'} gap={4}>
+								{essentialInfo?.map(({ type, value }) => (
+									<Stack key={type}>
+										<Typography variant={'caption'} fontSize={14} color={'GrayText'}>
+											{type}
+										</Typography>
+										<Typography variant={'caption'} fontSize={18}>
+											{value}
+										</Typography>
+									</Stack>
+								))}
+							</Grid>
 						</Stack>
 					</Stack>
 					<Stack direction={'row'}>
