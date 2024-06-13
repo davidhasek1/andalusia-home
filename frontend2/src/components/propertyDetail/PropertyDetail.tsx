@@ -1,5 +1,5 @@
 'use client';
-import { Button, CircularProgress, Grid, IconButton, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { Button, CircularProgress, Drawer, Grid, IconButton, Stack, Tab, Tabs, Typography } from '@mui/material';
 import { FC, useRef, useState } from 'react';
 import Lightbox, { SlideImage } from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
@@ -14,6 +14,8 @@ import { PropertyEssentialInfo } from './PropertyEssentialInfo';
 import { FormattedMessage, useIntl } from 'react-intl';
 import theme from '../../theme';
 import { booleanToText } from '../../helpers/booleanToText';
+import { ContactForm } from '../ContactForm';
+import { Close } from '@mui/icons-material';
 
 const getPropertyDetail = graphql(`
 	query GetPropertyForSale($referenceId: ID!) {
@@ -73,6 +75,7 @@ const getPropertyDetail = graphql(`
 export type PropertyDetail = DocumentType<typeof getPropertyDetail>['getPropertyForSale']['Property'];
 export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenceId }) => {
 	const [open, setOpen] = useState(false);
+	const [openDrawer, setOpenDrawer] = useState(true);
 	const { data, loading } = useQuery(getPropertyDetail, { variables: { referenceId } });
 	const intl = useIntl();
 	const [tab, setTab] = useState(0);
@@ -323,6 +326,35 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 						</Stack>
 					</Stack>
 				</Stack>
+				<Button onClick={() => setOpenDrawer(true)}>
+					<FormattedMessage id={'property.detail.got-interest'} />
+				</Button>
+				<Drawer
+					anchor={'right'}
+					open={openDrawer}
+					onClose={() => setOpenDrawer(false)}
+					sx={{
+						'.MuiPaper-root': {
+							alignItems: 'center',
+							width: '100%',
+							height: '100%',
+						},
+					}}
+				>
+					<Stack width={'100%'} position={'relative'}>
+						<IconButton
+							sx={{ position: 'absolute', top: 10, right: 10, width: 30, height: 30, alignSelf: 'flex-end' }}
+							size={'large'}
+							onClick={() => setOpenDrawer(false)}
+						>
+							<Close fontSize={'large'} />
+						</IconButton>
+						<ContactForm imageSrc={images[0].src} />
+					</Stack>
+					{/* 	<Stack marginTop={'auto'}>
+						<Image src={LogoDark} alt={'logo'} width={150} objectFit={'cover'} />
+					</Stack> */}
+				</Drawer>
 			</Stack>
 		</Stack>
 	);
