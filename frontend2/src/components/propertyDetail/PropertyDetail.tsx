@@ -182,7 +182,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 				<PropertyEssentialInfo property={property} />
 			</Stack>
 
-			<Stack p={3}>
+			<Stack p={3} gap={3}>
 				<Stack>
 					<Tabs
 						value={tab}
@@ -323,9 +323,14 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 						</Stack>
 					</Stack>
 				</Stack>
-				<Button onClick={() => setOpenDrawer(true)}>
-					<FormattedMessage id={'property.detail.got-interest'} />
-				</Button>
+				<Stack gap={3} justifyContent={'flex-end'} alignItems={'flex-start'}>
+					<Typography variant={'h3'}>
+						<FormattedMessage id={'header.title'} />
+					</Typography>
+					<Button variant={'contained'} sx={{ py: 2, px: 6 }} onClick={() => setOpenDrawer(true)}>
+						<FormattedMessage id={'property.detail.got-interest'} />
+					</Button>
+				</Stack>
 				<Drawer
 					anchor={'right'}
 					open={openDrawer}

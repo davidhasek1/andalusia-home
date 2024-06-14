@@ -1,4 +1,5 @@
 /* eslint-disable formatjs/no-literal-string-in-jsx */
+'use client';
 import { Button, Grid, Stack, TextField, Typography, useTheme } from '@mui/material';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,9 +9,10 @@ import Image from 'next/image';
 
 type Props = Readonly<{
 	imageSrc?: string | null;
+	isContactPage?: boolean;
 }>;
 
-export const ContactForm: FC<Props> = ({ imageSrc }) => {
+export const ContactForm: FC<Props> = ({ imageSrc, isContactPage }) => {
 	const theme = useTheme();
 	const form = useForm({ defaultValues: { name: '', email: '', message: '' } });
 	return (
