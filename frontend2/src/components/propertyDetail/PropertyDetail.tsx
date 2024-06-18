@@ -119,7 +119,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 		<Stack>
 			<Stack gap={3}>
 				<Lightbox open={open} close={() => setOpen(false)} slides={images as SlideImage[]} render={{ slide: NextJsImage }} />
-				<Stack>
+				<Stack onClick={() => setOpen(true)} sx={{ cursor: 'pointer' }}>
 					<Stack position={'relative'} height={{ lg: '50vh', xs: '40vh' }} width={'100%'} margin={'auto'}>
 						<Typography
 							variant={'h2'}
