@@ -3,6 +3,7 @@ import { Box, Stack, Typography, useTheme } from '@mui/material';
 import { FC } from 'react';
 import { PropertyDetail } from './PropertyDetail';
 import { FormattedMessage } from 'react-intl';
+import { formatNumber } from '../../helpers/formatNumber';
 
 const Container: FC<{ title: JSX.Element | string; data: any }> = ({ title, data }) => {
 	if (data == null || data === '') {
@@ -39,7 +40,7 @@ export const PropertyEssentialInfo: FC<{ property: PropertyDetail | undefined }>
 		<Stack direction={{ lg: 'row', xs: 'column' }}>
 			<Container
 				title={<FormattedMessage id={'property.detail.caption.price'} />}
-				data={`${property?.Price} ${property?.Currency === 'EUR' ? '€' : property?.Currency}`}
+				data={`${formatNumber(property?.Price)} ${property?.Currency === 'EUR' ? '€' : property?.Currency}`}
 			/>
 			<Divider />
 			<Container title={<FormattedMessage id={'property.detail.caption.bedrooms'} />} data={property?.Bedrooms} />

@@ -15,6 +15,7 @@ import {
 } from '@mui/icons-material';
 import { useLocalStorage } from '../../hooks/useLocalStoarge';
 import { useOpenSnackbar } from '../Snackbar';
+import { formatNumber } from '../../helpers/formatNumber';
 
 type PropertyItem = Readonly<{ property: DocumentType<typeof listProperties>['listPropertiesForSale']['Property'][number] }>;
 
@@ -76,7 +77,7 @@ export const PropertyCard: FC<Props> = ({ property, isWatchlisted }) => {
 							</Stack>
 						</Stack>
 						<Typography variant={'body1'} fontSize={30} fontWeight={800}>
-							{property.Price} {property.Currency}
+							{formatNumber(property.Price)} {property.Currency}
 						</Typography>
 						<Typography
 							variant={'body1'}
