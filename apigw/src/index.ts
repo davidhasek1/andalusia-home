@@ -37,4 +37,4 @@ const run = async () => {
 	console.log(`Server starts at: ${url}`);
 };
 
-run().catch(() => console.error('Server falied to run'));
+run().catch((error) => console.error('Server falied to run', error));
