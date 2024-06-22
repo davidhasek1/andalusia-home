@@ -26,6 +26,9 @@ const resolvers = {
 		listLocations: async (_parent, {}, context) => {
 			return await context.dataSource.resalesOnlineAPI.listLocation();
 		},
+		/* listPropertyTypes: async (_parent, {}, context) => {
+			return await context.dataSource.resalesOnlineAPI.listLocation();
+		}, */
 	},
 } as Resolvers<Context>;
 

@@ -11,12 +11,8 @@ export type Context = {
 };
 
 const PORT = parseInt(process.env.PORT ?? '') || 4000;
-const typeDefsMerged = `
-	${typeDefs}
-	${typeDefsPropertyDetail}
-	${typeDefsProperties}
-	${typeDefsLocations}
-`;
+const typeDefsMerged = [typeDefs, typeDefsPropertyDetail, typeDefsProperties, typeDefsLocations];
+
 const server = new ApolloServer<Context>({
 	typeDefs: typeDefsMerged,
 	resolvers,
