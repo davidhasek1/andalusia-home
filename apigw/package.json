@@ -11,17 +11,17 @@
 		"extract-schema": "graphql-inspector introspect --write ../apigw_schema.graphql http://localhost:4000/graphql"
 	},
 	"dependencies": {
-		"@apollo/datasource-rest": "^6.2.2",
-		"@apollo/server": "^4.10.4",
-		"graphql": "^16.8.1"
+		"@apollo/datasource-rest": "6.2.2",
+		"@apollo/server": "4.10.4",
+		"graphql": "16.8.1"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "5.0.2",
 		"@graphql-codegen/typescript": "4.0.6",
 		"@graphql-codegen/typescript-resolvers": "4.0.6",
-		"@graphql-inspector/cli": "^4.0.3",
-		"@graphql-inspector/introspect-command": "^4.0.3",
-		"tsx": "^4.7.2",
-		"typescript": "^5.4.5"
+		"@graphql-inspector/cli": "4.0.3",
+		"@graphql-inspector/introspect-command": "4.0.3",
+		"tsx": "4.7.2",
+		"typescript": "5.4.5"
 	}
 }
