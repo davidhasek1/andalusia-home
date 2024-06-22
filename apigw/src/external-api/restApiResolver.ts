@@ -15,28 +15,29 @@ class ResaleOnlineAPI extends RESTDataSource {
 
 	private contactId: string;
 	private token: string;
+	private authQueryString: string;
 
 	constructor(options: { token?: string; contactId?: string; cache: KeyValueCache }) {
 		super(options);
-		this.contactId = options.contactId ?? '';
-		this.token = options.token ?? '';
+		this.contactId = options.contactId ?? ''; // TODO: Remove and leave just queryString if this is not useful separately
+		this.token = options.token ?? ''; // TODO: Remove and leave just queryString if this is not useful separately
+		this.authQueryString = `p1=${this.contactId}&p2=${this.token}`;
 	}
 
 	async listProperties(filter?: InputMaybe<PropertiesFilterInput>, page?: InputMaybe<PropertiesPaginateInput>): Promise<Properties> {
 		//console.log('FILTER QS RESULT', createFilterQueryString(filter));
 		const filters = createFilterQueryString(filter);
 		const pageNumber = page?.page ?? '';
-		return await this.get(
-			`SearchProperties?p_agency_filterid=5&p1=${this.contactId}&p2=${this.token}&P_sandbox=true${filters}&P_PageNo=${pageNumber}`,
-		);
+		return await this.get(`SearchProperties?p_agency_filterid=5&${this.authQueryString}&P_sandbox=true${filters}&P_PageNo=${pageNumber}`);
 	}
 	async getProperty(referenceId: string): Promise<PropertyDetail> {
-		return await this.get(
-			`PropertyDetails?p_agency_filterid=5&p1=${this.contactId}&p2=${this.token}&P_sandbox=true&P_RefId=${referenceId}`,
-		);
+		return await this.get(`PropertyDetails?p_agency_filterid=5&${this.authQueryString}&P_sandbox=true&P_RefId=${referenceId}`);
 	}
 	async listLocation(): Promise<LocationResponse> {
-		return await this.get(`SearchLocations?p_agency_filterid=5&p1=${this.contactId}&p2=${this.token}&P_sandbox=true`);
+		return await this.get(`SearchLocations?p_agency_filterid=5&${this.authQueryString}&P_sandbox=true`);
+	}
+	async listPropertyTypeOptions(): Promise<any> {
+		return await this.get(`SearchPropertyTypes?p_agency_filterid=5&${this.authQueryString}&P_sandbox=true`);
 	}
 }
 

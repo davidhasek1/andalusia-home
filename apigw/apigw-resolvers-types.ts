@@ -178,6 +178,30 @@ export type PropertyType = {
   readonly TypeId: Scalars['String']['output'];
 };
 
+export type PropertyTypeOptionValue = {
+  readonly __typename?: 'PropertyTypeOptionValue';
+  readonly OptionValue: Scalars['String']['output'];
+  readonly SubType: ReadonlyArray<SubType>;
+  readonly Type: Scalars['String']['output'];
+};
+
+export type PropertyTypeOptions = {
+  readonly __typename?: 'PropertyTypeOptions';
+  readonly PropertyType: ReadonlyArray<PropertyTypeOptionValue>;
+};
+
+export type PropertyTypeQueryInfo = {
+  readonly __typename?: 'PropertyTypeQueryInfo';
+  readonly ApiId: Scalars['String']['output'];
+  readonly PropertyTypesCount?: Maybe<Scalars['Int']['output']>;
+};
+
+export type PropertyTypeResponse = {
+  readonly __typename?: 'PropertyTypeResponse';
+  readonly PropertyTypes: PropertyTypeOptions;
+  readonly QueryInfo: PropertyTypeQueryInfo;
+};
+
 export type PropertyTypeType = {
   readonly __typename?: 'PropertyTypeType';
   readonly NameType: Scalars['String']['output'];
@@ -198,6 +222,7 @@ export type Query = {
   readonly getPropertyForSale: PropertyDetail;
   readonly listLocations: LocationResponse;
   readonly listPropertiesForSale: Properties;
+  readonly listPropertyTypes: PropertyTypeResponse;
 };
 
 
@@ -225,6 +250,12 @@ export type QueryInfoType = {
   readonly PropertyCount: Scalars['Int']['output'];
   readonly QueryId: Scalars['ID']['output'];
   readonly SearchType: Scalars['String']['output'];
+};
+
+export type SubType = {
+  readonly __typename?: 'SubType';
+  readonly OptionValue: Scalars['String']['output'];
+  readonly Type: Scalars['String']['output'];
 };
 
 
@@ -319,12 +350,17 @@ export type ResolversTypes = {
   PropertyDetail: ResolverTypeWrapper<PropertyDetail>;
   PropertyFeatures: ResolverTypeWrapper<PropertyFeatures>;
   PropertyType: ResolverTypeWrapper<PropertyType>;
+  PropertyTypeOptionValue: ResolverTypeWrapper<PropertyTypeOptionValue>;
+  PropertyTypeOptions: ResolverTypeWrapper<PropertyTypeOptions>;
+  PropertyTypeQueryInfo: ResolverTypeWrapper<PropertyTypeQueryInfo>;
+  PropertyTypeResponse: ResolverTypeWrapper<PropertyTypeResponse>;
   PropertyTypeType: ResolverTypeWrapper<PropertyTypeType>;
   ProvinceArea: ResolverTypeWrapper<ProvinceArea>;
   Query: ResolverTypeWrapper<{}>;
   QueryInfo: ResolverTypeWrapper<QueryInfo>;
   QueryInfoType: ResolverTypeWrapper<QueryInfoType>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  SubType: ResolverTypeWrapper<SubType>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -348,12 +384,17 @@ export type ResolversParentTypes = {
   PropertyDetail: PropertyDetail;
   PropertyFeatures: PropertyFeatures;
   PropertyType: PropertyType;
+  PropertyTypeOptionValue: PropertyTypeOptionValue;
+  PropertyTypeOptions: PropertyTypeOptions;
+  PropertyTypeQueryInfo: PropertyTypeQueryInfo;
+  PropertyTypeResponse: PropertyTypeResponse;
   PropertyTypeType: PropertyTypeType;
   ProvinceArea: ProvinceArea;
   Query: {};
   QueryInfo: QueryInfo;
   QueryInfoType: QueryInfoType;
   String: Scalars['String']['output'];
+  SubType: SubType;
 };
 
 export type CategoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Category'] = ResolversParentTypes['Category']> = {
@@ -500,6 +541,30 @@ export type PropertyTypeResolvers<ContextType = any, ParentType extends Resolver
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type PropertyTypeOptionValueResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyTypeOptionValue'] = ResolversParentTypes['PropertyTypeOptionValue']> = {
+  OptionValue?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  SubType?: Resolver<ReadonlyArray<ResolversTypes['SubType']>, ParentType, ContextType>;
+  Type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type PropertyTypeOptionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyTypeOptions'] = ResolversParentTypes['PropertyTypeOptions']> = {
+  PropertyType?: Resolver<ReadonlyArray<ResolversTypes['PropertyTypeOptionValue']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type PropertyTypeQueryInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyTypeQueryInfo'] = ResolversParentTypes['PropertyTypeQueryInfo']> = {
+  ApiId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  PropertyTypesCount?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type PropertyTypeResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyTypeResponse'] = ResolversParentTypes['PropertyTypeResponse']> = {
+  PropertyTypes?: Resolver<ResolversTypes['PropertyTypeOptions'], ParentType, ContextType>;
+  QueryInfo?: Resolver<ResolversTypes['PropertyTypeQueryInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type PropertyTypeTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['PropertyTypeType'] = ResolversParentTypes['PropertyTypeType']> = {
   NameType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   Subtype1?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -519,6 +584,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   getPropertyForSale?: Resolver<ResolversTypes['PropertyDetail'], ParentType, ContextType, RequireFields<QueryGetPropertyForSaleArgs, 'referenceId'>>;
   listLocations?: Resolver<ResolversTypes['LocationResponse'], ParentType, ContextType>;
   listPropertiesForSale?: Resolver<ResolversTypes['Properties'], ParentType, ContextType, Partial<QueryListPropertiesForSaleArgs>>;
+  listPropertyTypes?: Resolver<ResolversTypes['PropertyTypeResponse'], ParentType, ContextType>;
 };
 
 export type QueryInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['QueryInfo'] = ResolversParentTypes['QueryInfo']> = {
@@ -537,6 +603,12 @@ export type QueryInfoTypeResolvers<ContextType = any, ParentType extends Resolve
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type SubTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['SubType'] = ResolversParentTypes['SubType']> = {
+  OptionValue?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  Type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
   Category?: CategoryResolvers<ContextType>;
   EnergyRating?: EnergyRatingResolvers<ContextType>;
@@ -552,10 +624,15 @@ export type Resolvers<ContextType = any> = {
   PropertyDetail?: PropertyDetailResolvers<ContextType>;
   PropertyFeatures?: PropertyFeaturesResolvers<ContextType>;
   PropertyType?: PropertyTypeResolvers<ContextType>;
+  PropertyTypeOptionValue?: PropertyTypeOptionValueResolvers<ContextType>;
+  PropertyTypeOptions?: PropertyTypeOptionsResolvers<ContextType>;
+  PropertyTypeQueryInfo?: PropertyTypeQueryInfoResolvers<ContextType>;
+  PropertyTypeResponse?: PropertyTypeResponseResolvers<ContextType>;
   PropertyTypeType?: PropertyTypeTypeResolvers<ContextType>;
   ProvinceArea?: ProvinceAreaResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   QueryInfo?: QueryInfoResolvers<ContextType>;
   QueryInfoType?: QueryInfoTypeResolvers<ContextType>;
+  SubType?: SubTypeResolvers<ContextType>;
 };
 

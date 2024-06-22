@@ -178,6 +178,30 @@ export type PropertyType = {
   TypeId: Scalars['String']['output'];
 };
 
+export type PropertyTypeOptionValue = {
+  __typename?: 'PropertyTypeOptionValue';
+  OptionValue: Scalars['String']['output'];
+  SubType: Array<SubType>;
+  Type: Scalars['String']['output'];
+};
+
+export type PropertyTypeOptions = {
+  __typename?: 'PropertyTypeOptions';
+  PropertyType: Array<PropertyTypeOptionValue>;
+};
+
+export type PropertyTypeQueryInfo = {
+  __typename?: 'PropertyTypeQueryInfo';
+  ApiId: Scalars['String']['output'];
+  PropertyTypesCount?: Maybe<Scalars['Int']['output']>;
+};
+
+export type PropertyTypeResponse = {
+  __typename?: 'PropertyTypeResponse';
+  PropertyTypes: PropertyTypeOptions;
+  QueryInfo: PropertyTypeQueryInfo;
+};
+
 export type PropertyTypeType = {
   __typename?: 'PropertyTypeType';
   NameType: Scalars['String']['output'];
@@ -198,6 +222,7 @@ export type Query = {
   getPropertyForSale: PropertyDetail;
   listLocations: LocationResponse;
   listPropertiesForSale: Properties;
+  listPropertyTypes: PropertyTypeResponse;
 };
 
 
@@ -225,6 +250,12 @@ export type QueryInfoType = {
   PropertyCount: Scalars['Int']['output'];
   QueryId: Scalars['ID']['output'];
   SearchType: Scalars['String']['output'];
+};
+
+export type SubType = {
+  __typename?: 'SubType';
+  OptionValue: Scalars['String']['output'];
+  Type: Scalars['String']['output'];
 };
 
 export type Filters_ListLocationsQueryVariables = Exact<{ [key: string]: never; }>;

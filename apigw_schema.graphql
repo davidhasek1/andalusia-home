@@ -146,6 +146,26 @@ type PropertyType {
   TypeId: String!
 }
 
+type PropertyTypeOptionValue {
+  OptionValue: String!
+  SubType: [SubType!]!
+  Type: String!
+}
+
+type PropertyTypeOptions {
+  PropertyType: [PropertyTypeOptionValue!]!
+}
+
+type PropertyTypeQueryInfo {
+  ApiId: String!
+  PropertyTypesCount: Int
+}
+
+type PropertyTypeResponse {
+  PropertyTypes: PropertyTypeOptions!
+  QueryInfo: PropertyTypeQueryInfo!
+}
+
 type PropertyTypeType {
   NameType: String!
   Subtype1: String!
@@ -163,6 +183,7 @@ type Query {
   getPropertyForSale(referenceId: ID!): PropertyDetail!
   listLocations: LocationResponse!
   listPropertiesForSale(filter: PropertiesFilterInput, page: PropertiesPaginateInput): Properties!
+  listPropertyTypes: PropertyTypeResponse!
 }
 
 type QueryInfo {
@@ -177,4 +198,9 @@ type QueryInfoType {
   PropertyCount: Int!
   QueryId: ID!
   SearchType: String!
+}
+
+type SubType {
+  OptionValue: String!
+  Type: String!
 }

@@ -3,6 +3,7 @@ import { Resolvers } from '../apigw-resolvers-types';
 import { typeDefsPropertyDetail } from './typedefs/propertyDetailTypeDefs';
 import { typeDefsProperties } from './typedefs/propertiesTypeDefs';
 import { typeDefsLocations } from './typedefs/locationsTypeDefs';
+import { typeDefsPropertyType } from './typedefs/propertyTypeTypeDefs';
 
 const typeDefs = `#graphql
 
@@ -10,6 +11,7 @@ const typeDefs = `#graphql
     listPropertiesForSale(filter: PropertiesFilterInput, page: PropertiesPaginateInput): Properties!
     getPropertyForSale(referenceId: ID!): PropertyDetail!
     listLocations: LocationResponse!
+		listPropertyTypes: PropertyTypeResponse!
   }
 `;
 
@@ -26,10 +28,10 @@ const resolvers = {
 		listLocations: async (_parent, {}, context) => {
 			return await context.dataSource.resalesOnlineAPI.listLocation();
 		},
-		/* listPropertyTypes: async (_parent, {}, context) => {
-			return await context.dataSource.resalesOnlineAPI.listLocation();
-		}, */
+		listPropertyTypes: async (_parent, {}, context) => {
+			return await context.dataSource.resalesOnlineAPI.listPropertyTypeOptions();
+		},
 	},
 } as Resolvers<Context>;
 
-export { typeDefs, typeDefsPropertyDetail, typeDefsProperties, typeDefsLocations, resolvers };
+export { typeDefs, typeDefsPropertyDetail, typeDefsProperties, typeDefsLocations, typeDefsPropertyType, resolvers };
