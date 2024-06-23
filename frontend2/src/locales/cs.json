@@ -26,6 +26,7 @@
 	"properties.filters.location": "Lokalita",
 	"properties.filters.no-results": "Nenašli jsme žádné výsledky :-( . Zkuste upravit Váš zvolený filter.",
 	"properties.filters.not-selected": "Nevybráno",
+	"properties.filters.property-type": "Typ nemovitosti",
 	"properties.filters.title": "Filtry",
 	"properties.list.results-count": "{count} výsledků",
 	"property.detail.caption.bathrooms": "Koupelny",
