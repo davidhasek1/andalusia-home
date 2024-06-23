@@ -61,6 +61,7 @@ const typeDefsProperties = `#graphql
     location: String
     bedsCount: Int
     bathsCount: Int
+    propertyType: [String]
   }
   input PropertiesPaginateInput {
     page: Int

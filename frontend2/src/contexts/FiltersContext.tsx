@@ -13,6 +13,7 @@ const initialState = {
 	bedsCount: 1,
 	bathsCount: 1,
 	location: '',
+	propertyType: [],
 };
 
 const FiltersContext = createContext({ filters: initialState, setFilters: () => {} } as FilterContext);

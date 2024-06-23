@@ -57,6 +57,7 @@ input PropertiesFilterInput {
   bathsCount: Int
   bedsCount: Int
   location: String
+  propertyType: [String]
 }
 
 input PropertiesPaginateInput {

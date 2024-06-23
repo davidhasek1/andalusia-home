@@ -20,7 +20,7 @@ export const useQueryParams = () => {
 		(name: string, value: string | null | undefined) => {
 			const params = new URLSearchParams(searchParams.toString());
 
-			if (value == null) {
+			if (value == null || value.length === 0) {
 				params.delete(name);
 				return params;
 			}

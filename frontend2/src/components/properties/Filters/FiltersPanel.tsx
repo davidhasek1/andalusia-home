@@ -28,28 +28,72 @@ const filters_listLocations = graphql(`
 	}
 `);
 
+const filters_listPropertyTypes = graphql(`
+	query filters_listPropertyTypes {
+		listPropertyTypes {
+			PropertyTypes {
+				PropertyType {
+					Type
+					SubType {
+						Type
+						OptionValue
+					}
+				}
+			}
+		}
+	}
+`);
+
 export const FiltersPanel: FC = () => {
 	const [rangeValue, setRangeValue] = useState<number[]>([MIN_PRICE_RANGE, MAX_PRICE_RANGE]);
 	const theme = useTheme();
 	const router = useRouter();
 	const path = usePathname();
 	const { createOrDeleteQueryParams } = useQueryParams();
-	const { data } = useQuery(filters_listLocations);
+	const { data: locationsList } = useQuery(filters_listLocations);
+	const { data: propertyTypeList } = useQuery(filters_listPropertyTypes);
 	const intl = useIntl();
 	const { filters, setFilters } = useFilters();
 
 	if (path !== '/properties') {
 		return null;
 	}
-	const locations = data?.listLocations.LocationData.ProvinceArea.Locations.Location ?? [];
+	const locations = locationsList?.listLocations.LocationData.ProvinceArea.Locations.Location ?? [];
+	const propertyTypes = propertyTypeList?.listPropertyTypes.PropertyTypes.PropertyType ?? [];
+	const flattenPropertyTypes = propertyTypes.flatMap((pt) => pt.SubType.flatMap((st) => st));
 
+	console.log('filters FE', filters);
 	return (
 		<Stack minWidth={300} minHeight={'100%'} px={2} py={5} gap={2} borderRight={{ lg: `1px solid ${theme.palette.grey[300]}`, xs: 'none' }}>
 			<Typography variant={'h5'}>
 				<FormattedMessage id={'properties.filters.title'} />
 			</Typography>
 			<PriceRange rangeValue={rangeValue} setRangeValue={setRangeValue} />
-
+			{/*  TODO: REFACTOR, split reuse */}
+			<FormControl>
+				<InputLabel sx={{ backgroundColor: '#fff', px: 1 }}>
+					<FormattedMessage id={'properties.filters.property-type'} />
+				</InputLabel>
+				<Select
+					multiple
+					value={typeof filters.propertyType === 'string' ? (filters.propertyType as string).split(',') : filters.propertyType || []}
+					onChange={(e) => {
+						setFilters((prev) => ({
+							...prev,
+							propertyType: typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value,
+						}));
+						router.push(`${path}?${createOrDeleteQueryParams('propertyType', e?.target?.value?.toString())}`);
+					}}
+				>
+					{flattenPropertyTypes.map((pt) => {
+						return (
+							<MenuItem key={pt.Type} value={pt.OptionValue}>
+								{pt.Type}
+							</MenuItem>
+						);
+					})}
+				</Select>
+			</FormControl>
 			<FormControl>
 				<InputLabel sx={{ backgroundColor: '#fff', px: 1 }}>
 					<FormattedMessage id={'properties.filters.location'} />
@@ -124,7 +168,6 @@ export const FiltersPanel: FC = () => {
 					<MenuItem value={5}>5</MenuItem>
 				</Select>
 			</FormControl>
-
 			<Button href={'/properties'}>Clear all</Button>
 		</Stack>
 	);
