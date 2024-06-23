@@ -16,24 +16,31 @@ export const useQueryParams = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const createQueryString = useCallback(
-		(name: string, value: string) => {
+	const createOrDeleteQueryParams = useCallback(
+		(name: string, value: string | null | undefined) => {
 			const params = new URLSearchParams(searchParams.toString());
-			params.set(name, value);
+
+			if (value == null) {
+				params.delete(name);
+				return params;
+			}
+			if (value != null) {
+				params.set(name, value);
+				return params;
+			}
 
 			return params;
 		},
 		[searchParams],
 	);
 
-	const removeQueryParam = useCallback(
-		(name: string) => {
-			const params = new URLSearchParams(searchParams.toString());
-			params.delete(name);
-			return params;
-		},
-		[searchParams],
-	);
+	//Leaving it here for now
+	// If it has not any usage delete it
+	const removeQueryParam = (name: string) => {
+		const params = new URLSearchParams(searchParams.toString());
+		params.delete(name);
+		return params;
+	};
 
-	return { createQueryString, removeQueryParam };
+	return { createOrDeleteQueryParams, removeQueryParam };
 };

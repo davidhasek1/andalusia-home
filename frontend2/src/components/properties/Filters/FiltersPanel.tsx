@@ -2,7 +2,7 @@
 'use client';
 import { Button, FormControl, InputLabel, MenuItem, Select, Stack, Typography, useTheme } from '@mui/material';
 import { FC, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { PriceRange } from './PriceRange';
 import { useFilters } from '../../../contexts/FiltersContext';
 import { usePathname, useRouter } from 'next/navigation';
@@ -33,9 +33,9 @@ export const FiltersPanel: FC = () => {
 	const theme = useTheme();
 	const router = useRouter();
 	const path = usePathname();
-	const { createQueryString, removeQueryParam } = useQueryParams();
+	const { createOrDeleteQueryParams } = useQueryParams();
 	const { data } = useQuery(filters_listLocations);
-
+	const intl = useIntl();
 	const { filters, setFilters } = useFilters();
 
 	if (path !== '/properties') {
@@ -62,15 +62,12 @@ export const FiltersPanel: FC = () => {
 							...prev,
 							location: e.target.value,
 						}));
-						router.push(
-							`${path}?${
-								//Temporary solution for deleting param form QS
-								e.target.value == null ? removeQueryParam('location') : createQueryString('location', e?.target?.value?.toString() ?? '')
-							}`,
-						);
+						router.push(`${path}?${createOrDeleteQueryParams('location', e?.target?.value?.toString())}`);
 					}}
 				>
-					<MenuItem>-</MenuItem>
+					<MenuItem>
+						<FormattedMessage id={'properties.filters.not-selected'} />
+					</MenuItem>
 					{locations.map((loc) => (
 						<MenuItem key={loc} value={loc}>
 							{loc}
@@ -84,14 +81,18 @@ export const FiltersPanel: FC = () => {
 				</InputLabel>
 				<Select
 					value={filters.bedsCount}
+					placeholder={intl.formatMessage({ id: 'properties.filters.not-selected' })}
 					onChange={(e) => {
 						setFilters((prev) => ({
 							...prev,
 							bedsCount: parseInt(e?.target?.value?.toString() ?? ''),
 						}));
-						router.push(path + '?' + createQueryString('bedsCount', e?.target?.value?.toString() ?? ''));
+						router.push(path + '?' + createOrDeleteQueryParams('bedsCount', e?.target?.value?.toString()));
 					}}
 				>
+					<MenuItem>
+						<FormattedMessage id={'properties.filters.not-selected'} />
+					</MenuItem>
 					<MenuItem value={1}>1</MenuItem>
 					<MenuItem value={2}>2</MenuItem>
 					<MenuItem value={3}>3</MenuItem>
@@ -110,9 +111,12 @@ export const FiltersPanel: FC = () => {
 							...prev,
 							bathsCount: parseInt(e?.target?.value?.toString() ?? ''),
 						}));
-						router.push(path + '?' + createQueryString('bathsCount', e?.target?.value?.toString() ?? ''));
+						router.push(path + '?' + createOrDeleteQueryParams('bathsCount', e?.target?.value?.toString()));
 					}}
 				>
+					<MenuItem>
+						<FormattedMessage id={'properties.filters.not-selected'} />
+					</MenuItem>
 					<MenuItem value={1}>1</MenuItem>
 					<MenuItem value={2}>2</MenuItem>
 					<MenuItem value={3}>3</MenuItem>
