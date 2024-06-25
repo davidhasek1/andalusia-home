@@ -22,6 +22,6 @@
 		"@graphql-inspector/cli": "4.0.3",
 		"@graphql-inspector/introspect-command": "4.0.3",
 		"tsx": "4.7.2",
-		"typescript": "5.4.5"
+		"typescript": "5.5.2"
 	}
 }
