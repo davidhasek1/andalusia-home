@@ -7,26 +7,29 @@ import { FormattedMessage } from 'react-intl';
 import LogoDark from '../../public/logo_dark.svg';
 import Image from 'next/image';
 import { useOpenSnackbar } from './Snackbar';
+import { usePathname } from 'next/navigation';
 
 type Props = Readonly<{
 	imageSrc?: string | null;
-	isContactPage?: boolean;
+	propertyId?: string;
 }>;
 
-export const ContactForm: FC<Props> = ({ imageSrc, isContactPage }) => {
+export const ContactForm: FC<Props> = ({ imageSrc, propertyId }) => {
 	const theme = useTheme();
 	const form = useForm({ defaultValues: { name: '', email: '', message: '' } });
 	const values = form.getValues();
 	const { SnackBarComponent, openSnackbar } = useOpenSnackbar();
+	const pathname = usePathname();
 
 	const onSubmit = async (data: typeof values) => {
 		try {
 			const response = await fetch('/api/contact', {
 				method: 'post',
-				body: JSON.stringify(data),
+				body: JSON.stringify({ ...data, propertyId }),
 			});
 			if (response.status === 200) {
 				openSnackbar('Email sent!');
+				form.reset();
 			} else {
 				openSnackbar('Failed to send email');
 			}
@@ -72,7 +75,7 @@ export const ContactForm: FC<Props> = ({ imageSrc, isContactPage }) => {
 								color={(theme) => theme.palette.common.white}
 								sx={{ textShadow: '3px 3px 4px rgba(0, 0, 0, 0.5)' }}
 							>
-								<FormattedMessage id={'contact-form.title'} />
+								{pathname === '/contact' ? <FormattedMessage id={'contact-form.title'} /> : <FormattedMessage id={'property.form.title'} />}
 							</Typography>
 							<Grid
 								display={'grid'}

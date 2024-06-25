@@ -2,7 +2,7 @@
 	"common.no": "Ne",
 	"common.yes": "Ano",
 	"contact-form.button.submit": "Odeslat zprávu",
-	"contact-form.form.title": "Nezávazně poptat",
+	"contact-form.form.title": "Máte otázku?",
 	"contact-form.label.email": "E-mail",
 	"contact-form.label.message": "Zpráva",
 	"contact-form.label.name": "Vaše jméno",
@@ -40,6 +40,7 @@
 	"property.detail.tab.description": "Popis",
 	"property.detail.tab.essential-info": "Základní informace",
 	"property.detail.tab.features": "Vlastnosti",
+	"property.form.title": "Nezávazně poptat",
 	"watchlist.no-properties": "Nemáte žádné nemovitosti ve sledovaných :-(",
 	"watchlist.title": "Sledované nemovitosti"
 }

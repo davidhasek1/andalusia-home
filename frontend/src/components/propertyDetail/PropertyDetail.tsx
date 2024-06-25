@@ -351,7 +351,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 						>
 							<Close fontSize={'large'} />
 						</IconButton>
-						<ContactForm imageSrc={images[0].src} />
+						<ContactForm imageSrc={images[0].src} propertyId={property?.Reference} />
 					</Stack>
 				</Drawer>
 			</Stack>
