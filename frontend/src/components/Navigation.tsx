@@ -1,5 +1,5 @@
 'use client';
-import { Button, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
+import { Button, ButtonBase, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
 import { FC, Fragment, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import LogoDark from '../../public/logo_dark.svg';
@@ -59,7 +59,9 @@ export const Navigation: FC = () => {
 			bgcolor={(theme) => (changeBg ? theme.palette.common.white : path === '/' ? 'rgba(0, 0, 0, 0.122)' : 'unset')}
 			sx={{ backdropFilter: path === '/' ? 'blur(3px)' : 'unset' }}
 		>
-			<Image src={changeBg ? LogoDark : path === '/' ? LogoLight : LogoDark} alt={'logo'} width={150} objectFit={'cover'} />
+			<ButtonBase href={'/'}>
+				<Image src={changeBg ? LogoDark : path === '/' ? LogoLight : LogoDark} alt={'logo'} width={150} objectFit={'cover'} />
+			</ButtonBase>
 			<Stack direction={'row'} display={{ xs: 'none', lg: 'flex' }}>
 				{navigation.map((link, i) => (
 					<Fragment key={link.url}>

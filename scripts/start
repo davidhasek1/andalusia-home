@@ -3,6 +3,5 @@ concurrently \
   --names gw,fe,fe2 \
   --prefix-colors yellow,blue,green \
   "yarn apigw:start" \
-  "yarn:frontend:dev" \
-  "yarn:frontend2:dev"
+  "yarn:frontend:dev"
 

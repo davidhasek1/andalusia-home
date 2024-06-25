@@ -2,21 +2,18 @@
 	"private": true,
 	"workspaces": [
 		"apigw",
-		"frontend",
-		"frontend2"
+		"frontend"
 	],
 	"scripts": {
 		"frontend:dev": "yarn workspace frontend dev",
 		"frontend:start": "yarn workspace frontend start",
-		"frontend2:dev": "yarn workspace frontend2 dev",
-		"frontend2:start": "yarn workspace frontend2 start",
 		"apigw:start": "yarn workspace apigw start",
 		"apigw:build": "yarn workspace apigw build",
 		"start": "scripts/start",
 		"check:lint": "yarn workspaces foreach --all run check:lint",
 		"check:types": "yarn workspaces foreach --all run check:types",
 		"check:all": "yarn workspaces foreach --all run check:all",
-		"api:generate-schema": "yarn workspace apigw run extract-schema; yarn workspace frontend gql:generate; yarn workspace frontend2 gql:generate; yarn workspace apigw gql:generate"
+		"api:generate-schema": "yarn workspace apigw run extract-schema; yarn workspace frontend gql:generate; yarn workspace apigw gql:generate"
 	},
 	"devDependencies": {
 		"@types/qs": "^6",

@@ -2,8 +2,17 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { FC, PropsWithChildren } from 'react';
 
+let GRAPHQL_URL;
+
+if (process.env.NODE_ENV === 'development') {
+	console.log('using local');
+	GRAPHQL_URL = 'http://localhost:4000/graphql';
+} else {
+	console.log('using render');
+	GRAPHQL_URL = 'https://andalusia-home-api.onrender.com/graphql';
+}
 const client = new ApolloClient({
-	uri: 'http://localhost:4000/graphql',
+	uri: GRAPHQL_URL,
 	cache: new InMemoryCache(),
 });
 
