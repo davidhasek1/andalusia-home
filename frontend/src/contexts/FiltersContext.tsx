@@ -10,6 +10,8 @@ export type FilterContext = {
 };
 
 const initialState = {
+	minPrice: 0,
+	maxPrice: 0,
 	bedsCount: 1,
 	bathsCount: 1,
 	location: '',

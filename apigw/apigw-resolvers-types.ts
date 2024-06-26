@@ -84,6 +84,8 @@ export type PropertiesFilterInput = {
   readonly bathsCount?: InputMaybe<Scalars['Int']['input']>;
   readonly bedsCount?: InputMaybe<Scalars['Int']['input']>;
   readonly location?: InputMaybe<Scalars['String']['input']>;
+  readonly maxPrice?: InputMaybe<Scalars['Int']['input']>;
+  readonly minPrice?: InputMaybe<Scalars['Int']['input']>;
   readonly propertyType?: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']['input']>>>;
 };
 

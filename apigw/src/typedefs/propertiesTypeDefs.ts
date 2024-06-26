@@ -58,6 +58,8 @@ const typeDefsProperties = `#graphql
   }
 
   input PropertiesFilterInput {
+    minPrice: Int,
+    maxPrice: Int,
     location: String
     bedsCount: Int
     bathsCount: Int

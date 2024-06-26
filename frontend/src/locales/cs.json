@@ -24,6 +24,8 @@
 	"properties.filters.baths-count": "Počet koupelen",
 	"properties.filters.beds-count": "Počet ložnic",
 	"properties.filters.location": "Lokalita",
+	"properties.filters.max-price": "Cena do",
+	"properties.filters.min-price": "Cena od",
 	"properties.filters.no-results": "Nenašli jsme žádné výsledky :-( . Zkuste upravit Váš zvolený filter.",
 	"properties.filters.not-selected": "Nevybráno",
 	"properties.filters.property-type": "Typ nemovitosti",
