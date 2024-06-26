@@ -10,7 +10,9 @@ const createFilterQueryString = (filter?: InputMaybe<PropertiesFilterInput>) => 
 	const filteredFilters = Object.fromEntries(Object.entries(filter).filter(([key, value]) => value != null));
 
 	for (const [key, value] of Object.entries(filteredFilters)) {
-		switch (key) {
+		const typedKey = key as keyof typeof filter;
+
+		switch (typedKey) {
 			case 'bedsCount': {
 				filterQs = filterQs.concat(`&P_Beds=${value}`);
 				break;
@@ -25,6 +27,14 @@ const createFilterQueryString = (filter?: InputMaybe<PropertiesFilterInput>) => 
 			}
 			case 'propertyType': {
 				filterQs = filterQs.concat(`&P_PropertyTypes=${value}`);
+				break;
+			}
+			case 'minPrice': {
+				filterQs = filterQs.concat(`&P_Min=${value}`);
+				break;
+			}
+			case 'maxPrice': {
+				filterQs = filterQs.concat(`&P_Max=${value}`);
 				break;
 			}
 			default: {
