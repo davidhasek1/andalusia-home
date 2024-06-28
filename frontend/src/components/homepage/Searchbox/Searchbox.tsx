@@ -2,6 +2,11 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, Select, MenuItem, Button, InputBase, Stack, FormLabel } from '@mui/material';
 import { styled } from '@mui/system';
+import { useFilters } from '../../../contexts/FiltersContext';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { useRouter } from 'next/navigation';
+import { useQuery } from '@apollo/client';
+import { filters_listLocations, filters_listPropertyTypes } from '../../properties/Filters/FiltersPanel';
 
 const CustomInput = styled(InputBase)(({ theme }) => ({
 	'& .MuiInputBase-input': {
@@ -18,14 +23,39 @@ const CustomFormControl = styled(FormControl)(({ theme }) => ({
 }));
 
 const SearchForm = () => {
-	const [field1, setField1] = React.useState('');
-	const [field2, setField2] = React.useState('');
-	const [field3, setField3] = React.useState('');
-	const [field4, setField4] = React.useState('');
+	const intl = useIntl();
+	const router = useRouter();
+
+	const { filters, setFilters } = useFilters();
+	const { data: locationsList } = useQuery(filters_listLocations);
+	const { data: propertyTypeList } = useQuery(filters_listPropertyTypes);
+
+	const locations = locationsList?.listLocations.LocationData.ProvinceArea.Locations.Location ?? [];
+	const propertyTypes = propertyTypeList?.listPropertyTypes.PropertyTypes.PropertyType ?? [];
+	const flattenPropertyTypes = propertyTypes.flatMap((pt) => pt.SubType.flatMap((st) => st));
+
+	console.log('FIlters', filters);
 
 	const handleSearch = () => {
-		// Zde můžete přidat logiku pro hledání
-		console.log('Hledání s hodnotami:', field1, field2, field3, field4);
+		console.log('Hledání s hodnotami:', filters);
+		let qs = `/properties?`;
+		if (filters.location) {
+			qs = qs + `location=${filters.location}`;
+		}
+		if (filters.propertyType?.length !== 0) {
+			qs = qs + `&propertyType=${filters.propertyType}`;
+		}
+		if (filters.bedsCount) {
+			qs = qs + `&bedsCount=${filters.bedsCount}`;
+		}
+		if (filters.bathsCount) {
+			qs = qs + `&bathsCount=${filters.bathsCount}`;
+		}
+
+		if (qs.includes('/properties?&')) {
+			qs.replace('/properties?&', '/properties?');
+		}
+		router.replace(qs);
 	};
 
 	return (
@@ -40,74 +70,105 @@ const SearchForm = () => {
 		>
 			<Stack direction={{ lg: 'row', xs: 'column' }} p={2} gap={2} flexWrap={'wrap'}>
 				<CustomFormControl variant={'outlined'}>
-					<FormLabel>test</FormLabel>
+					<FormLabel>
+						{' '}
+						<FormattedMessage id={'properties.filters.location'} />
+					</FormLabel>
 					<Select
-						labelId={'select-field1-label'}
-						value={field1}
-						onChange={(e) => setField1(e.target.value)}
-						label={'Field 1'}
+						value={filters.location}
+						onChange={(e) => {
+							console.log('lco qs', e.target.value);
+							setFilters((prev) => ({
+								...prev,
+								location: e.target.value,
+							}));
+						}}
 						input={<CustomInput />}
 					>
-						<MenuItem value={''}>
-							<em>None</em>
+						<MenuItem>
+							<FormattedMessage id={'properties.filters.not-selected'} />
 						</MenuItem>
-						<MenuItem value={10}>Option 1</MenuItem>
-						<MenuItem value={20}>Option 2</MenuItem>
-						<MenuItem value={30}>Option 3</MenuItem>
+						{locations.map((loc) => (
+							<MenuItem key={loc} value={loc}>
+								{loc}
+							</MenuItem>
+						))}
 					</Select>
 				</CustomFormControl>
 
 				<CustomFormControl variant={'outlined'}>
-					<FormLabel>test</FormLabel>
+					<FormLabel>
+						<FormattedMessage id={'properties.filters.property-type'} />
+					</FormLabel>
 					<Select
-						labelId={'select-field2-label'}
-						value={field2}
-						onChange={(e) => setField2(e.target.value)}
-						label={'Field 2'}
+						multiple
+						value={typeof filters.propertyType === 'string' ? (filters.propertyType as string).split(',') : filters.propertyType || []}
+						onChange={(e) => {
+							setFilters((prev) => ({
+								...prev,
+								propertyType: typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value,
+							}));
+						}}
 						input={<CustomInput />}
 					>
-						<MenuItem value={''}>
-							<em>None</em>
-						</MenuItem>
-						<MenuItem value={10}>Option 1</MenuItem>
-						<MenuItem value={20}>Option 2</MenuItem>
-						<MenuItem value={30}>Option 3</MenuItem>
+						{flattenPropertyTypes.map((pt) => {
+							return (
+								<MenuItem key={pt.Type} value={pt.OptionValue}>
+									{pt.Type}
+								</MenuItem>
+							);
+						})}
 					</Select>
 				</CustomFormControl>
 
 				<CustomFormControl variant={'outlined'}>
-					<FormLabel>test</FormLabel>
+					<FormLabel>
+						<FormattedMessage id={'properties.filters.beds-count'} />
+					</FormLabel>
 					<Select
-						labelId={'select-field3-label'}
-						value={field3}
-						onChange={(e) => setField3(e.target.value)}
-						label={'Field 3'}
+						value={filters.bedsCount}
+						placeholder={intl.formatMessage({ id: 'properties.filters.not-selected' })}
+						onChange={(e) => {
+							setFilters((prev) => ({
+								...prev,
+								bedsCount: parseInt(e?.target?.value?.toString() ?? ''),
+							}));
+						}}
 						input={<CustomInput />}
 					>
-						<MenuItem value={''}>
-							<em>None</em>
+						<MenuItem>
+							<FormattedMessage id={'properties.filters.not-selected'} />
 						</MenuItem>
-						<MenuItem value={10}>Option 1</MenuItem>
-						<MenuItem value={20}>Option 2</MenuItem>
-						<MenuItem value={30}>Option 3</MenuItem>
+						<MenuItem value={1}>1</MenuItem>
+						<MenuItem value={2}>2</MenuItem>
+						<MenuItem value={3}>3</MenuItem>
+						<MenuItem value={4}>4</MenuItem>
+						<MenuItem value={5}>5</MenuItem>
 					</Select>
 				</CustomFormControl>
 
 				<CustomFormControl variant={'outlined'}>
-					<FormLabel>test</FormLabel>
+					<FormLabel>
+						<FormattedMessage id={'properties.filters.baths-count'} />
+					</FormLabel>
 					<Select
-						labelId={'select-field4-label'}
-						value={field4}
-						onChange={(e) => setField4(e.target.value)}
-						label={'Field 4'}
+						value={filters.bathsCount}
+						onChange={(e) => {
+							setFilters((prev) => ({
+								...prev,
+								bathsCount: parseInt(e?.target?.value?.toString() ?? ''),
+							}));
+						}}
 						input={<CustomInput />}
 					>
-						<MenuItem value={''}>
-							<em>None</em>
+						<MenuItem>
+							<FormattedMessage id={'properties.filters.not-selected'} />
 						</MenuItem>
-						<MenuItem value={10}>Option 1</MenuItem>
-						<MenuItem value={20}>Option 2</MenuItem>
-						<MenuItem value={30}>Option 3</MenuItem>
+						<MenuItem value={1}>1</MenuItem>
+						<MenuItem value={2}>2</MenuItem>
+						<MenuItem value={3}>3</MenuItem>
+						<MenuItem value={4}>4</MenuItem>
+						<MenuItem value={5}>5</MenuItem>
 					</Select>
 				</CustomFormControl>
 			</Stack>

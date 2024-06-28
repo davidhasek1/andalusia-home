@@ -13,7 +13,7 @@ import { useQuery } from '@apollo/client';
 export const MIN_PRICE_RANGE = 0;
 export const MAX_PRICE_RANGE = 1000000;
 
-const filters_listLocations = graphql(`
+export const filters_listLocations = graphql(`
 	query filters_listLocations {
 		listLocations {
 			LocationData {
@@ -28,7 +28,7 @@ const filters_listLocations = graphql(`
 	}
 `);
 
-const filters_listPropertyTypes = graphql(`
+export const filters_listPropertyTypes = graphql(`
 	query filters_listPropertyTypes {
 		listPropertyTypes {
 			PropertyTypes {
