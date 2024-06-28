@@ -2,7 +2,7 @@
 import { Button, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
-//import { Searchbox } from './Searchbox/Searchbox';
+import SearchForm from './Searchbox/Searchbox';
 
 export const Header: FC = () => {
 	return (
@@ -15,7 +15,7 @@ export const Header: FC = () => {
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
 				backgroundPosition: 'center',
-				height: '120vh',
+				height: '110vh',
 				aspectRatio: '1 / 1',
 			}}
 		>
@@ -39,20 +39,15 @@ export const Header: FC = () => {
 				pt={{ lg: 10 }}
 			>
 				<Stack alignItems={'center'} direction={{ lg: 'row', xs: 'column' }} gap={10}>
-					<Stack justifyContent={'center'} width={'100%'}>
+					<Stack justifyContent={'center'} width={'100%'} alignItems={'center'} pt={{ lg: 0, xs: 40 }}>
 						<Typography variant={'h1'} color={(theme) => theme.palette.common.white} sx={{ textShadow: '3px 3px 4px rgba(0, 0, 0, 0.5)' }}>
 							<FormattedMessage id={'header.title'} />
 						</Typography>
 					</Stack>
 				</Stack>
 			</Stack>
-			{/* 	<Stack display={{ md: 'flex', xs: 'none' }} position={'relative'} top={{ lg: '-25%', xs: 0 }} justifyContent={'center'}>
-				<Searchbox />
-			</Stack> */}
-			<Stack position={'relative'} top={{ lg: '-25%', xs: '-35%' }} justifyContent={'center'} alignItems={'center'} width={'100%'}>
-				<Button href={'/properties'} variant={'contained'} sx={{ width: { lg: '25%', sm: '40%', xs: '60%' } }}>
-					<FormattedMessage id={'header.button.search'} />
-				</Button>
+			<Stack display={{ md: 'flex' }} position={'relative'} top={{ lg: '-35%', xs: 0 }} justifyContent={'center'} alignItems={'center'}>
+				<SearchForm />
 			</Stack>
 		</Stack>
 	);
