@@ -14,8 +14,9 @@ export const Header: FC = () => {
 				backgroundImage: `url("assets/main-image-heart.webp")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
-				backgroundPosition: 'bottom center',
-				height: '90vh',
+				backgroundPosition: 'center',
+				height: '120vh',
+				aspectRatio: '1 / 1',
 			}}
 		>
 			<div
