@@ -10,7 +10,7 @@ const Homepage = () => {
 		<Stack>
 			<Header />
 
-			<Stack p={{ lg: 10, md: 5, xs: 2 }}>
+			<Stack p={{ xl: 20, lg: 15, md: 10, xs: 2 }} gap={25}>
 				<AboutUs order={1} />
 				<WhyChooseUs order={2} />
 				<ClientsReviews order={3} />

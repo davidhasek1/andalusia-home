@@ -11,7 +11,7 @@ export const Header: FC = () => {
 			px={{ lg: 10, xs: 2 }}
 			pt={15}
 			sx={{
-				backgroundImage: `url("assets/main-image-heart.webp")`,
+				backgroundImage: `url("assets/main-pic.jpg")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
 				backgroundPosition: 'center',

@@ -66,6 +66,10 @@ const theme = createTheme({
 		body1: {
 			fontFamily: ourFont.style.fontFamily,
 		},
+		body2: {
+			fontFamily: ourFont.style.fontFamily,
+			fontSize: 18,
+		},
 
 		button: {
 			fontFamily: roboto.style.fontFamily,
