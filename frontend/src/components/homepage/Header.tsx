@@ -16,7 +16,6 @@ export const Header: FC = () => {
 				backgroundSize: 'cover',
 				backgroundPosition: 'center',
 				height: '110vh',
-				aspectRatio: '1 / 1',
 			}}
 		>
 			<div
