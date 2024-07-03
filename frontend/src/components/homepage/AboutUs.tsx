@@ -10,7 +10,7 @@ import Image from 'next/image';
 type Props = CommonProps;
 const AboutUs: FC<Props> = ({ order }) => {
 	return (
-		<Stack direction={{ xl: 'row', lg: 'column' }} gap={{ xs: 4 }}>
+		<Stack direction={{ xl: 'row', lg: 'column' }} gap={{ xs: 6 }}>
 			<Stack flex={1} justifyContent={'space-between'} gap={4}>
 				<Stack>
 					<SectionCounter value={order} />
@@ -21,7 +21,7 @@ const AboutUs: FC<Props> = ({ order }) => {
 				<Stack flexWrap={'wrap'} flexDirection={'row'} gap={2}>
 					<Chip label={'Est. 2023'} sx={{ fontSize: 16, padding: 3, borderRadius: 25 }} />
 					<Chip label={'36+ Teams'} sx={{ fontSize: 16, padding: 3, borderRadius: 25 }} />
-					<Chip label={'100+ Clients'} sx={{ fontSize: 16, padding: 3, borderRadius: 25 }} />{' '}
+					<Chip label={'100+ Clients'} sx={{ fontSize: 16, padding: 3, borderRadius: 25 }} />
 					<Chip label={'Many properties'} sx={{ fontSize: 16, padding: 3, borderRadius: 25 }} />
 					<Chip label={'20+ Good Reviews'} sx={{ fontSize: 16, padding: 3, borderRadius: 25 }} />
 				</Stack>
