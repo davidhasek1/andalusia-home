@@ -62,7 +62,14 @@ const WhyChooseUs: FC<Props> = ({ order }) => {
 		<Stack direction={{ xl: 'row', lg: 'column' }} gap={{ xs: 6 }}>
 			<Stack flex={1} sx={{ bgcolor: (theme) => theme.palette.grey[100] }}>
 				{services.map((service, i) => (
-					<Stack key={i} direction={'row'} gap={3} borderBottom={(theme) => `1px solid ${theme.palette.grey[300]}`} p={5} flex={1}>
+					<Stack
+						key={i}
+						direction={'row'}
+						gap={3}
+						borderBottom={(theme) => (i !== services.length - 1 ? `1px solid ${theme.palette.grey[300]}` : 'none')}
+						p={5}
+						flex={1}
+					>
 						{service.icon}
 						<Box>
 							<Typography variant={'h4'}>{service.title}</Typography>
@@ -81,7 +88,7 @@ const WhyChooseUs: FC<Props> = ({ order }) => {
 					<Typography variant={'h2'}>
 						<FormattedMessage id={'homepage.section.why-choose-us.title'} />
 					</Typography>
-					<Stack mt={'auto'} position={'relative'} width={'100%'} height={300}>
+					<Stack mt={'auto'} position={'relative'} width={'100%'} height={600}>
 						<Image src={'/assets/main-image.webp'} fill alt={'img'} objectFit={'cover'} />
 					</Stack>
 				</Stack>

@@ -6,15 +6,15 @@ import { SectionCounter } from './SectionCounter';
 import { FormattedMessage } from 'react-intl';
 
 type Props = CommonProps;
-const ClientsReviews: FC<Props> = ({ order }) => {
+const FeaturedProperties: FC<Props> = ({ order }) => {
 	return (
 		<Stack>
 			<SectionCounter value={order} />
 			<Typography variant={'h2'}>
-				<FormattedMessage id={'homepage.section.reviews.title'} />
+				<FormattedMessage id={'homepage.section.featured-properties.title'} />
 			</Typography>
 		</Stack>
 	);
 };
 
-export { ClientsReviews };
+export { FeaturedProperties };

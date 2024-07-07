@@ -26,7 +26,7 @@ const AboutUs: FC<Props> = ({ order }) => {
 					<Chip label={'20+ Good Reviews'} sx={{ fontSize: 16, padding: 3, borderRadius: 25 }} />
 				</Stack>
 			</Stack>
-			<Stack flex={2} px={{ xl: 10, xs: 0 }} gap={2}>
+			<Stack flex={2} pl={{ xl: 20, xs: 0 }} gap={2}>
 				<Stack position={'relative'} width={'100%'} height={500}>
 					<Image src={'/assets/main-image.webp'} fill alt={'img'} objectFit={'cover'} />
 				</Stack>
