@@ -5,9 +5,9 @@ import React from 'react';
 
 const BlogCard = () => {
 	return (
-		<Card sx={{ width: { xs: '100%', sm: '25rem' }, borderRadius: 0 }}>
-			<Box position={'relative'} width={'100%'} height={'15rem'}>
-				<Image src={'/assets/main-image-heart.webp'} fill alt={''} sizes={'25vw'} />
+		<Card sx={{ borderRadius: 0 }}>
+			<Box position={'relative'} width={'100%'} height={'20rem'}>
+				<Image src={'/assets/main-image-heart.webp'} fill alt={''} sizes={'25vw'} objectFit={'cover'} />
 			</Box>
 			<Stack p={'1.5rem'} gap={'0.3rem'}>
 				<Typography>Leden 2023</Typography>
