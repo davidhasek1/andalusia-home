@@ -38,7 +38,7 @@ export const Header: FC = () => {
 				pt={{ lg: 10 }}
 			>
 				<Stack alignItems={'center'} direction={{ lg: 'row', xs: 'column' }} gap={10}>
-					<Stack justifyContent={'center'} width={'100%'} alignItems={'center'} pt={{ lg: 0, xs: 40 }}>
+					<Stack justifyContent={'center'} width={'100%'} alignItems={'flex-start'} pt={{ lg: 0, xs: 0 }}>
 						<Typography variant={'h1'} color={(theme) => theme.palette.common.white} sx={{ textShadow: '3px 3px 4px rgba(0, 0, 0, 0.5)' }}>
 							<FormattedMessage id={'header.title'} />
 						</Typography>
