@@ -77,7 +77,9 @@ export const Navigation: FC = () => {
 								},
 							}}
 						>
-							<Typography>{link.title}</Typography>
+							<Typography fontSize={'1.15rem'} fontWeight={600}>
+								{link.title}
+							</Typography>
 						</Link>
 						{i !== navigation.length - 1 ? (
 							// eslint-disable-next-line formatjs/no-literal-string-in-jsx
@@ -97,8 +99,8 @@ export const Navigation: FC = () => {
 					</Typography>
 				</Button>
 			</Stack>
-			<IconButton onClick={() => setOpenDrawer(true)} sx={{ display: { lg: 'none' } }}>
-				<MenuIcon />
+			<IconButton onClick={() => setOpenDrawer(true)} sx={{ display: { lg: 'none' }, color: '#fff', ':hover': { bgcolor: 'transparent' } }}>
+				<MenuIcon sx={{ width: '2rem', height: '2rem' }} />
 			</IconButton>
 			<Drawer
 				anchor={'right'}
