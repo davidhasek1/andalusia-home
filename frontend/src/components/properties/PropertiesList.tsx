@@ -1,5 +1,5 @@
 'use client';
-import { Button, CircularProgress, Drawer, Stack, Typography } from '@mui/material';
+import { Button, CircularProgress, Drawer, Stack, Typography, Pagination } from '@mui/material';
 import { FC, useState } from 'react';
 import { PropertyCard } from './PropertyCard';
 import { useQuery } from '@apollo/client';
@@ -61,6 +61,15 @@ export const PropertiesList: FC = () => {
 		pages.push({ page: i + 1 });
 	}
 
+	const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+		setPage(value);
+		fetchMore({
+			variables: {
+				page: value,
+			},
+		});
+	};
+
 	const properties = data?.listPropertiesForSale.Property ?? [];
 
 	return (
@@ -94,13 +103,8 @@ export const PropertiesList: FC = () => {
 					<FormattedMessage id={'properties.filters.no-results'} />
 				</Typography>
 			)}
-
-			<Stack direction={'row'} flexWrap={'wrap'}>
-				{pages.map((p) => (
-					<Button key={p.page} onClick={() => setPage(p.page)}>
-						{p.page}
-					</Button>
-				))}
+			<Stack alignItems={'center'}>
+				<Pagination count={pages.length} page={page} onChange={handlePageChange} />
 			</Stack>
 		</Stack>
 	);
