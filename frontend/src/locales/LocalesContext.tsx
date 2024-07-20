@@ -16,7 +16,7 @@ export const LocalesContext: FC<PropsWithChildren> = ({ children }) => {
 	}, []);
 	return (
 		/* It takes a while to load locals and console show MISSING TRANSLATION. prop onError IntlProvider turns that off like this onError={() => null} */
-		<IntlProvider messages={messages} locale={"cs"} defaultLocale={"en"}>
+		<IntlProvider messages={messages} locale={'cs'} defaultLocale={'en'} onError={() => null}>
 			{children}
 		</IntlProvider>
 	);

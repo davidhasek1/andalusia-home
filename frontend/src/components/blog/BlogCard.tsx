@@ -10,6 +10,7 @@ export type BlogPost = Readonly<{
 	slug: string;
 	perex: string;
 	fullContent: string;
+	showOnHomepage?: boolean;
 }>;
 
 const BlogCard: FC<Readonly<{ data: BlogPost }>> = ({ data }) => {
