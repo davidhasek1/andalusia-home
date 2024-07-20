@@ -79,10 +79,6 @@ export const PropertiesList: FC = () => {
 
 	const properties = data?.listPropertiesForSale.Property ?? [];
 
-	console.log(properties);
-
-	properties.filter((item) => item);
-
 	return (
 		<Stack width={'100%'} position={'relative'} gap={5} p={5}>
 			<Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
