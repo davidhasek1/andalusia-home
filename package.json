@@ -13,7 +13,8 @@
 		"check:lint": "yarn workspaces foreach --all run check:lint",
 		"check:types": "yarn workspaces foreach --all run check:types",
 		"check:all": "yarn workspaces foreach --all run check:all",
-		"api:generate-schema": "yarn workspace apigw run extract-schema; yarn workspace frontend gql:generate; yarn workspace apigw gql:generate"
+		"api:generate-schema": "yarn workspace apigw run extract-schema; yarn workspace frontend gql:generate; yarn workspace apigw gql:generate",
+		"postinstall": "patch-package"
 	},
 	"devDependencies": {
 		"@types/qs": "^6",
@@ -21,6 +22,7 @@
 	},
 	"dependencies": {
 		"dotenv": "^16.4.5",
+		"patch-package": "^8.0.0",
 		"qs": "^6.12.1",
 		"react-markdown": "^9.0.1"
 	}

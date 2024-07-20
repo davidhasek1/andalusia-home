@@ -8,7 +8,8 @@
 		"build": "tsc",
 		"check:types": "tsc --noEmit",
 		"gql:generate": "graphql-codegen --config graphql-codegen.config.ts",
-		"extract-schema": "graphql-inspector introspect --write ../apigw_schema.graphql http://localhost:4000/graphql"
+		"extract-schema": "graphql-inspector introspect --write ../apigw_schema.graphql http://localhost:4000/graphql",
+		"postinstall": "patch-package"
 	},
 	"dependencies": {
 		"@apollo/datasource-rest": "6.3.0",
@@ -21,6 +22,7 @@
 		"@graphql-codegen/typescript-resolvers": "4.2.1",
 		"@graphql-inspector/cli": "5.0.6",
 		"@graphql-inspector/introspect-command": "5.0.6",
+		"patch-package": "^8.0.0",
 		"tsx": "4.16.2",
 		"typescript": "5.4.5"
 	}
