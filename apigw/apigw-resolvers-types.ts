@@ -113,6 +113,7 @@ export type PropertiesType = {
   readonly OriginalPrice: Scalars['Int']['output'];
   readonly OwnProperty: Scalars['String']['output'];
   readonly Parking: Scalars['Int']['output'];
+  readonly Pictures?: Maybe<Pictures>;
   readonly Pool: Scalars['Int']['output'];
   readonly Price: Scalars['Int']['output'];
   readonly PropertyType: PropertyTypeType;
@@ -475,6 +476,7 @@ export type PropertiesTypeResolvers<ContextType = any, ParentType extends Resolv
   OriginalPrice?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   OwnProperty?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   Parking?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  Pictures?: Resolver<Maybe<ResolversTypes['Pictures']>, ParentType, ContextType>;
   Pool?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   Price?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   PropertyType?: Resolver<ResolversTypes['PropertyTypeType'], ParentType, ContextType>;
