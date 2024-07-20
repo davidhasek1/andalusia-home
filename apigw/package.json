@@ -13,7 +13,7 @@
 	"dependencies": {
 		"@apollo/datasource-rest": "6.3.0",
 		"@apollo/server": "4.10.4",
-		"graphql": "16.8.1"
+		"graphql": "16.9.0"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "5.0.2",
