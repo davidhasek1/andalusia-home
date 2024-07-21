@@ -104,6 +104,17 @@ const theme = createTheme({
 					'&:hover': {
 						border: 'none',
 						backgroundColor: 'transparent',
+						color: '#000',
+					},
+				},
+				text: {
+					border: 'none',
+					fontWeight: 800,
+					color: '#000',
+					borderRadius: 20,
+					backgroundColor: 'transparent',
+					'&:hover': {
+						border: 'none',
 
 						color: '#000',
 					},
