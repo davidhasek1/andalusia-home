@@ -14,11 +14,11 @@ const createFilterQueryString = (filter?: InputMaybe<PropertiesFilterInput>) => 
 
 		switch (typedKey) {
 			case 'bedsCount': {
-				filterQs = filterQs.concat(`&P_Beds=${value}`);
+				filterQs = filterQs.concat(`&P_Beds=${value}x`);
 				break;
 			}
 			case 'bathsCount': {
-				filterQs = filterQs.concat(`&P_Baths=${value}`);
+				filterQs = filterQs.concat(`&P_Baths=${value}x`);
 				break;
 			}
 			case 'location': {
