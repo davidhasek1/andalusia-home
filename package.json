@@ -16,13 +16,6 @@
 		"api:generate-schema": "yarn workspace apigw run extract-schema; yarn workspace frontend gql:generate; yarn workspace apigw gql:generate"
 	},
 	"devDependencies": {
-		"@types/qs": "^6",
 		"concurrently": "^8.2.2"
-	},
-	"dependencies": {
-		"dotenv": "^16.4.5",
-		"patch-package": "^8.0.0",
-		"qs": "^6.12.1",
-		"react-markdown": "^9.0.1"
 	}
 }

@@ -13,6 +13,7 @@
 	"dependencies": {
 		"@apollo/datasource-rest": "6.3.0",
 		"@apollo/server": "4.10.4",
+		"dotenv": "^16.4.5",
 		"graphql": "16.9.0"
 	},
 	"devDependencies": {
@@ -21,7 +22,6 @@
 		"@graphql-codegen/typescript-resolvers": "4.2.1",
 		"@graphql-inspector/cli": "5.0.6",
 		"@graphql-inspector/introspect-command": "5.0.6",
-		"patch-package": "^8.0.0",
 		"tsx": "4.16.2",
 		"typescript": "5.4.5"
 	}
