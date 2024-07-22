@@ -4,6 +4,10 @@
 		"apigw",
 		"frontend"
 	],
+	"nohoist": [
+		"apigw/@apollo/server",
+		"apigw/@apollo/server/**"
+	],
 	"scripts": {
 		"frontend:dev": "yarn workspace frontend dev",
 		"frontend:start": "yarn workspace frontend start",
