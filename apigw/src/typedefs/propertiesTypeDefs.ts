@@ -36,6 +36,7 @@ const typeDefsProperties = `#graphql
     Garden:  Int!
     Description: String!
     MainImage: String
+    Pictures: Pictures
   }
 
   type QueryInfoType {

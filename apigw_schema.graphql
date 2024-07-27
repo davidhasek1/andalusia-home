@@ -85,6 +85,7 @@ type PropertiesType {
   OriginalPrice: Int!
   OwnProperty: String!
   Parking: Int!
+  Pictures: Pictures
   Pool: Int!
   Price: Int!
   PropertyType: PropertyTypeType!

@@ -32,6 +32,13 @@ export const listProperties = graphql(`
 				Built
 				GardenPlot
 				MainImage
+				Pictures {
+					Count
+					Picture {
+						Id
+						PictureURL
+					}
+				}
 			}
 		}
 	}

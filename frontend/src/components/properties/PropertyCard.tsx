@@ -44,7 +44,7 @@ export const PropertyCard: FC<Props> = ({ property, isWatchlisted }) => {
 
 					<Box position={'relative'} minWidth={{ lg: 500, md: 350 }} height={{ lg: 350, xs: 400 }}>
 						<Image
-							src={property.MainImage ?? '/assets/property-placeholder.webp'}
+							src={property.MainImage ?? property.Pictures?.Picture?.[0]?.PictureURL ?? '/assets/property-placeholder.webp'}
 							fill
 							alt={''}
 							loading={'eager'}
