@@ -22,7 +22,7 @@
 		"@graphql-codegen/typescript-resolvers": "4.2.1",
 		"@graphql-inspector/cli": "5.0.6",
 		"@graphql-inspector/introspect-command": "5.0.6",
-		"tsx": "4.16.2",
+		"tsx": "4.16.5",
 		"typescript": "5.4.5"
 	}
 }
