@@ -2,8 +2,9 @@
 import { Link, Stack, Typography } from '@mui/material';
 import { navigation } from './Navigation';
 import Image from 'next/image';
-import Logo from '../../public/logo_light.svg';
+import Logo from '../../public/logo-fill-color.jpg';
 import { FormattedMessage } from 'react-intl';
+import { Fragment } from 'react';
 
 export const Footer = () => {
 	return (
@@ -11,9 +12,8 @@ export const Footer = () => {
 			<Image src={Logo} alt={'logo'} width={150} objectFit={'cover'} />
 			<Stack direction={'row'} display={{ lg: 'flex', xs: 'none' }}>
 				{navigation.map((link, i) => (
-					<>
+					<Fragment key={link.url}>
 						<Link
-							key={link.url}
 							href={link.url}
 							sx={{
 								textDecoration: 'none',
@@ -35,7 +35,7 @@ export const Footer = () => {
 						) : (
 							''
 						)}
-					</>
+					</Fragment>
 				))}
 			</Stack>
 			<Stack>

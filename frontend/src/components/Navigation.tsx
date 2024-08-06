@@ -2,8 +2,8 @@
 import { Button, ButtonBase, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
 import { FC, Fragment, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import LogoDark from '../../public/logo_dark.svg';
-import LogoLight from '../../public/logo_light.svg';
+import LogoGrey from '../../public/logo-grey.png';
+import LogoColored from '../../public/logo-color.png';
 import Image from 'next/image';
 import MenuIcon from '@mui/icons-material/Menu';
 import { usePathname } from 'next/navigation';
@@ -60,7 +60,7 @@ export const Navigation: FC = () => {
 			sx={{ backdropFilter: path === '/' ? 'blur(3px)' : 'unset' }}
 		>
 			<ButtonBase href={'/'}>
-				<Image src={changeBg ? LogoDark : path === '/' ? LogoLight : LogoDark} alt={'logo'} width={150} objectFit={'cover'} />
+				<Image src={changeBg ? LogoGrey : path === '/' ? LogoColored : LogoGrey} alt={'logo'} width={150} objectFit={'cover'} />
 			</ButtonBase>
 			<Stack direction={'row'} display={{ xs: 'none', lg: 'flex' }}>
 				{navigation.map((link, i) => (
@@ -99,7 +99,10 @@ export const Navigation: FC = () => {
 					</Typography>
 				</Button>
 			</Stack>
-			<IconButton onClick={() => setOpenDrawer(true)} sx={{ display: { lg: 'none' }, color: '#fff', ':hover': { bgcolor: 'transparent' } }}>
+			<IconButton
+				onClick={() => setOpenDrawer(true)}
+				sx={{ display: { lg: 'none' }, color: changeBg ? '#000' : path !== '/' ? '#000' : '#fff', ':hover': { bgcolor: 'transparent' } }}
+			>
 				<MenuIcon sx={{ width: '2rem', height: '2rem' }} />
 			</IconButton>
 			<Drawer
@@ -140,7 +143,7 @@ export const Navigation: FC = () => {
 					</Button>
 				</Stack>
 				<Stack marginTop={'auto'}>
-					<Image src={LogoDark} alt={'logo'} width={150} objectFit={'cover'} />
+					<Image src={LogoGrey} alt={'logo'} width={150} objectFit={'cover'} />
 				</Stack>
 			</Drawer>
 		</Stack>
