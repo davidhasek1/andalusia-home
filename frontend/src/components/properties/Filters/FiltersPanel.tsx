@@ -64,15 +64,7 @@ export const FiltersPanel: FC = () => {
 
 	console.log('filters FE', filters);
 	return (
-		<Stack
-			minWidth={300}
-			maxWidth={300}
-			minHeight={'100%'}
-			px={2}
-			py={5}
-			gap={2}
-			borderRight={{ lg: `1px solid ${theme.palette.grey[300]}`, xs: 'none' }}
-		>
+		<Stack width={300} minHeight={'100%'} px={2} py={5} gap={2} borderRight={{ lg: `1px solid ${theme.palette.grey[300]}`, xs: 'none' }}>
 			<Typography variant={'h5'}>
 				<FormattedMessage id={'properties.filters.title'} />
 			</Typography>

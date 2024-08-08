@@ -10,6 +10,8 @@ import { filters_listLocations, filters_listPropertyTypes } from '../../properti
 
 const CustomInput = styled(InputBase)(({ theme }) => ({
 	'& .MuiInputBase-input': {
+		display: 'flex',
+		flexWrap: 'wrap',
 		backgroundColor: 'white',
 		padding: theme.spacing(1),
 		borderRadius: theme.shape.borderRadius,
@@ -67,13 +69,15 @@ const SearchForm = () => {
 			flexWrap={'nowrap'}
 			sx={{ bgcolor: '#fff' }}
 			width={{ lg: 'inherit', xs: '100%' }}
+			overflow={'hidden'}
 		>
-			<Stack direction={{ lg: 'row', xs: 'column' }} p={2} gap={2} flexWrap={'wrap'}>
-				<CustomFormControl variant={'outlined'}>
+			<Stack direction={{ lg: 'row', xs: 'column' }} p={2} gap={2}>
+				<CustomFormControl variant={'outlined'} sx={{ width: { lg: 300, sx: '100%' } }}>
 					<FormLabel>
 						<FormattedMessage id={'properties.filters.location'} />
 					</FormLabel>
 					<Select
+						sx={{ display: 'flex', flexWrap: 'wrap' }}
 						multiple
 						value={typeof filters.location === 'string' ? (filters.location as string).split(',') : filters.location || []}
 						onChange={(e) => {
@@ -95,7 +99,7 @@ const SearchForm = () => {
 					</Select>
 				</CustomFormControl>
 
-				<CustomFormControl variant={'outlined'}>
+				<CustomFormControl variant={'outlined'} sx={{ width: { lg: 300, sx: '100%' } }}>
 					<FormLabel>
 						<FormattedMessage id={'properties.filters.property-type'} />
 					</FormLabel>
