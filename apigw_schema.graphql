@@ -56,7 +56,7 @@ type Properties {
 input PropertiesFilterInput {
   bathsCount: Int
   bedsCount: Int
-  location: String
+  location: [String]
   maxPrice: Int
   minPrice: Int
   propertyType: [String]

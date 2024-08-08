@@ -107,12 +107,12 @@ export const FiltersPanel: FC = () => {
 					<FormattedMessage id={'properties.filters.location'} />
 				</InputLabel>
 				<Select
-					value={filters.location}
+					multiple
+					value={typeof filters.location === 'string' ? (filters.location as string).split(',') : filters.location || []}
 					onChange={(e) => {
-						console.log('lco qs', e.target.value);
 						setFilters((prev) => ({
 							...prev,
-							location: e.target.value,
+							location: typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value,
 						}));
 						router.push(`${path}?${createOrDeleteQueryParams('location', e?.target?.value?.toString())}`);
 					}}

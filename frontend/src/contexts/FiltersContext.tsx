@@ -14,7 +14,7 @@ const initialState = {
 	maxPrice: 0,
 	bedsCount: 0,
 	bathsCount: 0,
-	location: '',
+	location: [],
 	propertyType: [],
 };
 

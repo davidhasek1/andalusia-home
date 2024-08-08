@@ -39,7 +39,7 @@ const SearchForm = () => {
 	const handleSearch = () => {
 		console.log('Hledání s hodnotami:', filters);
 		let qs = `/properties?`;
-		if (filters.location) {
+		if (filters.location?.length !== 0) {
 			qs = qs + `location=${filters.location}`;
 		}
 		if (filters.propertyType?.length !== 0) {
@@ -71,16 +71,15 @@ const SearchForm = () => {
 			<Stack direction={{ lg: 'row', xs: 'column' }} p={2} gap={2} flexWrap={'wrap'}>
 				<CustomFormControl variant={'outlined'}>
 					<FormLabel>
-						{' '}
 						<FormattedMessage id={'properties.filters.location'} />
 					</FormLabel>
 					<Select
-						value={filters.location}
+						multiple
+						value={typeof filters.location === 'string' ? (filters.location as string).split(',') : filters.location || []}
 						onChange={(e) => {
-							console.log('lco qs', e.target.value);
 							setFilters((prev) => ({
 								...prev,
-								location: e.target.value,
+								location: typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value,
 							}));
 						}}
 						input={<CustomInput />}
