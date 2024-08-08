@@ -168,7 +168,9 @@ export const FiltersPanel: FC = () => {
 					<MenuItem value={5}>5+</MenuItem>
 				</Select>
 			</FormControl>
-			<Button href={'/properties'}>Clear all</Button>
+			<Button href={'/properties'}>
+				<FormattedMessage id={'properties.filters.reset-filters'} />
+			</Button>
 		</Stack>
 	);
 };
