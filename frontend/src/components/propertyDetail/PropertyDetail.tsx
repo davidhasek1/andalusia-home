@@ -173,7 +173,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							height={'100%'}
 							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 						/>
-						<Image src={images[0].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+						<Image src={images[0].src ?? ''} alt={'foo'} fill style={{ objectFit: 'cover' }}></Image>
 					</Stack>
 				</Stack>
 			</Stack>
@@ -243,7 +243,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							height={'100%'}
 							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 						>
-							<Image src={images[0].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+							<Image src={images[0].src ?? ''} alt={'foo'} fill style={{ objectFit: 'cover' }}></Image>
 						</Stack>
 					</Stack>
 
@@ -256,7 +256,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							height={'100%'}
 							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 						>
-							<Image src={images[1].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+							<Image src={images[1].src ?? ''} alt={'foo'} fill style={{ objectFit: 'cover' }}></Image>
 						</Stack>
 						<Stack
 							id={'essential-info'}
@@ -319,7 +319,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							height={'100%'}
 							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 						>
-							<Image src={images[2].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+							<Image src={images[2].src ?? ''} alt={'foo'} fill style={{ objectFit: 'cover' }}></Image>
 						</Stack>
 					</Stack>
 				</Stack>

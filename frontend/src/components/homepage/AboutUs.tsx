@@ -28,7 +28,7 @@ const AboutUs: FC<Props> = ({ order }) => {
 			</Stack>
 			<Stack flex={2} pl={{ xl: 20, xs: 0 }} gap={2}>
 				<Stack position={'relative'} width={'100%'} height={500}>
-					<Image src={'/assets/main-image.webp'} fill alt={'img'} objectFit={'cover'} />
+					<Image src={'/assets/main-image.webp'} fill alt={'img'} style={{ objectFit: 'cover' }} />
 				</Stack>
 				<Stack gap={2}>
 					<Typography variant={'body2'} lineHeight={2} textAlign={'justify'}>

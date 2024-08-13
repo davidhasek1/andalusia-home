@@ -153,7 +153,7 @@ export const ContactForm: FC<Props> = ({ imageSrc, propertyId }) => {
 						<Typography variant={'body1'}>+420 999 999 999</Typography>
 					</Grid>
 					<Stack marginTop={'auto'} alignItems={'center'}>
-						<Image src={LogoGrey} alt={'logo'} width={150} objectFit={'cover'} />
+						<Image src={LogoGrey} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
 					</Stack>
 				</Stack>
 			</Stack>
