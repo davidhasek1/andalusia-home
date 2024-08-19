@@ -15,8 +15,8 @@ export type BlogPost = Readonly<{
 
 const BlogCard: FC<Readonly<{ data: BlogPost }>> = ({ data }) => {
 	return (
-		<CardActionArea href={`/blog/${data.slug}`}>
-			<Card sx={{ borderRadius: 0 }}>
+		<CardActionArea href={`/blog/${data.slug}`} sx={{ height: '100%' }}>
+			<Card sx={{ borderRadius: 0, height: '100%' }}>
 				<Box position={'relative'} width={'100%'} height={'20rem'}>
 					<Image src={'/assets/main-image.webp'} fill alt={''} sizes={'25vw'} objectFit={'cover'} />
 				</Box>

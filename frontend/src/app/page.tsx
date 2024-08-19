@@ -6,6 +6,7 @@ import { WhySpain } from '../components/homepage/WhySpain';
 import { FeaturedBlog } from '../components/homepage/FeaturedBlog';
 import { Benefits } from '../components/homepage/Benefits';
 import { WhyWithUs } from '../components/homepage/WhyWithUs';
+import { Faq } from '../components/homepage/Faq';
 
 const Homepage = () => {
 	return (
@@ -18,6 +19,7 @@ const Homepage = () => {
 				<WhySpain order={2} />
 				<WhyWithUs order={3} />
 				<FeaturedBlog order={4} />
+				<Faq order={5} />
 				{/* <FeaturedProperties order={3} /> */}
 			</Stack>
 		</Stack>
