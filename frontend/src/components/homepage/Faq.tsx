@@ -23,6 +23,11 @@ const faqs = [
 		title: <FormattedMessage id={'homepage.faq.title3'} />,
 		content: <FormattedMessage id={'homepage.faq.content3'} />,
 	},
+	{
+		id: 4,
+		title: <FormattedMessage id={'homepage.faq.title3'} />,
+		content: <FormattedMessage id={'homepage.faq.content3'} />,
+	},
 ];
 
 type Props = CommonProps;
