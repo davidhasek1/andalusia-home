@@ -1,0 +1,30 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    tags:
+      - '*' # Spouští workflow při pushi jakéhokoli tagu
+
+jobs:
+  deploy:
+    name: Deploy to Netlify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn workspace frontend build
+
+      - name: Deploy to Netlify
+        uses: netlify/actions/deploy@v1
+        with:
+          args: deploy --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DIR: frontend/.next
