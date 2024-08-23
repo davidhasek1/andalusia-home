@@ -1,31 +1,37 @@
-name: Deploy to Netlify
+name: Deploy to Netlify on Tag
 
 on:
   push:
     tags:
-      - '*' # Spouští workflow při pushi jakéhokoli tagu
+      - '*' # Spustí workflow při pushnutí jakéhokoli tagu
 
 jobs:
   deploy:
-    name: Deploy to Netlify
+    name: Deploy to Netlify if Tag is from Master
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: yarn install
+      - name: Get the latest commit on master
+        id: master_commit
+        run: |
+          git fetch origin master
+          echo "::set-output name=commit::$(git rev-parse origin/master)"
 
-      - name: Build project
-        run: yarn workspace frontend build
-
-      - name: Install Netlify CLI
-        run: npm install -g netlify-cli
+      - name: Verify if tag is based on master
+        id: verify_tag
+        run: |
+          TAG_COMMIT=$(git rev-list -n 1 $GITHUB_SHA)
+          if [ "$TAG_COMMIT" == "${{ steps.master_commit.outputs.commit }}" ]; then
+            echo "Tag is based on master"
+            echo "::set-output name=continue::true"
+          else
+            echo "Tag is not based on master"
+            echo "::set-output name=continue::false"
+          fi
 
       - name: Trigger Netlify Deployment
-        run: curl -X POST -d {} https://api.netlify.com/build_hooks/66c90892d1cee323af153272
-        env:
-          DEPLOY_FRONTEND_WEBHOOK: ${{ secrets.DEPLOY_FRONTEND_WEBHOOK }}
-
-    
+        if: steps.verify_tag.outputs.continue == 'true'
+        run: curl -X POST -d {} ${{ secrets.NETLIFY_DEPLOYMENT_HOOK_URL }}
