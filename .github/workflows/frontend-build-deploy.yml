@@ -32,6 +32,17 @@ jobs:
             echo "::set-output name=continue::false"
           fi
 
-      - name: Trigger Netlify Deployment
+      - name: Install Netlify CLI
         if: steps.verify_tag.outputs.continue == 'true'
-        run: curl -X POST -d {} ${{ secrets.DEPLOY_FRONTEND_WEBHOOK }}
+        run: npm install -g netlify-cli
+
+      - name: Build project
+        if: steps.verify_tag.outputs.continue == 'true'
+        run: yarn workspace frontend build
+
+      - name: Deploy to Netlify
+        if: steps.verify_tag.outputs.continue == 'true'
+        run: netlify deploy --prod --dir=frontend/.next --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --debug
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
