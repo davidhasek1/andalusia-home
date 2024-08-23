@@ -24,7 +24,7 @@ jobs:
         run: npm install -g netlify-cli
 
       - name: Deploy to Netlify
-        run: netlify deploy --prod --dir=frontend/.next  # Upravte cestu ke složce s buildem
+        run: netlify deploy --prod --dir=frontend/.next --site-id=$NETLIFY_SITE_ID # Upravte cestu ke složce s buildem
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
