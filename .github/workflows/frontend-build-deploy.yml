@@ -34,4 +34,4 @@ jobs:
 
       - name: Trigger Netlify Deployment
         if: steps.verify_tag.outputs.continue == 'true'
-        run: curl -X POST -d {} ${{ secrets.NETLIFY_DEPLOYMENT_HOOK_URL }}
+        run: curl -X POST -d {} ${{ secrets.DEPLOY_FRONTEND_WEBHOOK }}
