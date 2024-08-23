@@ -25,7 +25,7 @@ jobs:
 
       - name: Deploy to Netlify
         working-directory: frontend
-        run: netlify deploy --prod --dir=frontend/.next --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --debug
+        run: netlify deploy --prod --dir=frontend/.next --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --trigger --debug
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
