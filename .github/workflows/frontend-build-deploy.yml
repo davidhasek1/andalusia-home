@@ -23,11 +23,9 @@ jobs:
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
 
-      - name: Deploy to Netlify
-        working-directory: frontend
-        run: netlify deploy --prod --dir=frontend/.next --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID --trigger --debug
+      - name: Trigger Netlify Deployment
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/66c90892d1cee323af153272
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          DEPLOY_FRONTEND_WEBHOOK: ${{ secrets.DEPLOY_FRONTEND_WEBHOOK }}
 
     
