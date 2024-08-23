@@ -20,11 +20,13 @@ jobs:
       - name: Build project
         run: yarn workspace frontend build
 
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
       - name: Deploy to Netlify
-        uses: netlify/actions/deploy@v1
-        with:
-          args: deploy --prod
+        run: netlify deploy --prod --dir=frontend/.next  # Upravte cestu ke složce s buildem
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_DIR: frontend/.next
+
+    
