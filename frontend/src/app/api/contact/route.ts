@@ -16,13 +16,12 @@ export const POST = async (request: NextRequest) => {
 	const propertyId = formData.propertyId;
 
 	const transporter = nodemailer.createTransport({
-		Service: 'seznam',
 		auth: {
 			user: username,
 			pass: password,
 		},
-		port: 465,
-		host: 'smtp.seznam.cz',
+		port: 587,
+		host: 'smtp.forpsi.com',
 	});
 
 	const subjectMessage =
