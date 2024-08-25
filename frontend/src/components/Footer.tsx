@@ -2,14 +2,14 @@
 import { Link, Stack, Typography } from '@mui/material';
 import { navigation } from './Navigation';
 import Image from 'next/image';
-import Logo from '../../public/logo-fill-color.jpg';
+import Logo from '../../public/logo-white.png';
 import { FormattedMessage } from 'react-intl';
 import { Fragment } from 'react';
 
 export const Footer = () => {
 	return (
 		<Stack direction={'column'} alignItems={'center'} p={10} gap={10} bgcolor={(theme) => theme.palette.common.black}>
-			<Image src={Logo} alt={'logo'} width={150} objectFit={'cover'} />
+			<Image src={Logo} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
 			<Stack direction={'row'} display={{ lg: 'flex', xs: 'none' }}>
 				{navigation.map((link, i) => (
 					<Fragment key={link.url}>

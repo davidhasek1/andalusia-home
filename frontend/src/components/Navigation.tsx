@@ -60,7 +60,7 @@ export const Navigation: FC = () => {
 			sx={{ backdropFilter: path === '/' ? 'blur(3px)' : 'unset' }}
 		>
 			<ButtonBase href={'/'}>
-				<Image src={changeBg ? LogoGrey : path === '/' ? LogoColored : LogoGrey} alt={'logo'} width={150} objectFit={'cover'} />
+				<Image src={changeBg ? LogoGrey : path === '/' ? LogoColored : LogoGrey} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
 			</ButtonBase>
 			<Stack direction={'row'} display={{ xs: 'none', lg: 'flex' }}>
 				{navigation.map((link, i) => (
@@ -143,7 +143,7 @@ export const Navigation: FC = () => {
 					</Button>
 				</Stack>
 				<Stack marginTop={'auto'}>
-					<Image src={LogoGrey} alt={'logo'} width={150} objectFit={'cover'} />
+					<Image src={LogoGrey} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
 				</Stack>
 			</Drawer>
 		</Stack>

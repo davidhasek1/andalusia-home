@@ -18,7 +18,7 @@ const BlogCard: FC<Readonly<{ data: BlogPost }>> = ({ data }) => {
 		<CardActionArea href={`/blog/${data.slug}`} sx={{ height: '100%' }}>
 			<Card sx={{ borderRadius: 0, height: '100%' }}>
 				<Box position={'relative'} width={'100%'} height={'20rem'}>
-					<Image src={'/assets/main-image.webp'} fill alt={''} sizes={'25vw'} objectFit={'cover'} />
+					<Image src={'/assets/main-image.webp'} fill alt={''} sizes={'25vw'} style={{ objectFit: 'cover' }} />
 				</Box>
 				<Stack p={'1.5rem'} gap={'0.3rem'}>
 					<Typography>{formatDate(data.createdAt)}</Typography>
