@@ -14,9 +14,7 @@ const FeaturedBlog: FC<Props> = ({ order }) => {
 			<Typography variant={'h2'}>
 				<FormattedMessage id={'homepage.section.blog.title'} />
 			</Typography>
-			<Stack mt={5}>
-				<BlogList isHomepage />
-			</Stack>
+			<BlogList isHomepage />
 		</Stack>
 	);
 };

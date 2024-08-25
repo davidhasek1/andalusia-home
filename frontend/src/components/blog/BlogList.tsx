@@ -9,7 +9,7 @@ export const BlogList: FC<{ isHomepage?: boolean }> = async ({ isHomepage = fals
 	const homepagePosts = isHomepage ? posts.filter((post) => post.showOnHomepage === true) : [];
 
 	return (
-		<Grid container direction={'row'} spacing={5}>
+		<Grid container direction={'row'} spacing={5} mt={isHomepage ? 5 : 0}>
 			{isHomepage &&
 				homepagePosts.map((post) => {
 					return (

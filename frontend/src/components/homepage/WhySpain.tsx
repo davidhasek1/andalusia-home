@@ -37,12 +37,12 @@ const WhySpain: FC<Props> = ({ order }) => {
 				</Grid>
 				<Grid item xs={12} xl={6}>
 					<Stack position={'relative'} width={'100%'} height={500}>
-						<Image src={'/assets/beach.webp'} alt={'foo'} fill objectFit={'cover'} />
+						<Image src={'/assets/beach.webp'} alt={'foo'} fill style={{ objectFit: 'cover' }} />
 					</Stack>
 				</Grid>
 				<Grid item xs={12} xl={6}>
 					<Stack position={'relative'} width={'100%'} height={500}>
-						<Image src={'/assets/cycling.webp'} alt={'foo'} fill objectFit={'cover'} />
+						<Image src={'/assets/cycling.webp'} alt={'foo'} fill style={{ objectFit: 'cover' }} />
 					</Stack>
 				</Grid>
 				<Grid item xs={12} xl={6} display={'flex'} direction={'column'} gap={2}>
@@ -69,7 +69,7 @@ const WhySpain: FC<Props> = ({ order }) => {
 				</Grid>
 				<Grid item xs={12} xl={6}>
 					<Stack position={'relative'} width={'100%'} height={500}>
-						<Image src={'/assets/golf.webp'} alt={'foo'} fill objectFit={'cover'} />
+						<Image src={'/assets/golf.webp'} alt={'foo'} fill style={{ objectFit: 'cover' }} />
 					</Stack>
 				</Grid>
 			</Grid>

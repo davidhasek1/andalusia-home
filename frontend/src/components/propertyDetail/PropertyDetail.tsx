@@ -155,7 +155,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 								position: 'absolute',
 								right: 1,
 								bottom: 0,
-								p: 3,
+								p: { xs: 2, sm: 3 },
 								mr: 2,
 								mb: 2,
 								border: (theme) => `1px solid${theme.palette.common.white}`,
@@ -173,7 +173,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							height={'100%'}
 							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 						/>
-						<Image src={images[0].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+						<Image src={images[0].src ?? ''} alt={'foo'} fill style={{ objectFit: 'cover' }}></Image>
 					</Stack>
 				</Stack>
 			</Stack>
@@ -243,7 +243,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							height={'100%'}
 							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 						>
-							<Image src={images[0].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+							<Image src={images[0].src ?? ''} alt={'foo'} fill style={{ objectFit: 'cover' }}></Image>
 						</Stack>
 					</Stack>
 
@@ -256,7 +256,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							height={'100%'}
 							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 						>
-							<Image src={images[1].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+							<Image src={images[1].src ?? ''} alt={'foo'} fill style={{ objectFit: 'cover' }}></Image>
 						</Stack>
 						<Stack
 							id={'essential-info'}
@@ -270,7 +270,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							<Typography variant={'h4'} lineHeight={'2.5rem'} textAlign={'justify'}>
 								<FormattedMessage id={'property.detail.essential-info'} />
 							</Typography>
-							<Grid display={'grid'} gridTemplateColumns={'1fr 1fr 1fr'} gap={4}>
+							<Grid display={'grid'} gridTemplateColumns={{ xs: '1fr 1fr', sm: '1fr 1fr 1fr' }} gap={4}>
 								{essentialInfo?.map(({ type, value }) => (
 									<Stack key={type}>
 										<Typography variant={'caption'} fontSize={14} color={'GrayText'}>
@@ -319,7 +319,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 							height={'100%'}
 							sx={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}
 						>
-							<Image src={images[2].src ?? ''} alt={'foo'} fill objectFit={'cover'}></Image>
+							<Image src={images[2].src ?? ''} alt={'foo'} fill style={{ objectFit: 'cover' }}></Image>
 						</Stack>
 					</Stack>
 				</Stack>
