@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+      
     - name: Get the commit hash
       run: echo "REACT_APP_COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
