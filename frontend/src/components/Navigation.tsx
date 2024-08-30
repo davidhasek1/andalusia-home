@@ -1,5 +1,5 @@
 'use client';
-import { Button, ButtonBase, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
+import { Box, Button, ButtonBase, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
 import { FC, Fragment, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import LogoGrey from '../../public/logo-grey.png';
@@ -61,6 +61,8 @@ export const Navigation: FC = () => {
 		>
 			<ButtonBase href={'/'}>
 				<Image src={changeBg ? LogoGrey : path === '/' ? LogoColored : LogoGrey} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
+				{/*eslint-disable-next-line formatjs/no-literal-string-in-jsx*/}
+				{process.env.NODE_ENV === 'development' && <Box sx={{ backgroundColor: '#ffcc00' }}>DEV</Box>}
 			</ButtonBase>
 			<Stack direction={'row'} display={{ xs: 'none', lg: 'flex' }}>
 				{navigation.map((link, i) => (

@@ -23,6 +23,13 @@ export default function AppLayout({
 }: Readonly<{
 	children: ReactNode;
 }>) {
+	if (process.env.REACT_APP_COMMIT_HASH != null) {
+		console.log(`Commit hash %c${process.env.REACT_APP_COMMIT_HASH}`, 'font-weight: bold');
+	}
+
+	if (process.env.REACT_APP_BUILT_AT != null) {
+		console.log(`Build at %c${process.env.REACT_APP_BUILT_AT}`, 'font-weight: bold');
+	}
 	return (
 		<html lang={'en'}>
 			<head>

@@ -8,5 +8,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - run: curl -X POST -d {} https://api.vercel.com/v1/integrations/deploy/prj_QwAIbk2SSOaNDkxh9Y3jTWX1OZQm/jrNSnozLDW
+    - name: Get the commit hash
+      run: echo "REACT_APP_COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
+
+    - name: Get the build time
+      run: echo "REACT_APP_BUILT_AT=$(date +%Y-%m-%dT%H:%M:%S)" >> $GITHUB_ENV
+
+    - run: curl -X POST -d {} https://api.vercel.com/v1/integrations/deploy/prj_QwAIbk2SSOaNDkxh9Y3jTWX1OZQm/jrNSnozLDW
