@@ -35,6 +35,13 @@ export const Navigation: FC = () => {
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const path = usePathname();
 	const [changeBg, setChangeBg] = useState(false);
+	const [isDev, setIsDev] = useState(false);
+
+	useEffect(() => {
+		if (process.env.NODE_ENV === 'development' || window.location.href.includes('dev')) {
+			setIsDev(true);
+		}
+	}, []);
 
 	useEffect(() => {
 		addEventListener('scroll', () => {
@@ -59,11 +66,12 @@ export const Navigation: FC = () => {
 			bgcolor={(theme) => (changeBg ? theme.palette.common.white : path === '/' ? 'rgba(0, 0, 0, 0.122)' : 'unset')}
 			sx={{ backdropFilter: path === '/' ? 'blur(3px)' : 'unset' }}
 		>
-			<ButtonBase href={'/'}>
+			<ButtonBase href={'/'} sx={{ display: 'flex', gap: 2 }}>
 				<Image src={changeBg ? LogoGrey : path === '/' ? LogoColored : LogoGrey} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
-				{/*eslint-disable-next-line formatjs/no-literal-string-in-jsx*/}
-				{process.env.NODE_ENV === 'development' && <Box sx={{ backgroundColor: '#ffcc00' }}>DEV</Box>}
+				{/* eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
+				{isDev && <Box sx={{ backgroundColor: '#ffcc00', p: 1 }}>DEV</Box>}
 			</ButtonBase>
+
 			<Stack direction={'row'} display={{ xs: 'none', lg: 'flex' }}>
 				{navigation.map((link, i) => (
 					<Fragment key={link.url}>
