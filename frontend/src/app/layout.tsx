@@ -5,11 +5,12 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme';
 import { LocalesContext } from '../locales/LocalesContext';
 import { ApolloClientContext } from '../contexts/ApolloClientContext';
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import localFont from 'next/font/local';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { FiltersProvider } from '../contexts/FiltersContext';
+import { LoadingScreen } from '../components/LoadingScreen';
 
 const ourFont = localFont({ src: '../fonts/eurostarregularextended.ttf' });
 
@@ -44,9 +45,11 @@ export default function AppLayout({
 						<ThemeProvider theme={theme}>
 							<LocalesContext>
 								<FiltersProvider>
-									<Navigation />
-									{children}
-									<Footer />
+									<Suspense fallback={<LoadingScreen />}>
+										<Navigation />
+										{children}
+										<Footer />
+									</Suspense>
 								</FiltersProvider>
 							</LocalesContext>
 						</ThemeProvider>
