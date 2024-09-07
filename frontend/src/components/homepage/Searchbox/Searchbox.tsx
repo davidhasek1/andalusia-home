@@ -36,8 +36,6 @@ const SearchForm = () => {
 	const propertyTypes = propertyTypeList?.listPropertyTypes.PropertyTypes.PropertyType ?? [];
 	const flattenPropertyTypes = propertyTypes.flatMap((pt) => pt.SubType.flatMap((st) => st));
 
-	console.log('FIlters', filters);
-
 	const handleSearch = () => {
 		console.log('Hledání s hodnotami:', filters);
 		let qs = `/properties?`;

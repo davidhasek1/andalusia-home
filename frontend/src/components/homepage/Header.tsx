@@ -1,23 +1,80 @@
 'use client';
-import { Button, Stack, Typography } from '@mui/material';
-import { FC } from 'react';
+import { Button, Fade, Stack, Typography } from '@mui/material';
+import { FC, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import SearchForm from './Searchbox/Searchbox';
 
 export const Header: FC = () => {
+	const videoRef = useRef<HTMLVideoElement | null>(null);
+	const [videoIndex, setVideoIndex] = useState(0);
+	const [isFade, setIsFade] = useState(true);
+	const videos = [
+		'https://davidhasek1.github.io/andalusia-home-static/video-1.mp4',
+		'https://davidhasek1.github.io/andalusia-home-static/video-3.mp4',
+	];
+
+	useEffect(() => {
+		const videoPlayer = videoRef.current;
+
+		const handleVideoEnd = () => {
+			setIsFade(false);
+			setTimeout(() => {
+				setIsFade(true);
+				setVideoIndex((prev) => (prev + 1) % videos.length);
+			}, 100);
+		};
+		if (videoPlayer) {
+			videoPlayer.addEventListener('ended', handleVideoEnd);
+
+			return () => {
+				videoPlayer.removeEventListener('ended', handleVideoEnd);
+			};
+		}
+	}, [videoIndex, videos.length]);
+
+	useEffect(() => {
+		const videoPlayer = videoRef.current;
+		if (videoPlayer) {
+			videoPlayer.load();
+			videoPlayer.play();
+		}
+	}, [videoIndex]);
+
 	return (
 		<Stack
 			position={'relative'}
 			px={{ lg: 10, xs: 2 }}
 			pt={15}
 			sx={{
-				backgroundImage: `url("assets/main-pic.jpg")`,
+				/* @legacy static variant of header */
+				/* 	backgroundImage: `url("assets/main-pic.jpg")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
-				backgroundPosition: 'center',
+				backgroundPosition: 'center', */
 				height: '110vh',
+				backgroundColor: 'rgba(255, 255, 255, 0.1)',
 			}}
 		>
+			<Fade in={isFade} timeout={500} style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+				<video
+					ref={videoRef}
+					width={'100%'}
+					height={'100%'}
+					style={{
+						position: 'absolute',
+						left: 0,
+						top: 0,
+						objectFit: 'cover',
+						display: isFade ? 'block' : 'none',
+						backgroundColor: 'rgba(255, 255, 255, 0.1)',
+					}}
+					autoPlay
+					muted
+					controls
+				>
+					<source src={videos[videoIndex]} type={'video/mp4'} />
+				</video>
+			</Fade>
 			<div
 				style={{
 					position: 'absolute',
