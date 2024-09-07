@@ -1,12 +1,15 @@
-/* eslint-disable formatjs/no-literal-string-in-jsx */
+'use client';
 import { Stack, Typography } from '@mui/material';
 import { BlogList } from '../../components/blog/BlogList';
+import { FormattedMessage } from 'react-intl';
 
 const BlogPage = () => {
 	return (
 		<Stack minHeight={'100vh'} p={5} gap={5}>
 			<Stack>
-				<Typography variant={'h2'}>Our Blog - place where you get useful information</Typography>
+				<Typography variant={'h2'}>
+					<FormattedMessage id={'blog.title'} /> {/* @todo: Move header into own component - to have page.tsx as serv component */}
+				</Typography>
 			</Stack>
 			<BlogList />
 		</Stack>

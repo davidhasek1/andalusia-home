@@ -3,42 +3,10 @@ import { Button, Fade, Stack, Typography } from '@mui/material';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import SearchForm from './Searchbox/Searchbox';
+import { useHeaderVideo } from '../../hooks/useHeaderVideo';
 
 export const Header: FC = () => {
-	const videoRef = useRef<HTMLVideoElement | null>(null);
-	const [videoIndex, setVideoIndex] = useState(0);
-	const [isFade, setIsFade] = useState(true);
-	const videos = [
-		'https://davidhasek1.github.io/andalusia-home-static/video-1.mp4',
-		'https://davidhasek1.github.io/andalusia-home-static/video-3.mp4',
-	];
-
-	useEffect(() => {
-		const videoPlayer = videoRef.current;
-
-		const handleVideoEnd = () => {
-			setIsFade(false);
-			setTimeout(() => {
-				setIsFade(true);
-				setVideoIndex((prev) => (prev + 1) % videos.length);
-			}, 100);
-		};
-		if (videoPlayer) {
-			videoPlayer.addEventListener('ended', handleVideoEnd);
-
-			return () => {
-				videoPlayer.removeEventListener('ended', handleVideoEnd);
-			};
-		}
-	}, [videoIndex, videos.length]);
-
-	useEffect(() => {
-		const videoPlayer = videoRef.current;
-		if (videoPlayer) {
-			videoPlayer.load();
-			videoPlayer.play();
-		}
-	}, [videoIndex]);
+	const { videoRef, videos, videoIndex, VideoTransition } = useHeaderVideo();
 
 	return (
 		<Stack
@@ -52,10 +20,9 @@ export const Header: FC = () => {
 				backgroundSize: 'cover',
 				backgroundPosition: 'center', */
 				height: '110vh',
-				backgroundColor: 'rgba(255, 255, 255, 0.1)',
 			}}
 		>
-			<Fade in={isFade} timeout={500} style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+			<VideoTransition>
 				<video
 					ref={videoRef}
 					width={'100%'}
@@ -65,16 +32,15 @@ export const Header: FC = () => {
 						left: 0,
 						top: 0,
 						objectFit: 'cover',
-						display: isFade ? 'block' : 'none',
-						backgroundColor: 'rgba(255, 255, 255, 0.1)',
+						backgroundColor: 'rgba(202, 202, 202, 0.1)',
 					}}
 					autoPlay
 					muted
 					controls
 				>
-					<source src={videos[videoIndex]} type={'video/mp4'} />
+					<source src={videos[videoIndex]} type={'video/mp4'} style={{ backgroundColor: '#000' }} />
 				</video>
-			</Fade>
+			</VideoTransition>
 			<div
 				style={{
 					position: 'absolute',
@@ -82,7 +48,7 @@ export const Header: FC = () => {
 					left: 0,
 					width: '100%',
 					height: '100%',
-					backgroundColor: 'rgba(255, 255, 255, 0.1)',
+					backgroundColor: 'rgba(0, 0, 0, 0.4)',
 				}}
 			/>
 			<Stack

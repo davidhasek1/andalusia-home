@@ -4,7 +4,7 @@ import { Button, Grid, Stack, TextField, Typography, useTheme } from '@mui/mater
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
-import LogoGrey from '../../public/logo-grey.png';
+import LogoOriginal from '../../public/logo-original.svg';
 import Image from 'next/image';
 import { useOpenSnackbar } from './Snackbar';
 import { usePathname } from 'next/navigation';
@@ -153,7 +153,7 @@ export const ContactForm: FC<Props> = ({ imageSrc, propertyId }) => {
 						<Typography variant={'body1'}>+420 999 999 999</Typography>
 					</Grid>
 					<Stack marginTop={'auto'} alignItems={'center'}>
-						<Image src={LogoGrey} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
+						<Image src={LogoOriginal} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
 					</Stack>
 				</Stack>
 			</Stack>

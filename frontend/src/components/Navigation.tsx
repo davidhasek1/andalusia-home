@@ -2,8 +2,8 @@
 import { Box, Button, ButtonBase, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
 import { FC, Fragment, useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import LogoGrey from '../../public/logo-grey.png';
-import LogoColored from '../../public/logo-color.png';
+import LogoWhite from '../../public/logo-white.svg';
+import LogoOriginal from '../../public/logo-original.svg';
 import Image from 'next/image';
 import MenuIcon from '@mui/icons-material/Menu';
 import { usePathname } from 'next/navigation';
@@ -67,7 +67,12 @@ export const Navigation: FC = () => {
 			sx={{ backdropFilter: path === '/' ? 'blur(3px)' : 'unset' }}
 		>
 			<ButtonBase href={'/'} sx={{ display: 'flex', gap: 2 }}>
-				<Image src={changeBg ? LogoGrey : path === '/' ? LogoColored : LogoGrey} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
+				<Image
+					src={changeBg ? LogoOriginal : path === '/' ? LogoWhite : LogoOriginal}
+					alt={'logo'}
+					width={150}
+					style={{ objectFit: 'cover' }}
+				/>
 				{/* eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
 				{isDev && <Box sx={{ backgroundColor: '#ffcc00', p: 1 }}>DEV</Box>}
 			</ButtonBase>
@@ -153,7 +158,7 @@ export const Navigation: FC = () => {
 					</Button>
 				</Stack>
 				<Stack marginTop={'auto'}>
-					<Image src={LogoGrey} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
+					<Image src={LogoWhite} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
 				</Stack>
 			</Drawer>
 		</Stack>
