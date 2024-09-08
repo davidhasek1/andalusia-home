@@ -1,14 +1,17 @@
 import { Fade } from '@mui/material';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState, lazy } from 'react';
+import { LoadingScreen } from '../components/LoadingScreen';
 
 export const useHeaderVideo = () => {
 	const videoRef = useRef<HTMLVideoElement | null>(null);
 	const [videoIndex, setVideoIndex] = useState(0);
 	const [isFade, setIsFade] = useState(true);
+
 	const videos = [
 		'https://davidhasek1.github.io/andalusia-home-static/video-1.mp4',
 		'https://davidhasek1.github.io/andalusia-home-static/video-3.mp4',
 	];
+
 	useEffect(() => {
 		const videoPlayer = videoRef.current;
 
@@ -36,11 +39,35 @@ export const useHeaderVideo = () => {
 		}
 	}, [videoIndex]);
 
-	const VideoTransition: FC<{ children: JSX.Element }> = ({ children }) => (
-		<Fade in={isFade} timeout={500}>
-			{children}
-		</Fade>
-	);
+	const VideoTransition: FC = () => {
+		const [isVideoLoading, setIsVideoLoading] = useState(true);
+		console.log('laofing', isVideoLoading);
+		if (isVideoLoading) {
+			<LoadingScreen />;
+		}
+		return (
+			<Fade in={isFade} timeout={500}>
+				<video
+					ref={videoRef}
+					width={'100%'}
+					height={'100%'}
+					style={{
+						position: 'absolute',
+						left: 0,
+						top: 0,
+						objectFit: 'cover',
+						backgroundColor: 'rgb(0, 0, 0)',
+					}}
+					autoPlay
+					muted
+					controls
+					onLoadedData={() => setIsVideoLoading(false)}
+				>
+					<source src={videos[videoIndex]} type={'video/mp4'} style={{ backgroundColor: '#000' }} />
+				</video>
+			</Fade>
+		);
+	};
 
-	return { videoRef, videos, videoIndex, VideoTransition };
+	return { VideoTransition };
 };

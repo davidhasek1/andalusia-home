@@ -23,25 +23,8 @@ export const Header: FC = () => {
 				height: '110vh',
 			}}
 		>
-			<VideoTransition>
-				<video
-					ref={videoRef}
-					width={'100%'}
-					height={'100%'}
-					style={{
-						position: 'absolute',
-						left: 0,
-						top: 0,
-						objectFit: 'cover',
-						backgroundColor: 'rgba(202, 202, 202, 0.1)',
-					}}
-					autoPlay
-					muted
-					controls
-				>
-					<source src={videos[videoIndex]} type={'video/mp4'} style={{ backgroundColor: '#000' }} />
-				</video>
-			</VideoTransition>
+			<VideoTransition />
+
 			<div
 				style={{
 					position: 'absolute',
