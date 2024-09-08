@@ -9,10 +9,11 @@ import CollectionsIcon from '@mui/icons-material/Collections';
 import { useQuery } from '@apollo/client';
 import { DocumentType, graphql } from '../../gql';
 import { PropertyEssentialInfo } from './PropertyEssentialInfo';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useTranslations } from 'next-intl';
 import { booleanToText } from '../../helpers/booleanToText';
 import { ContactForm } from '../ContactForm';
 import { Close } from '@mui/icons-material';
+import { FormattedMessage } from '../utils/FormattedMessage';
 
 const getPropertyDetail = graphql(`
 	query GetPropertyForSale($referenceId: ID!) {
@@ -74,7 +75,7 @@ export const PropertyDetail: FC<Readonly<{ referenceId: string }>> = ({ referenc
 	const [open, setOpen] = useState(false);
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const { data, loading } = useQuery(getPropertyDetail, { variables: { referenceId } });
-	const intl = useIntl();
+	const intl = useTranslations();
 	const [tab, setTab] = useState(0);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {

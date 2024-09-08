@@ -7,7 +7,7 @@ import { useHeaderVideo } from '../../hooks/useHeaderVideo';
 import { FormattedMessage } from '../utils/FormattedMessage';
 
 export const Header: FC = () => {
-	const { videoRef, videos, videoIndex, VideoTransition } = useHeaderVideo();
+	const { VideoTransition } = useHeaderVideo();
 
 	return (
 		<Stack
