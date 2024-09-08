@@ -1,9 +1,8 @@
 import { FC } from 'react';
-import { useTranslations } from 'next-intl';
-import { getLocale } from 'next-intl/server';
+import { TranslationValues, useTranslations } from 'next-intl';
 
-export const FormattedMessage: FC<{ id: string }> = ({ id }) => {
+export const FormattedMessage: FC<{ id: string; values?: TranslationValues }> = ({ id, values }) => {
 	const t = useTranslations();
 
-	return <>{t(id)}</>;
+	return <>{t(id, values)}</>;
 };

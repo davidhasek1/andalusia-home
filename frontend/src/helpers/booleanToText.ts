@@ -1,6 +1,3 @@
-import { IntlShape } from 'react-intl';
-
-const booleanToText = (intl: IntlShape, value?: number) =>
-	value ? intl.formatMessage({ id: 'common.yes' }) : intl.formatMessage({ id: 'common.no' });
+const booleanToText = (intl: any, value?: number) => (value ? intl('common.yes') : intl('common.no'));
 
 export { booleanToText };
