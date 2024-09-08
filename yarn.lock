@@ -6968,7 +6968,7 @@ __metadata:
     qs: "npm:6.12.3"
     react: "npm:18.2.0"
     react-dom: "npm:18"
-    react-hook-form: "npm:7.51.5"
+    react-hook-form: "npm:7.53.0"
     react-markdown: "npm:9.0.1"
     sharp: "npm:0.33.4"
     ts-node: "npm:10.9.2"
@@ -9846,12 +9846,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.51.5":
-  version: 7.51.5
-  resolution: "react-hook-form@npm:7.51.5"
+"react-hook-form@npm:7.53.0":
+  version: 7.53.0
+  resolution: "react-hook-form@npm:7.53.0"
   peerDependencies:
-    react: ^16.8.0 || ^17 || ^18
-  checksum: 10c0/5b13f99a125d92ee618f2d4e218d5ec854f8cac1b568e83b4b125efb002cc79eef0f5c06b54015c78e16a830cf1ea356a646e8c6abb00b7ca8225dba9a92091e
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 10c0/6d62b150618a833c17d59e669b707661499e2bb516a8d340ca37699f99eb448bbba7b5b78324938c8948014e21efaa32e3510c2ba246fd5e97a96fca0cfa7c98
   languageName: node
   linkType: hard
 
