@@ -4,7 +4,7 @@ import { FC, useState } from 'react';
 import { PropertyCard } from './PropertyCard';
 import { useQuery } from '@apollo/client';
 import { graphql } from '../../gql';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../utils/FormattedMessage';
 import { useFilters } from '../../contexts/FiltersContext';
 import { FiltersPanel } from './Filters/FiltersPanel';
 import { useLocalStorage } from '../../hooks/useLocalStoarge';

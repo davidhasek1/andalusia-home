@@ -1,12 +1,12 @@
 'use client';
 import { Box, Button, ButtonBase, Drawer, IconButton, Link, Stack, Typography } from '@mui/material';
 import { FC, Fragment, useEffect, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import LogoWhite from '../../public/logo-white.svg';
 import LogoOriginal from '../../public/logo-original.svg';
 import Image from 'next/image';
 import MenuIcon from '@mui/icons-material/Menu';
 import { usePathname } from 'next/navigation';
+import { FormattedMessage } from './utils/FormattedMessage';
 
 export const navigation = [
 	{

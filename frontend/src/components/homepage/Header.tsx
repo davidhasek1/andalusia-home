@@ -1,9 +1,10 @@
 'use client';
-import { Button, Fade, Stack, Typography } from '@mui/material';
-import { FC, useEffect, useRef, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { Stack, Typography } from '@mui/material';
+import { FC } from 'react';
+
 import SearchForm from './Searchbox/Searchbox';
 import { useHeaderVideo } from '../../hooks/useHeaderVideo';
+import { FormattedMessage } from '../utils/FormattedMessage';
 
 export const Header: FC = () => {
 	const { videoRef, videos, videoIndex, VideoTransition } = useHeaderVideo();

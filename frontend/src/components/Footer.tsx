@@ -3,8 +3,8 @@ import { Link, Stack, Typography } from '@mui/material';
 import { navigation } from './Navigation';
 import Image from 'next/image';
 import Logo from '../../public/logo-white.svg';
-import { FormattedMessage } from 'react-intl';
 import { Fragment } from 'react';
+import { FormattedMessage } from './utils/FormattedMessage';
 
 export const Footer = () => {
 	return (

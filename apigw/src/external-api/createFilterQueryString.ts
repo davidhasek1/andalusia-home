@@ -42,7 +42,7 @@ const createFilterQueryString = (filter?: InputMaybe<PropertiesFilterInput>) => 
 			}
 		}
 	}
-	//console.log('test', filterQs);
+
 	return filterQs;
 };
 

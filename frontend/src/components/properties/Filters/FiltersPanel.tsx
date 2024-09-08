@@ -2,13 +2,14 @@
 'use client';
 import { Button, FormControl, InputLabel, MenuItem, Select, Stack, Typography, useTheme } from '@mui/material';
 import { FC, useState } from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useTranslations } from 'next-intl';
 import { PriceRange } from './PriceRange';
 import { useFilters } from '../../../contexts/FiltersContext';
 import { usePathname, useRouter } from 'next/navigation';
 import { useQueryParams } from '../../../hooks/useQueryParams';
 import { graphql } from '../../../gql';
 import { useQuery } from '@apollo/client';
+import { FormattedMessage } from '../../utils/FormattedMessage';
 
 export const MIN_PRICE_RANGE = 0;
 export const MAX_PRICE_RANGE = 1000000;
@@ -52,7 +53,7 @@ export const FiltersPanel: FC = () => {
 	const { createOrDeleteQueryParams } = useQueryParams();
 	const { data: locationsList } = useQuery(filters_listLocations);
 	const { data: propertyTypeList } = useQuery(filters_listPropertyTypes);
-	const intl = useIntl();
+	const intl = useTranslations();
 	const { filters, setFilters } = useFilters();
 
 	if (path !== '/properties') {
@@ -62,7 +63,6 @@ export const FiltersPanel: FC = () => {
 	const propertyTypes = propertyTypeList?.listPropertyTypes.PropertyTypes.PropertyType ?? [];
 	const flattenPropertyTypes = propertyTypes.flatMap((pt) => pt.SubType.flatMap((st) => st));
 
-	console.log('filters FE', filters);
 	return (
 		<Stack width={300} minHeight={'100%'} px={2} py={5} gap={2} borderRight={{ lg: `1px solid ${theme.palette.grey[300]}`, xs: 'none' }}>
 			<Typography variant={'h5'}>
@@ -125,7 +125,7 @@ export const FiltersPanel: FC = () => {
 				</InputLabel>
 				<Select
 					value={filters.bedsCount}
-					placeholder={intl.formatMessage({ id: 'properties.filters.not-selected' })}
+					placeholder={intl('properties.filters.not-selected')}
 					onChange={(e) => {
 						setFilters((prev) => ({
 							...prev,

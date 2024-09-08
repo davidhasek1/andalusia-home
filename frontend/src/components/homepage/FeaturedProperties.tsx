@@ -3,7 +3,7 @@ import { Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { CommonProps } from './types';
 import { SectionCounter } from './SectionCounter';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../utils/FormattedMessage';
 
 type Props = CommonProps;
 const FeaturedProperties: FC<Props> = ({ order }) => {

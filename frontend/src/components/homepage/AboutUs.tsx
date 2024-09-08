@@ -4,7 +4,7 @@ import { Chip, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { CommonProps } from './types';
 import { SectionCounter } from './SectionCounter';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../utils/FormattedMessage';
 import Image from 'next/image';
 
 type Props = CommonProps;

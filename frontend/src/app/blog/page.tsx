@@ -1,7 +1,7 @@
 'use client';
 import { Stack, Typography } from '@mui/material';
 import { BlogList } from '../../components/blog/BlogList';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../../components/utils/FormattedMessage';
 
 const BlogPage = () => {
 	return (

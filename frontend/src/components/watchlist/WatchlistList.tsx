@@ -4,7 +4,7 @@ import { useLocalStorage } from '../../hooks/useLocalStoarge';
 import { Property } from '../../gql/graphql';
 import { Stack, Typography } from '@mui/material';
 import { PropertyCard } from '../properties/PropertyCard';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../utils/FormattedMessage';
 
 export const WatchlistList: FC = () => {
 	const { value: watchlist } = useLocalStorage<Property>('watchlist');

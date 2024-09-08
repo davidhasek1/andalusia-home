@@ -2,7 +2,7 @@
 import { Box, Stack, Typography, useTheme } from '@mui/material';
 import { FC } from 'react';
 import { PropertyDetail } from './PropertyDetail';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../utils/FormattedMessage';
 import { formatNumber } from '../../helpers/formatNumber';
 
 const Container: FC<{ title: JSX.Element | string; data: any }> = ({ title, data }) => {

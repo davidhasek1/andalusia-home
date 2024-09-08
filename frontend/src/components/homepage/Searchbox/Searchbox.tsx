@@ -3,10 +3,11 @@ import React from 'react';
 import { Box, FormControl, InputLabel, Select, MenuItem, Button, InputBase, Stack, FormLabel } from '@mui/material';
 import { styled } from '@mui/system';
 import { useFilters } from '../../../contexts/FiltersContext';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@apollo/client';
 import { filters_listLocations, filters_listPropertyTypes } from '../../properties/Filters/FiltersPanel';
+import { FormattedMessage } from '../../utils/FormattedMessage';
+import { useTranslations } from 'next-intl';
 
 const CustomInput = styled(InputBase)(({ theme }) => ({
 	'& .MuiInputBase-input': {
@@ -25,7 +26,7 @@ const CustomFormControl = styled(FormControl)(({ theme }) => ({
 }));
 
 const SearchForm = () => {
-	const intl = useIntl();
+	const intl = useTranslations();
 	const router = useRouter();
 
 	const { filters, setFilters } = useFilters();
@@ -37,7 +38,6 @@ const SearchForm = () => {
 	const flattenPropertyTypes = propertyTypes.flatMap((pt) => pt.SubType.flatMap((st) => st));
 
 	const handleSearch = () => {
-		console.log('Hledání s hodnotami:', filters);
 		let qs = `/properties?`;
 		if (filters.location?.length !== 0) {
 			qs = qs + `location=${filters.location}`;
@@ -128,7 +128,7 @@ const SearchForm = () => {
 					</FormLabel>
 					<Select
 						value={filters.bedsCount}
-						placeholder={intl.formatMessage({ id: 'properties.filters.not-selected' })}
+						placeholder={intl('properties.filters.not-selected')}
 						onChange={(e) => {
 							setFilters((prev) => ({
 								...prev,

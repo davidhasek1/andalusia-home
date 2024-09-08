@@ -5,7 +5,7 @@ import chalk from 'chalk';
 
 const execAsync = promisify(exec);
 
-const csLocaleFile = `${__dirname}/../src/utils/locales/cs.json`;
+const csLocaleFile = `${__dirname}/../src/utils/messages/cs.json`;
 const originalCsLocaleFile = `${process.env.TMPDIR}/ood/original_cs.json`;
 
 const fail = (lines: readonly string[]): void => {

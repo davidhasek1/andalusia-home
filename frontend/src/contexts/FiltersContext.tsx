@@ -27,7 +27,6 @@ export const FiltersProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
 	useEffect(() => {
 		//TODO: Set here filter to some local storage
-		console.log('Filters chnaged context UE', filters);
 	}, [filters]);
 	return <FiltersContext.Provider value={{ filters, setFilters }}>{children}</FiltersContext.Provider>;
 };

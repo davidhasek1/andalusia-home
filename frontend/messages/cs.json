@@ -1,0 +1,153 @@
+{
+	"blog": {
+		"title": "Blog"
+	},
+	"common": {
+		"no": "Ne",
+		"read-more": "Pokračovat ve čtení...",
+		"yes": "Ano"
+	},
+	"contact-form": {
+		"button": {
+			"submit": "Odeslat zprávu"
+		},
+		"form": {
+			"title": "Máte otázku?"
+		},
+		"label": {
+			"email": "E-mail",
+			"message": "Zpráva",
+			"name": "Vaše jméno"
+		},
+		"title": "Kontaktujte nás"
+	},
+	"filters": {
+		"price-range": {
+			"title": "Cenové rozpětí"
+		}
+	},
+	"footer": {
+		"rights": "Andalusia home. Všechna práva vyhrazena."
+	},
+	"header": {
+		"button": {
+			"watchlist": "Moje nemovitosti"
+		},
+		"title": "Přestaňte snít, začněte žít"
+	},
+	"homepage": {
+		"benefit1": {
+			"description": "Jsme schopni Vám pomoci při zajišťování pronájmu Vaší nemovitosti a zajistik kompletní servis včetně daňového přiznání vašich příjmů z pronájmu.",
+			"title": "10% roční růst ceny nemovitosti"
+		},
+		"benefit2": {
+			"description": "Od nezávazného pohovoru až po předání klíčů nebo pronájem. O vše se postaráme. Užívejte si dovolenou a pasivní příjem z dobré investice.",
+			"title": "Vše vyřešíme za vás"
+		},
+		"benefit3": {
+			"description": "3 hodiny letu z Prahy a jste ve svém druhém domově na nejjižnějším cípu Evropy na slunci a v pohodě.",
+			"title": "Život v ráji a v pohodě"
+		},
+		"faq": {
+			"content1": "NIE je státem přiřazené osobní číslo které je neměnné a používá se pro identifikaci subjektu nebo osoby při koupi nemovistosti, auta nebo placení daní",
+			"content2": "odpoved 2.",
+			"content3": "odpoved 3",
+			"title1": "Co je to NIE?",
+			"title2": "otazka 2",
+			"title3": "otazka 3"
+		},
+		"section": {
+			"about-us": {
+				"title": "O nás"
+			},
+			"blog": {
+				"title": "Užitečné informace"
+			},
+			"faqs": {
+				"title": "Často kladené otázky"
+			},
+			"featured-properties": {
+				"title": "Vybrané nemovitosti"
+			},
+			"why-spain": {
+				"beach": {
+					"content": "Prozkoumejte nádherné pláže Španělska, jako jsou Costa del Sol, Costa Brava a které nabízejí zlatavý písek, prostor pro odpočinek a širokou škálu vodních sportů. Užijte si slunečné dny a relaxaci na některých z pláží, ochutnejte speciality v místních restaracích. Klikněte a objevte více o těchto úchvatných destinacích.",
+					"title": "Pláže"
+				},
+				"cycling": {
+					"content": "Španělsko je rájem pro cyklisty s rozmanitými trasami, které uspokojí jak začátečníky, tak i zkušené jezdce. Od horských stezek v Pyrenejích po malebné pobřežní trasy na plážích, zde najdete ideální podmínky pro cyklistiku po celý rok. Klikněte a zjistěte, proč byste měli Španělsko zařadit na svůj cyklistický seznam.",
+					"title": "Cyklistika"
+				},
+				"golf": {
+					"content": "Objevte špičková golfová hřiště ve Španělsku, zejména na Costa del Sol, kde můžete hrát golf po celý rok díky příjemnému klimatu. Užijte si luxusní zázemí a úchvatné výhledy, které tato destinace nabízí golfovým nadšencům. Klikněte a zjistěte více o nejlepších golfových destinacích ve Španělsku.",
+					"title": "Golf"
+				},
+				"title": "Proč vybrat právě Španělsko"
+			},
+			"why-with-us": {
+				"title": "Proč koupit nemovitost s námi?",
+				"description": "Protože jsme v oblasti nejzkušenější a víme co děléme...",
+				"card1": {
+					"description": "Mimo neskutečnou přírodu, bezpečí a klid, nabízí Španělsko mnoho možností. Vše je tady máte na dosah. Přírodu, zábavu, restaurace a hlavně slunce více jak 300 dní v roce.",
+					"title": "Je tady tisíce možností k nákupu jakéhokoliv druhu vysněné nemovitosti"
+				},
+				"card2": {
+					"description": "Vybereme Vám nejhezčí domy byty či pozemky, máme v oblasti již letité zkušenosti. Dokážeme poskytnout kompletní podporu od financování koupě až po eventuelní pronájem.",
+					"title": "Pomůžeme s výdělkem i financováním"
+				},
+				"card3": {
+					"description": "Španělsko je jednou z nejvyhledávanějších destinaci, kde žije mnoho národností právěz důvodu výborné polohy, počasí, dostupnosti a bezpečnosti",
+					"title": "Velký ráj pro všechny milovníky sportu i odpočinkové turistiky"
+				},
+				"card4": {
+					"description": "Nejsme jen běžní zprostředkovatelé, ve Španělsku máme stálý český tým, a proto s vámi vyřešíme cokoliv, co potřebujete a hlavně v českém jazyce.",
+					"title": "Servis pro Vás"
+				}
+			}
+		}
+	},
+	"menu": {
+		"about-us": "O nás",
+		"blog": "Blog",
+		"contact": "Kontakt",
+		"home": "Domů",
+		"properties": "Nemovitosti"
+	},
+	"properties": {
+		"filters": {
+			"baths-count": "Počet koupelen",
+			"beds-count": "Počet ložnic",
+			"location": "Lokalita",
+			"max-price": "Cena do",
+			"min-price": "Cena od",
+			"no-results": "Nenašli jsme žádné výsledky :-( . Zkuste upravit Váš zvolený filter.",
+			"not-selected": "Nevybráno",
+			"property-type": "Typ nemovitosti",
+			"reset-filters": "Resetovat filtry",
+			"title": "Filtry"
+		}
+	},
+	"property": {
+		"detail": {
+			"caption": {
+				"bathrooms": "Koupelny",
+				"bedrooms": "Ložnice",
+				"plot-built-size": "Pozemek",
+				"price": "Cena"
+			},
+			"description": "Popis nemovitosti",
+			"essential-info": "Základní informace",
+			"features": "Vlastnosti",
+			"got-interest": "Mám zájem",
+			"tab": {
+				"description": "Popis",
+				"essential-info": "Základní informace",
+				"features": "Vlastnosti"
+			}
+		}
+	},
+	"watchlist": {
+		"no-properties": "Nemáte žádné nemovitosti ve sledovaných :-(",
+		"title": "Sledované nemovitosti"
+	}
+}

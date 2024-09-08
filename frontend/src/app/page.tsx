@@ -20,7 +20,7 @@ const Homepage = () => {
 				<WhyWithUs order={3} />
 				<FeaturedBlog order={4} />
 				<Faq order={5} />
-				{/* <FeaturedProperties order={3} /> */}
+				{/* <FeaturedProperties order={3} />*/}
 			</Stack>
 		</Stack>
 	);

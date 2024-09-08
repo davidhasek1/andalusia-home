@@ -2,13 +2,14 @@
 import { FormControl, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material';
 import { FC, SetStateAction } from 'react';
 import { MAX_PRICE_RANGE } from './FiltersPanel';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useTranslations } from 'next-intl';
 import { useQueryParams } from '../../../hooks/useQueryParams';
 import { useFilters } from '../../../contexts/FiltersContext';
 import { usePathname, useRouter } from 'next/navigation';
 import { formatNumber } from '../../../helpers/formatNumber';
 import { createPriceOptions } from './helpers/createPriceOptions';
 import { getSubArrayFromValue } from './helpers/getSubArrayFromValue';
+import { FormattedMessage } from '../../utils/FormattedMessage';
 
 type Props = Readonly<{
 	rangeValue: number[];
@@ -19,7 +20,7 @@ export const PriceRange: FC<Props> = ({ rangeValue, setRangeValue }) => {
 	const router = useRouter();
 	const path = usePathname();
 	const { createOrDeleteQueryParams } = useQueryParams();
-	const intl = useIntl();
+	const intl = useTranslations();
 	const { filters, setFilters } = useFilters();
 
 	const priceOptions = createPriceOptions(MAX_PRICE_RANGE);
@@ -37,7 +38,7 @@ export const PriceRange: FC<Props> = ({ rangeValue, setRangeValue }) => {
 				</InputLabel>
 				<Select
 					value={filters.minPrice}
-					placeholder={intl.formatMessage({ id: 'properties.filters.not-selected' })}
+					placeholder={intl('properties.filters.not-selected')}
 					onChange={(e) => {
 						setFilters((prev) => ({
 							...prev,
@@ -62,7 +63,7 @@ export const PriceRange: FC<Props> = ({ rangeValue, setRangeValue }) => {
 				</InputLabel>
 				<Select
 					value={filters.maxPrice}
-					placeholder={intl.formatMessage({ id: 'properties.filters.not-selected' })}
+					placeholder={intl('properties.filters.not-selected')}
 					onChange={(e) => {
 						setFilters((prev) => ({
 							...prev,

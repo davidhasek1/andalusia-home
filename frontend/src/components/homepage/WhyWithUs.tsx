@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { CommonProps } from './types';
 import { Grid, Stack, Typography } from '@mui/material';
 import { SectionCounter } from './SectionCounter';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../utils/FormattedMessage';
 import theme from '../../theme';
 
 type Props = CommonProps;

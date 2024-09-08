@@ -2,7 +2,7 @@
 import { Check, SelfImprovement, ShowChart } from '@mui/icons-material';
 import { Stack, Typography } from '@mui/material';
 import { FC } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../utils/FormattedMessage';
 
 export const Benefits: FC = () => {
 	return (

@@ -2,7 +2,7 @@
 import { ExpandMore } from '@mui/icons-material';
 import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '../utils/FormattedMessage';
 import { SectionCounter } from './SectionCounter';
 import { CommonProps } from './types';
 import theme from '../../theme';
