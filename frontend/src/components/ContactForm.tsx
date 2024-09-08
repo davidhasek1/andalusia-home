@@ -3,11 +3,11 @@
 import { Button, Grid, Stack, TextField, Typography, useTheme } from '@mui/material';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormattedMessage } from '../utils/FormattedMessage';
 import LogoOriginal from '../../public/logo-original.svg';
 import Image from 'next/image';
 import { useOpenSnackbar } from './Snackbar';
 import { usePathname } from 'next/navigation';
+import { FormattedMessage } from './utils/FormattedMessage';
 
 type Props = Readonly<{
 	imageSrc?: string | null;
