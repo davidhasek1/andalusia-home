@@ -125,6 +125,9 @@
 			"property-type": "Typ nemovitosti",
 			"reset-filters": "Resetovat filtry",
 			"title": "Filtry"
+		},
+		"list": {
+			"results-count": "Počet výsledků: {count}"
 		}
 	},
 	"property": {
