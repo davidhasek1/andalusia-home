@@ -7,21 +7,24 @@ import { useHeaderVideo } from '../../hooks/useHeaderVideo';
 import { FormattedMessage } from '../utils/FormattedMessage';
 
 export const Header: FC = () => {
-	const { VideoTransition } = useHeaderVideo();
+	const { showImage, VideoTransition } = useHeaderVideo();
 
 	return (
 		<Stack
 			position={'relative'}
 			px={{ lg: 10, xs: 2 }}
 			pt={15}
-			sx={{
-				/* @legacy static variant of header */
-				/* 	backgroundImage: `url("assets/main-pic.jpg")`,
-				backgroundRepeat: 'no-repeat',
-				backgroundSize: 'cover',
-				backgroundPosition: 'center', */
-				height: '110vh',
-			}}
+			sx={
+				showImage
+					? {
+							backgroundImage: `url("assets/main-pic.jpg")`,
+							backgroundRepeat: 'no-repeat',
+							backgroundSize: 'cover',
+							backgroundPosition: 'center',
+							height: '110vh',
+					  }
+					: { height: '110vh' }
+			}
 		>
 			<VideoTransition />
 
