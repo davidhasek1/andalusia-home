@@ -158,7 +158,7 @@ export const Navigation: FC = () => {
 					</Button>
 				</Stack>
 				<Stack marginTop={'auto'}>
-					<Image src={LogoWhite} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
+					<Image src={LogoOriginal} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
 				</Stack>
 			</Drawer>
 		</Stack>

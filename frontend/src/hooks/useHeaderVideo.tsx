@@ -46,7 +46,7 @@ export const useHeaderVideo = () => {
 
 	const VideoTransition: FC = () => {
 		const [isVideoLoading, setIsVideoLoading] = useState(true);
-		console.log('laofing', isVideoLoading);
+
 		if (isVideoLoading) {
 			<LoadingScreen />;
 		}
