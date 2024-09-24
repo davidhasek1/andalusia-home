@@ -37,7 +37,7 @@
 	},
 	"homepage": {
 		"benefit1": {
-			"description": "Jsme schopni Vám pomoci při zajišťování pronájmu Vaší nemovitosti a zajistik kompletní servis včetně daňového přiznání vašich příjmů z pronájmu.",
+			"description": "Jsme schopni Vám pomoci při zajišťování pronájmu Vaší nemovitosti a zajistit kompletní servis včetně daňového přiznání vašich příjmů z pronájmu.",
 			"title": "10% roční růst ceny nemovitosti"
 		},
 		"benefit2": {
@@ -45,7 +45,7 @@
 			"title": "Vše vyřešíme za vás"
 		},
 		"benefit3": {
-			"description": "3 hodiny letu z Prahy a jste ve svém druhém domově na nejjižnějším cípu Evropy na slunci a v pohodě.",
+			"description": "3 hodiny letu z Prahy a jste ve svém druhém domově na nejjižnějším cípu Evropy, na slunci a v pohodě.",
 			"title": "Život v ráji a v pohodě"
 		},
 		"faq": {
@@ -71,11 +71,11 @@
 			},
 			"why-spain": {
 				"beach": {
-					"content": "Prozkoumejte nádherné pláže Španělska, jako jsou Costa del Sol, Costa Brava a které nabízejí zlatavý písek, prostor pro odpočinek a širokou škálu vodních sportů. Užijte si slunečné dny a relaxaci na některých z pláží, ochutnejte speciality v místních restaracích. Klikněte a objevte více o těchto úchvatných destinacích.",
+					"content": "Prozkoumejte nádherné pláže Španělska, jako jsou Costa del Sol, Costa Brava a které nabízejí zlatavý písek, prostor pro odpočinek a širokou škálu vodních sportů. Užijte si slunečné dny a relaxaci na některých z pláží. Ochutnejte speciality v místních restaracích. Klikněte a objevte více o těchto úchvatných destinacích.",
 					"title": "Pláže"
 				},
 				"cycling": {
-					"content": "Španělsko je rájem pro cyklisty s rozmanitými trasami, které uspokojí jak začátečníky, tak i zkušené jezdce. Od horských stezek v Pyrenejích po malebné pobřežní trasy na plážích, zde najdete ideální podmínky pro cyklistiku po celý rok. Klikněte a zjistěte, proč byste měli Španělsko zařadit na svůj cyklistický seznam.",
+					"content": "Španělsko je rájem pro cyklisty s rozmanitými trasami, které uspokojí jak začátečníky, tak i zkušené jezdce. Od horských stezek v Pyrenejích po malebné pobřežní trasy na plážích. Najdete zde ideální podmínky pro cyklistiku po celý rok. Klikněte a zjistěte, proč byste měli Španělsko zařadit na svůj cyklistický seznam.",
 					"title": "Cyklistika"
 				},
 				"golf": {
@@ -86,13 +86,13 @@
 			},
 			"why-with-us": {
 				"title": "Proč koupit nemovitost s námi?",
-				"description": "Protože jsme v oblasti nejzkušenější a víme co děléme...",
+				"description": "Protože jsme v této oblasti doma a víme co děléme...",
 				"card1": {
-					"description": "Mimo neskutečnou přírodu, bezpečí a klid, nabízí Španělsko mnoho možností. Vše je tady máte na dosah. Přírodu, zábavu, restaurace a hlavně slunce více jak 300 dní v roce.",
+					"description": "Mimo neskutečnou přírodu, bezpečí a klid, nabízí Španělsko mnoho možností. Vše tady máte na dosah. Přírodu, zábavu, restaurace a hlavně slunce, více jak 300 dní v roce.",
 					"title": "Je tady tisíce možností k nákupu jakéhokoliv druhu vysněné nemovitosti"
 				},
 				"card2": {
-					"description": "Vybereme Vám nejhezčí domy byty či pozemky, máme v oblasti již letité zkušenosti. Dokážeme poskytnout kompletní podporu od financování koupě až po eventuelní pronájem.",
+					"description": "Vybereme Vám nejhezčí domy, byty či pozemky, máme v oblasti již letité zkušenosti. Dokážeme poskytnout kompletní podporu od financování koupě až po eventuelní pronájem.",
 					"title": "Pomůžeme s výdělkem i financováním"
 				},
 				"card3": {
