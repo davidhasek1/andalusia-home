@@ -46,6 +46,7 @@ export default async function AppLayout({
 				<meta name={'mobile-web-app-capable'} content={'yes'} />
 				<meta name={'apple-mobile-web-app-capable'} content={'yes'} />
 				<meta name={'theme-color'} content={'#000'} />
+				<link rel={'icon'} href={'/favicon.ico'} sizes={'any'} />
 			</head>
 			<body className={ourFont.className} style={{ minHeight: '100vh' }}>
 				<ApolloClientContext>
