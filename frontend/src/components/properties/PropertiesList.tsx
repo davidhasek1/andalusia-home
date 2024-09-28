@@ -3,46 +3,12 @@ import { Button, CircularProgress, Drawer, Stack, Typography, Pagination } from 
 import { FC, useState } from 'react';
 import { PropertyCard } from './PropertyCard';
 import { useQuery } from '@apollo/client';
-import { graphql } from '../../gql';
 import { FormattedMessage } from '../utils/FormattedMessage';
 import { useFilters } from '../../contexts/FiltersContext';
 import { FiltersPanel } from './Filters/FiltersPanel';
 import { useLocalStorage } from '../../hooks/useLocalStoarge';
 import { Property } from '../../gql/graphql';
-
-export const listProperties = graphql(`
-	query listProperties($filter: PropertiesFilterInput, $page: Int) {
-		listPropertiesForSale(filter: $filter, page: { page: $page }) {
-			QueryInfo {
-				PropertyCount
-				CurrentPage
-				PropertiesPerPage
-			}
-			Property {
-				Reference
-				AgencyRef
-				Location
-				Province
-				Area
-				Bedrooms
-				Bathrooms
-				Price
-				Currency
-				Description
-				Built
-				GardenPlot
-				MainImage
-				Pictures {
-					Count
-					Picture {
-						Id
-						PictureURL
-					}
-				}
-			}
-		}
-	}
-`);
+import { listProperties } from 'utils/fetchProperties';
 
 export const PropertiesList: FC = () => {
 	const { filters } = useFilters();

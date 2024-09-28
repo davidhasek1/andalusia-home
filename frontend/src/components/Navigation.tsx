@@ -21,10 +21,10 @@ export const navigation = [
 		title: <FormattedMessage id={'menu.blog'} />,
 		url: '/blog',
 	},
-	{
-		title: <FormattedMessage id={'menu.about-us'} />,
-		url: '/about-us',
-	},
+	// {
+	// 	title: <FormattedMessage id={'menu.about-us'} />,
+	// 	url: '/about-us',
+	// },
 	{
 		title: <FormattedMessage id={'menu.contact'} />,
 		url: '/contact',

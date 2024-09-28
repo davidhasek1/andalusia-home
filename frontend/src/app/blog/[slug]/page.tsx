@@ -4,10 +4,25 @@ import { BlogPost } from '../../../components/blog/BlogCard';
 import { redirect } from 'next/navigation';
 import Markdown from 'react-markdown';
 import { formatDate } from '../../../helpers/formatDate';
+import { Metadata, ResolvingMetadata } from 'next';
 
 type PostPageProps = {
 	params: { slug: string };
 };
+
+export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
+	const slug = params.slug;
+
+	const res = await fetch('https://api.npoint.io/9b28ba3416db05aea576');
+	const data = await res.json();
+	const posts: BlogPost[] = data.blogPosts;
+	const currentPost = posts.filter((post) => post.slug === slug)[0] ?? null;
+
+	return {
+		title: currentPost.title,
+		description: currentPost.perex,
+	};
+}
 
 const PostPage: FC<PostPageProps> = async ({ params: { slug } }) => {
 	const res = await fetch('https://api.npoint.io/9b28ba3416db05aea576');
