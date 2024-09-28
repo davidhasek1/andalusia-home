@@ -3,7 +3,7 @@ import { Box, Button, ButtonBase, IconButton, Stack, Typography } from '@mui/mat
 import Image from 'next/image';
 import { FC, useState } from 'react';
 import { DocumentType } from '../../gql';
-import { listProperties } from './PropertiesList';
+
 import {
 	BedOutlined,
 	DeckOutlined,
@@ -16,6 +16,7 @@ import {
 import { useLocalStorage } from '../../hooks/useLocalStoarge';
 import { useOpenSnackbar } from '../Snackbar';
 import { formatNumber } from '../../helpers/formatNumber';
+import { listProperties } from '../../utils/fetchProperties';
 
 type PropertyItem = Readonly<{ property: DocumentType<typeof listProperties>['listPropertiesForSale']['Property'][number] }>;
 

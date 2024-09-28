@@ -8,7 +8,7 @@ import { useFilters } from '../../contexts/FiltersContext';
 import { FiltersPanel } from './Filters/FiltersPanel';
 import { useLocalStorage } from '../../hooks/useLocalStoarge';
 import { Property } from '../../gql/graphql';
-import { listProperties } from 'utils/fetchProperties';
+import { listProperties } from '../../utils/fetchProperties';
 
 export const PropertiesList: FC = () => {
 	const { appliedFilters } = useFilters();
