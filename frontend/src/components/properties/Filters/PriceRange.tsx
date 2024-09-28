@@ -1,6 +1,5 @@
-/* eslint-disable formatjs/no-literal-string-in-jsx */
 import { FormControl, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material';
-import { FC, SetStateAction } from 'react';
+import { FC } from 'react';
 import { MAX_PRICE_RANGE } from './FiltersPanel';
 import { useTranslations } from 'next-intl';
 import { useQueryParams } from '../../../hooks/useQueryParams';
@@ -11,12 +10,7 @@ import { createPriceOptions } from './helpers/createPriceOptions';
 import { getSubArrayFromValue } from './helpers/getSubArrayFromValue';
 import { FormattedMessage } from '../../utils/FormattedMessage';
 
-type Props = Readonly<{
-	rangeValue: number[];
-	setRangeValue: (prevValue: SetStateAction<number[]>) => void;
-}>;
-
-export const PriceRange: FC<Props> = ({ rangeValue, setRangeValue }) => {
+export const PriceRange: FC = () => {
 	const router = useRouter();
 	const path = usePathname();
 	const { createOrDeleteQueryParams } = useQueryParams();
@@ -42,12 +36,12 @@ export const PriceRange: FC<Props> = ({ rangeValue, setRangeValue }) => {
 					onChange={(e) => {
 						setFilters((prev) => ({
 							...prev,
-							minPrice: parseInt(e?.target?.value?.toString() ?? ''),
+							minPrice: Number(e?.target?.value?.toString() ?? null),
 						}));
 						router.push(path + '?' + createOrDeleteQueryParams('minPrice', e?.target?.value?.toString()));
 					}}
 				>
-					<MenuItem>
+					<MenuItem value={''}>
 						<FormattedMessage id={'properties.filters.not-selected'} />
 					</MenuItem>
 					{priceOptions.map((price) => (
@@ -75,6 +69,13 @@ export const PriceRange: FC<Props> = ({ rangeValue, setRangeValue }) => {
 					<MenuItem>
 						<FormattedMessage id={'properties.filters.not-selected'} />
 					</MenuItem>
+
+					{filters.minPrice == null &&
+						priceOptions.map((price) => (
+							<MenuItem key={price} value={price}>
+								{formatNumber(price)}
+							</MenuItem>
+						))}
 					{slicedPrices.map((price) => (
 						<MenuItem key={price} value={price}>
 							{formatNumber(price)}

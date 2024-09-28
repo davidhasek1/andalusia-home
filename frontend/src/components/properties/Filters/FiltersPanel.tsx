@@ -46,7 +46,6 @@ export const filters_listPropertyTypes = graphql(`
 `);
 
 export const FiltersPanel: FC = () => {
-	const [rangeValue, setRangeValue] = useState<number[]>([MIN_PRICE_RANGE, MAX_PRICE_RANGE]);
 	const theme = useTheme();
 	const router = useRouter();
 	const path = usePathname();
@@ -54,7 +53,7 @@ export const FiltersPanel: FC = () => {
 	const { data: locationsList } = useQuery(filters_listLocations);
 	const { data: propertyTypeList } = useQuery(filters_listPropertyTypes);
 	const intl = useTranslations();
-	const { filters, setFilters } = useFilters();
+	const { filters, setFilters, handleApplyFilters } = useFilters();
 
 	if (path !== '/properties') {
 		return null;
@@ -68,8 +67,11 @@ export const FiltersPanel: FC = () => {
 			<Typography variant={'h5'}>
 				<FormattedMessage id={'properties.filters.title'} />
 			</Typography>
-			<PriceRange rangeValue={rangeValue} setRangeValue={setRangeValue} />
+			<PriceRange />
 			{/*  TODO: REFACTOR, split reuse */}
+			<Typography variant={'body1'}>
+				<FormattedMessage id={'filters.property-type.title'} />
+			</Typography>
 			<FormControl>
 				<InputLabel sx={{ backgroundColor: '#fff', px: 1 }}>
 					<FormattedMessage id={'properties.filters.property-type'} />
@@ -170,6 +172,9 @@ export const FiltersPanel: FC = () => {
 			</FormControl>
 			<Button href={'/properties'}>
 				<FormattedMessage id={'properties.filters.reset-filters'} />
+			</Button>
+			<Button variant={'contained'} onClick={handleApplyFilters}>
+				<FormattedMessage id={'properties.filters.apply-filters'} />
 			</Button>
 		</Stack>
 	);

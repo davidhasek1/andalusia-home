@@ -7,6 +7,8 @@ export type Filters = PropertiesFilterInput;
 export type FilterContext = {
 	filters: Filters;
 	setFilters: Dispatch<SetStateAction<Filters>>;
+	appliedFilters: Filters;
+	handleApplyFilters: () => void;
 };
 
 const initialState = {
@@ -18,15 +20,26 @@ const initialState = {
 	propertyType: [],
 };
 
-const FiltersContext = createContext({ filters: initialState, setFilters: () => {} } as FilterContext);
+const FiltersContext = createContext({
+	filters: initialState,
+	setFilters: () => {},
+	appliedFilters: initialState,
+	handleApplyFilters: () => {},
+} as FilterContext);
 
 export const useFilters = () => useContext(FiltersContext);
 
 export const FiltersProvider: FC<{ children: ReactNode }> = ({ children }) => {
 	const [filters, setFilters] = useState<Filters>(initialState);
+	const [appliedFilters, setAppliedFilters] = useState<Filters>({});
 
-	useEffect(() => {
+	const handleApplyFilters = () => {
+		setAppliedFilters(filters);
+	};
+
+	/* 	useEffect(() => {
 		//TODO: Set here filter to some local storage
-	}, [filters]);
-	return <FiltersContext.Provider value={{ filters, setFilters }}>{children}</FiltersContext.Provider>;
+	}, [filters]); */
+
+	return <FiltersContext.Provider value={{ filters, setFilters, appliedFilters, handleApplyFilters }}>{children}</FiltersContext.Provider>;
 };

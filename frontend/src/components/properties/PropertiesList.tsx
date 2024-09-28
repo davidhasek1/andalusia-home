@@ -11,11 +11,11 @@ import { Property } from '../../gql/graphql';
 import { listProperties } from 'utils/fetchProperties';
 
 export const PropertiesList: FC = () => {
-	const { filters } = useFilters();
+	const { appliedFilters } = useFilters();
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const [page, setPage] = useState(1);
 	const { value: watchlist } = useLocalStorage<Property>('watchlist');
-	const { data, loading, fetchMore } = useQuery(listProperties, { variables: { filter: filters, page: page } });
+	const { data, loading, fetchMore } = useQuery(listProperties, { variables: { filter: appliedFilters, page: page } });
 	const pageInfo = data?.listPropertiesForSale.QueryInfo;
 
 	//TODO: Move this into some paginator component

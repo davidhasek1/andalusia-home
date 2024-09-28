@@ -24,6 +24,9 @@
 	"filters": {
 		"price-range": {
 			"title": "Cenové rozpětí"
+		},
+		"property-type": {
+			"title": "Parametry"
 		}
 	},
 	"footer": {
@@ -123,6 +126,7 @@
 			"no-results": "Nenašli jsme žádné výsledky :-( . Zkuste upravit Váš zvolený filter.",
 			"not-selected": "Nevybráno",
 			"property-type": "Typ nemovitosti",
+			"apply-filters": "Filtrovat",
 			"reset-filters": "Resetovat filtry",
 			"title": "Filtry"
 		},
