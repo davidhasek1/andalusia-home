@@ -85,7 +85,7 @@ export const ContactForm: FC<Props> = ({ imageSrc, propertyId }) => {
 								sx={{ textShadow: '3px 3px 4px rgba(0, 0, 0, 0.5)' }}
 							>
 								<Typography variant={'h5'}>info@andalusiahome.com</Typography>
-								<Typography variant={'h5'}>+420 999 999 999</Typography>
+								<Typography variant={'h5'}>+420 604 295 800</Typography>
 							</Grid>
 						</Stack>
 					</Stack>
@@ -146,7 +146,7 @@ export const ContactForm: FC<Props> = ({ imageSrc, propertyId }) => {
 						sx={{ textShadow: { lg: '3px 3px 4px rgba(0, 0, 0, 0.5)', xs: 'none' } }}
 					>
 						<Typography variant={'body1'}>info@andalusiahome.com</Typography>
-						<Typography variant={'body1'}>+420 999 999 999</Typography>
+						<Typography variant={'body1'}>+420 604 295 800</Typography>
 					</Grid>
 					<Stack marginTop={'auto'} alignItems={'center'}>
 						<Image src={LogoOriginal} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
