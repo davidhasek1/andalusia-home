@@ -84,8 +84,6 @@ export const ContactForm: FC<Props> = ({ imageSrc, propertyId }) => {
 								color={(theme) => theme.palette.common.white}
 								sx={{ textShadow: '3px 3px 4px rgba(0, 0, 0, 0.5)' }}
 							>
-								<Typography variant={'h5'}>Palo Alto, California</Typography>
-								<Typography variant={'h5'}>Instagram</Typography>
 								<Typography variant={'h5'}>info@andalusiahome.com</Typography>
 								<Typography variant={'h5'}>+420 999 999 999</Typography>
 							</Grid>
@@ -147,8 +145,6 @@ export const ContactForm: FC<Props> = ({ imageSrc, propertyId }) => {
 						color={{ lg: theme.palette.common.white, xs: theme.palette.common.black }}
 						sx={{ textShadow: { lg: '3px 3px 4px rgba(0, 0, 0, 0.5)', xs: 'none' } }}
 					>
-						<Typography variant={'body1'}>Palo Alto, California</Typography>
-						<Typography variant={'body1'}>Instagram</Typography>
 						<Typography variant={'body1'}>info@andalusiahome.com</Typography>
 						<Typography variant={'body1'}>+420 999 999 999</Typography>
 					</Grid>
