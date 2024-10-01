@@ -3,11 +3,11 @@ import { Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 
 import SearchForm from './Searchbox/Searchbox';
-import { useHeaderVideo } from '../../hooks/useHeaderVideo';
+//import { useHeaderVideo } from '../../hooks/useHeaderVideo';
 import { FormattedMessage } from '../utils/FormattedMessage';
 
 export const Header: FC = () => {
-	const { showImage, VideoTransition } = useHeaderVideo();
+	//const { showImage, VideoTransition } = useHeaderVideo();
 
 	return (
 		<Stack
@@ -15,18 +15,18 @@ export const Header: FC = () => {
 			px={{ lg: 10, xs: 2 }}
 			pt={15}
 			sx={
-				showImage
-					? {
-							backgroundImage: `url("assets/main-pic.jpg")`,
-							backgroundRepeat: 'no-repeat',
-							backgroundSize: 'cover',
-							backgroundPosition: 'center',
-							height: '110vh',
-					  }
-					: { height: '110vh' }
+				/* showImage
+					?  */ {
+					backgroundImage: `url("assets/main-pic.jpg")`,
+					backgroundRepeat: 'no-repeat',
+					backgroundSize: 'cover',
+					backgroundPosition: 'center',
+					height: '110vh',
+				}
+				/* : { height: '110vh' } */
 			}
 		>
-			<VideoTransition />
+			{/* 	<VideoTransition /> */}
 
 			<div
 				style={{
