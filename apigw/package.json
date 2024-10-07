@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@graphql-codegen/cli": "5.0.2",
 		"@graphql-codegen/typescript": "4.0.9",
-		"@graphql-codegen/typescript-resolvers": "4.2.1",
+		"@graphql-codegen/typescript-resolvers": "4.3.0",
 		"@graphql-inspector/cli": "5.0.6",
 		"@graphql-inspector/introspect-command": "5.0.6",
 		"tsx": "4.16.2",
