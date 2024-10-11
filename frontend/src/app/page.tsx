@@ -9,21 +9,7 @@ import { WhyWithUs } from '../components/homepage/WhyWithUs';
 import { Faq } from '../components/homepage/Faq';
 
 const Homepage = () => {
-	return (
-		<Stack>
-			<Header />
-
-			<Stack p={{ xl: 20, lg: 15, md: 10, xs: 2 }} pt={{ xs: 10 }} gap={25}>
-				<Benefits />
-			{/* 	<AboutUs order={1} /> */}
-				<WhySpain order={1} />
-				<WhyWithUs order={2} />
-				<FeaturedBlog order={3} />
-				{/* <Faq order={4} /> */}
-				{/* <FeaturedProperties order={3} />*/}
-			</Stack>
-		</Stack>
-	);
+	return <main></main>;
 };
 
 export default Homepage;

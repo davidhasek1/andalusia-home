@@ -48,20 +48,12 @@ export default async function AppLayout({
 				<meta name={'theme-color'} content={'#000'} />
 				<link rel={'icon'} href={'/favicon.ico'} sizes={'any'} />
 			</head>
-			<body className={ourFont.className} style={{ minHeight: '100vh' }}>
+			<body className={ourFont.className}>
 				<ApolloClientContext>
 					<NextIntlClientProvider messages={messages}>
-						<AppRouterCacheProvider>
-							<ThemeProvider theme={theme}>
-								<FiltersProvider>
-									<Suspense fallback={<LoadingScreen />}>
-										<Navigation />
-										{children}
-										<Footer />
-									</Suspense>
-								</FiltersProvider>
-							</ThemeProvider>
-						</AppRouterCacheProvider>
+						<FiltersProvider>
+							<Suspense fallback={<LoadingScreen />}>{children}</Suspense>
+						</FiltersProvider>
 					</NextIntlClientProvider>
 				</ApolloClientContext>
 			</body>
