@@ -1,70 +1,69 @@
-'use client';
+import Image from 'next/image';
+import React from 'react';
 
-import { FC } from 'react';
-import { CommonProps } from './types';
-import { Grid, Stack, Typography } from '@mui/material';
-import { SectionCounter } from './SectionCounter';
-import { FormattedMessage } from '../utils/FormattedMessage';
-import theme from '../../theme';
-
-type Props = CommonProps;
-
-const data = [
+const uspData = [
 	{
-		id: 1,
-		title: <FormattedMessage id={'homepage.section.why-with-us.card1.title'} />,
-		description: <FormattedMessage id={'homepage.section.why-with-us.card1.description'} />,
+		title: 'Je tady tisíce možností k nákupu jakéhokoliv druhu vysněné nemovitosti',
+		perex:
+			'Mimo neskutečnou přírodu, bezpečí a klid, nabízí Španělsko mnoho možností. Vše je tady máte na dosah. Přírodu, zábavu, restaurace a hlavně slunce více jak 300 dní v roce.',
 	},
 	{
-		id: 2,
-		title: <FormattedMessage id={'homepage.section.why-with-us.card2.title'} />,
-		description: <FormattedMessage id={'homepage.section.why-with-us.card2.description'} />,
+		title: 'Pomůžeme s výdělkem i financováním',
+		perex:
+			'Vybereme Vám nejhezčí domy byty či pozemky, máme v oblasti již letité zkušenosti. Dokážeme poskytnout kompletní podporu od financování koupě až po eventuelní pronájem.',
 	},
 	{
-		id: 3,
-		title: <FormattedMessage id={'homepage.section.why-with-us.card3.title'} />,
-		description: <FormattedMessage id={'homepage.section.why-with-us.card3.description'} />,
+		title: 'Velký ráj pro všechny milovníky sportu i odpočinkové turistiky',
+		perex:
+			'Španělsko je jednou z nejvyhledávanějších destinaci, kde žije mnoho národností právěz důvodu výborné polohy, počasí, dostupnosti a bezpečnosti',
 	},
 	{
-		id: 4,
-		title: <FormattedMessage id={'homepage.section.why-with-us.card4.title'} />,
-		description: <FormattedMessage id={'homepage.section.why-with-us.card4.description'} />,
+		title: 'Servis pro Vás',
+		perex:
+			'Nejsme jen běžní zprostředkovatelé, ve Španělsku máme stálý český tým, a proto s vámi vyřešíme cokoliv, co potřebujete a hlavně v českém jazyce.',
 	},
 ];
 
-export const WhyWithUs: FC<Props> = ({ order }) => {
+const WhyWithUs = () => {
 	return (
-		<Stack gap={2}>
-			<SectionCounter value={order} />
-			<Typography variant={'h2'}>
-				<FormattedMessage id={'homepage.section.why-with-us.title'} />
-			</Typography>
-
-			<Typography>
-				<FormattedMessage id={'homepage.section.why-with-us.description'} />
-			</Typography>
-
-			<Grid container spacing={4} sx={{ maxWidth: '85%', margin: 'auto' }}>
-				{data.map((item) => (
-					<Grid key={item.id} lg={6} xs={12} sx={{ textAlign: 'center' }} item>
-						<Stack
-							direction={'column'}
-							height={'100%'}
-							sx={{
-								border: `1px solid ${theme.palette.grey[300]}`,
-								p: 3,
-							}}
-						>
-							<Typography variant={'h5'} fontWeight={900} mb={2}>
-								{item.title}
-							</Typography>
-							<Typography variant={'caption'} fontSize={16}>
-								{item.description}
-							</Typography>
-						</Stack>
-					</Grid>
-				))}
-			</Grid>
-		</Stack>
+		<div className={'container grid xl:grid-cols-2 gap-[4rem] items-center text-white mb-[120px]'}>
+			<div className={'relative flex flex-wrap xl:left-[-5rem] justify-center items-center order-1 xl:order-none w-full h-full'}>
+				<Image
+					src={'/assets/beach.webp'}
+					alt={'third'}
+					width={380}
+					height={600}
+					className={'object-cover rounded-lg z-[-1] xl:absolute xl:right-[7rem] top-1/2 xl:-translate-y-1/2'}
+				/>
+				<Image
+					src={'/assets/cycling.webp'}
+					alt={'second'}
+					width={370}
+					height={600}
+					className={'object-cover rounded-lg xl:absolute xl:right-[5rem] top-1/2 xl:-translate-y-1/2'}
+				/>
+				<Image
+					src={'/assets/golf.webp'}
+					alt={'first'}
+					width={400}
+					height={600}
+					className={'object-cover rounded-lg xl:absolute xl:right-0 top-1/2 xl:-translate-y-1/2'}
+				/>
+			</div>
+			<div>
+				<h2 className={'text-4xl md:text-5xl xl:text-6xl mb-[25px]'}>Proč koupit nemovitost s námi?</h2>
+				<p className={'text-lg md:text-xl mb-[25px]'}>Protože jsme v oblasti nejzkušenější a víme co děléme...</p>
+				<ul className={'grid md:grid-cols-2 gap-[15px]'}>
+					{uspData.map((item, idx) => (
+						<li key={idx} className={'bg-white/10 rounded-lg px-[10px] pt-[15px] pb-[25px]'}>
+							<h3 className={'text-lg text-center font-semibold mb-[15px]'}>{item.title}</h3>
+							<p className={'text-center'}>{item.perex}</p>
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
 	);
 };
+
+export default WhyWithUs;

@@ -1,49 +1,49 @@
 'use client';
-import { Link, Stack, Typography } from '@mui/material';
-import { navigation } from './Navigation';
+
 import Image from 'next/image';
-import Logo from '../../public/logo-white.svg';
-import { Fragment } from 'react';
-import { FormattedMessage } from './utils/FormattedMessage';
+import Link from 'next/link';
+
+const footerLinks = [
+	{
+		title: 'Nemovitosti',
+		href: '/properties',
+	},
+	{
+		title: 'Blog',
+		href: '/blog',
+	},
+	{
+		title: 'O nás',
+		href: '/about',
+	},
+	{
+		title: 'Kontakt',
+		href: '/contact',
+	},
+	{
+		title: 'Ochrana osobních údajů',
+		href: '/privacy-policy',
+	},
+];
 
 export const Footer = () => {
 	return (
-		<Stack direction={'column'} alignItems={'center'} p={10} gap={10} bgcolor={(theme) => theme.palette.common.black}>
-			<Image src={Logo} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
-			<Stack direction={'row'} display={{ lg: 'flex', xs: 'none' }}>
-				{navigation.map((link, i) => (
-					<Fragment key={link.url}>
-						<Link
-							href={link.url}
-							sx={{
-								textDecoration: 'none',
-								color: (theme) => theme.palette.common.white,
-								borderBottom: '1px solid transparent',
-								transition: 'border-bottom 0.3s ease',
-								'&:hover': {
-									borderBottom: (theme) => `1px solid  ${theme.palette.common.white}`,
-								},
-							}}
-						>
-							<Typography>{link.title}</Typography>
-						</Link>
-						{i !== navigation.length - 1 ? (
-							// eslint-disable-next-line formatjs/no-literal-string-in-jsx
-							<Typography mx={2} color={(theme) => theme.palette.grey[300]}>
-								/
-							</Typography>
-						) : (
-							''
-						)}
-					</Fragment>
-				))}
-			</Stack>
-			<Stack>
-				{/* eslint-disable-next-line formatjs/no-literal-string-in-jsx */}
-				<Typography variant={'caption'} color={(theme) => theme.palette.grey[400]}>
-					&copy; {new Date().getFullYear()} <FormattedMessage id={'footer.rights'} />
-				</Typography>
-			</Stack>
-		</Stack>
+		<>
+			<footer className={'text-white py-[5rem] border-b border-white'}>
+				<div className={'container grid grid-cols-2'}>
+					<Image src={'/logo-white.svg'} alt={'logo'} width={160} height={100} className={'object-cover'} />
+					<ul className={'grid grid-cols-2 gap-[1.5rem]'}>
+						{footerLinks.map((item, idx) => (
+							<li key={idx}>
+								<Link href={item.href}>{item.title}</Link>
+							</li>
+						))}
+					</ul>
+				</div>
+			</footer>
+			<p className={'flex items-center justify-center h-[80px] text-white'}>
+				&copy; {new Date().getFullYear()} Andalusia home. Všechna práva vyhrazena.
+			</p>
+		</>
 	);
 };

@@ -1,20 +1,30 @@
 'use client';
-import { Stack, Typography } from '@mui/material';
-import { FC } from 'react';
-import { CommonProps } from './types';
-import { SectionCounter } from './SectionCounter';
-import { FormattedMessage } from '../utils/FormattedMessage';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import Image from 'next/image';
 
-type Props = CommonProps;
-const FeaturedProperties: FC<Props> = ({ order }) => {
+const FeaturedProperties = () => {
 	return (
-		<Stack>
-			<SectionCounter value={order} />
-			<Typography variant={'h2'}>
-				<FormattedMessage id={'homepage.section.featured-properties.title'} />
-			</Typography>
-		</Stack>
+		<Swiper
+			spaceBetween={50}
+			slidesPerView={1}
+			onSlideChange={() => console.log('slide change')}
+			onSwiper={(swiper) => console.log(swiper)}
+			className={'container mb-[120px]'}
+		>
+			{Array.from({ length: 5 }).map((_, idx) => (
+				<SwiperSlide key={idx}>
+					<Image
+						src={'/assets/golf.webp'}
+						alt={''}
+						width={1340}
+						height={750}
+						className={'object-cover w-full h-full aspect-[1340/750] rounded-xl'}
+					/>
+				</SwiperSlide>
+			))}
+		</Swiper>
 	);
 };
 
-export { FeaturedProperties };
+export default FeaturedProperties;

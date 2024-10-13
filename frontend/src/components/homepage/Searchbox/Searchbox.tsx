@@ -1,35 +1,28 @@
-/* eslint-disable formatjs/no-literal-string-in-jsx */
-import React from 'react';
-import { Box, FormControl, InputLabel, Select, MenuItem, Button, InputBase, Stack, FormLabel } from '@mui/material';
-import { styled } from '@mui/system';
-import { useFilters } from '../../../contexts/FiltersContext';
-import { useRouter } from 'next/navigation';
+'use client';
+import { useForm } from 'react-hook-form';
+import { Form, FormControl, FormField, FormItem } from 'components/ui/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'components/ui/select';
+import { Button } from 'components/ui/button';
 import { useQuery } from '@apollo/client';
-import { filters_listLocations, filters_listPropertyTypes } from '../../properties/Filters/FiltersPanel';
-import { FormattedMessage } from '../../utils/FormattedMessage';
-import { useTranslations } from 'next-intl';
+import { filters_listLocations, filters_listPropertyTypes } from 'components/properties/Filters/FiltersPanel';
 
-const CustomInput = styled(InputBase)(({ theme }) => ({
-	'& .MuiInputBase-input': {
-		display: 'flex',
-		flexWrap: 'wrap',
-		backgroundColor: 'white',
-		padding: theme.spacing(1),
-		borderRadius: theme.shape.borderRadius,
-		width: '100%',
-		border: '1px solid',
-	},
-}));
+type Inputs = {
+	location: string;
+	propertyType: string;
+	bedrooms: string;
+	bathrooms: string;
+};
 
-const CustomFormControl = styled(FormControl)(({ theme }) => ({
-	minWidth: 200,
-}));
+const Searchbox = () => {
+	const form = useForm({
+		defaultValues: {
+			location: '',
+			propertyType: '',
+			bedrooms: '',
+			bathrooms: '',
+		},
+	});
 
-const SearchForm = () => {
-	const intl = useTranslations();
-	const router = useRouter();
-
-	const { filters, setFilters } = useFilters();
 	const { data: locationsList } = useQuery(filters_listLocations);
 	const { data: propertyTypeList } = useQuery(filters_listPropertyTypes);
 
@@ -37,147 +30,112 @@ const SearchForm = () => {
 	const propertyTypes = propertyTypeList?.listPropertyTypes.PropertyTypes.PropertyType ?? [];
 	const flattenPropertyTypes = propertyTypes.flatMap((pt) => pt.SubType.flatMap((st) => st));
 
-	const handleSearch = () => {
-		let qs = `/properties?`;
-		if (filters.location?.length !== 0) {
-			qs = qs + `location=${filters.location}`;
-		}
-		if (filters.propertyType?.length !== 0) {
-			qs = qs + `&propertyType=${filters.propertyType}`;
-		}
-		if (filters.bedsCount) {
-			qs = qs + `&bedsCount=${filters.bedsCount}`;
-		}
-		if (filters.bathsCount) {
-			qs = qs + `&bathsCount=${filters.bathsCount}`;
-		}
-
-		if (qs.includes('/properties?&')) {
-			qs.replace('/properties?&', '/properties?');
-		}
-		router.replace(qs);
+	const onSubmit = (values: Inputs) => {
+		console.log(values);
 	};
 
 	return (
-		<Stack
-			direction={{ lg: 'row', xs: 'column' }}
-			position={'absolute'}
-			bottom={{ xs: -40 }}
-			justifyContent={'center'}
-			flexWrap={'nowrap'}
-			sx={{ bgcolor: '#fff' }}
-			width={{ lg: 'inherit', xs: '100%' }}
-			overflow={'hidden'}
-		>
-			<Stack direction={{ lg: 'row', xs: 'column' }} p={2} gap={2}>
-				<CustomFormControl variant={'outlined'} sx={{ width: { lg: 300, sx: '100%' } }}>
-					<FormLabel>
-						<FormattedMessage id={'properties.filters.location'} />
-					</FormLabel>
-					<Select
-						sx={{ display: 'flex', flexWrap: 'wrap' }}
-						multiple
-						value={typeof filters.location === 'string' ? (filters.location as string).split(',') : filters.location || []}
-						onChange={(e) => {
-							setFilters((prev) => ({
-								...prev,
-								location: typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value,
-							}));
-						}}
-						input={<CustomInput />}
-					>
-						<MenuItem>
-							<FormattedMessage id={'properties.filters.not-selected'} />
-						</MenuItem>
-						{locations.map((loc) => (
-							<MenuItem key={loc} value={loc}>
-								{loc}
-							</MenuItem>
-						))}
-					</Select>
-				</CustomFormControl>
-
-				<CustomFormControl variant={'outlined'} sx={{ width: { lg: 300, sx: '100%' } }}>
-					<FormLabel>
-						<FormattedMessage id={'properties.filters.property-type'} />
-					</FormLabel>
-					<Select
-						multiple
-						value={typeof filters.propertyType === 'string' ? (filters.propertyType as string).split(',') : filters.propertyType || []}
-						onChange={(e) => {
-							setFilters((prev) => ({
-								...prev,
-								propertyType: typeof e.target.value === 'string' ? e.target.value.split(',') : e.target.value,
-							}));
-						}}
-						input={<CustomInput />}
-					>
-						{flattenPropertyTypes.map((pt) => {
-							return (
-								<MenuItem key={pt.Type} value={pt.OptionValue}>
-									{pt.Type}
-								</MenuItem>
-							);
-						})}
-					</Select>
-				</CustomFormControl>
-
-				<CustomFormControl variant={'outlined'}>
-					<FormLabel>
-						<FormattedMessage id={'properties.filters.beds-count'} />
-					</FormLabel>
-					<Select
-						value={filters.bedsCount}
-						placeholder={intl('properties.filters.not-selected')}
-						onChange={(e) => {
-							setFilters((prev) => ({
-								...prev,
-								bedsCount: parseInt(e?.target?.value?.toString() ?? ''),
-							}));
-						}}
-						input={<CustomInput />}
-					>
-						<MenuItem>
-							<FormattedMessage id={'properties.filters.not-selected'} />
-						</MenuItem>
-						<MenuItem value={1}>1+</MenuItem>
-						<MenuItem value={2}>2+</MenuItem>
-						<MenuItem value={3}>3+</MenuItem>
-						<MenuItem value={4}>4+</MenuItem>
-						<MenuItem value={5}>5+</MenuItem>
-					</Select>
-				</CustomFormControl>
-
-				<CustomFormControl variant={'outlined'}>
-					<FormLabel>
-						<FormattedMessage id={'properties.filters.baths-count'} />
-					</FormLabel>
-					<Select
-						value={filters.bathsCount}
-						onChange={(e) => {
-							setFilters((prev) => ({
-								...prev,
-								bathsCount: parseInt(e?.target?.value?.toString() ?? ''),
-							}));
-						}}
-						input={<CustomInput />}
-					>
-						<MenuItem>
-							<FormattedMessage id={'properties.filters.not-selected'} />
-						</MenuItem>
-						<MenuItem value={1}>1+</MenuItem>
-						<MenuItem value={2}>2+</MenuItem>
-						<MenuItem value={3}>3+</MenuItem>
-						<MenuItem value={4}>4+</MenuItem>
-						<MenuItem value={5}>5+</MenuItem>
-					</Select>
-				</CustomFormControl>
-			</Stack>
-			<Button sx={{ borderRadius: 0 }} variant={'contained'} color={'primary'} onClick={handleSearch}>
-				Hledat
-			</Button>
-		</Stack>
+		<Form {...form}>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className={'flex flex-col lg:flex-row lg:w-[850px] items-center gap-[20px] bg-white/10 rounded-xl p-[10px] mt-[20px]'}
+			>
+				<div className={'flex flex-col lg:flex-row items-center bg-white w-full p-[5px] rounded-xl'}>
+					<FormField
+						control={form.control}
+						name={'location'}
+						render={({ field }) => (
+							<FormItem className={'flex-1'}>
+								<Select onValueChange={field.onChange}>
+									<FormControl>
+										<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
+											<SelectValue placeholder={'Lokalita'} />
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent aria-multiselectable>
+										{locations.map((item, idx) => (
+											<SelectItem key={idx} value={item}>
+												{item}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name={'propertyType'}
+						render={({ field }) => (
+							<FormItem className={'flex-1'}>
+								<Select onValueChange={field.onChange}>
+									<FormControl>
+										<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
+											<SelectValue placeholder={'Typ nemovitosti'} />
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										{flattenPropertyTypes.map((item, idx) => (
+											<SelectItem key={idx} value={item.OptionValue}>
+												{item.Type}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name={'bedrooms'}
+						render={({ field }) => (
+							<FormItem className={'flex-1'}>
+								<Select onValueChange={field.onChange}>
+									<FormControl>
+										<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
+											<SelectValue placeholder={'Ložnice'} />
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										<SelectItem value={'1+'}>1+</SelectItem>
+										<SelectItem value={'2+'}>2+</SelectItem>
+										<SelectItem value={'3+'}>3+</SelectItem>
+										<SelectItem value={'4+'}>4+</SelectItem>
+										<SelectItem value={'5+'}>5+</SelectItem>
+									</SelectContent>
+								</Select>
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name={'bathrooms'}
+						render={({ field }) => (
+							<FormItem className={'flex-1'}>
+								<Select onValueChange={field.onChange}>
+									<FormControl>
+										<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
+											<SelectValue placeholder={'Koupelny'} />
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										<SelectItem value={'1+'}>1+</SelectItem>
+										<SelectItem value={'2+'}>2+</SelectItem>
+										<SelectItem value={'3+'}>3+</SelectItem>
+										<SelectItem value={'4+'}>4+</SelectItem>
+										<SelectItem value={'5+'}>5+</SelectItem>
+									</SelectContent>
+								</Select>
+							</FormItem>
+						)}
+					/>
+				</div>
+				<Button type={'submit'} className={'w-full lg:w-fit'}>
+					Hledat
+				</Button>
+			</form>
+		</Form>
 	);
 };
 
-export default SearchForm;
+export default Searchbox;

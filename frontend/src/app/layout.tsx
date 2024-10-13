@@ -1,18 +1,14 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../theme';
 import { ApolloClientContext } from '../contexts/ApolloClientContext';
 import { ReactNode, Suspense } from 'react';
 import localFont from 'next/font/local';
-import { Navigation } from '../components/Navigation';
-import { Footer } from '../components/Footer';
+import Navbar from '../components/Navbar';
 import { FiltersProvider } from '../contexts/FiltersContext';
 import { LoadingScreen } from '../components/LoadingScreen';
-
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+import { Footer } from 'components/Footer';
 
 const ourFont = localFont({ src: '../fonts/eurostarregularextended.ttf' });
 
@@ -52,7 +48,11 @@ export default async function AppLayout({
 				<ApolloClientContext>
 					<NextIntlClientProvider messages={messages}>
 						<FiltersProvider>
-							<Suspense fallback={<LoadingScreen />}>{children}</Suspense>
+							<Suspense fallback={<LoadingScreen />}>
+								<Navbar />
+								{children}
+								<Footer />
+							</Suspense>
 						</FiltersProvider>
 					</NextIntlClientProvider>
 				</ApolloClientContext>

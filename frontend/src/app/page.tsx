@@ -1,15 +1,21 @@
-import { Stack } from '@mui/material';
-import { Header } from '../components/homepage/Header';
-//import { AboutUs } from '../components/homepage/AboutUs';
-import { WhySpain } from '../components/homepage/WhySpain';
-//import { FeaturedProperties } from '../components/homepage/FeaturedProperties';
-import { FeaturedBlog } from '../components/homepage/FeaturedBlog';
-import { Benefits } from '../components/homepage/Benefits';
-import { WhyWithUs } from '../components/homepage/WhyWithUs';
-import { Faq } from '../components/homepage/Faq';
+import FeaturedBlogArticles from 'components/homepage/FeaturedBlogArticles';
+import FeaturedProperties from 'components/homepage/FeaturedProperties';
+import Header from 'components/homepage/Header';
+import OurServices from 'components/homepage/OurServices';
+import WhySpain from 'components/homepage/WhySpain/WhySpain';
+import WhyWithUs from 'components/homepage/WhyWithUs';
 
 const Homepage = () => {
-	return <main></main>;
+	return (
+		<main>
+			<Header />
+			<WhyWithUs />
+			<OurServices />
+			<WhySpain />
+			<FeaturedProperties />
+			<FeaturedBlogArticles />
+		</main>
+	);
 };
 
 export default Homepage;
