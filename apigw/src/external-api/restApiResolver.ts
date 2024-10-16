@@ -28,16 +28,16 @@ class ResaleOnlineAPI extends RESTDataSource {
 		//console.log('FILTER QS RESULT', createFilterQueryString(filter));
 		const filters = createFilterQueryString(filter);
 		const pageNumber = page?.page ?? '';
-		return await this.get(`SearchProperties?p_agency_filterid=1&${this.authQueryString}&P_sandbox=true${filters}&P_PageNo=${pageNumber}`);
+		return await this.get(`SearchProperties?p_agency_filterid=5&${this.authQueryString}&P_sandbox=true${filters}&P_PageNo=${pageNumber}`);
 	}
 	async getProperty(referenceId: string): Promise<PropertyDetail> {
-		return await this.get(`PropertyDetails?p_agency_filterid=1&${this.authQueryString}&P_sandbox=true&P_RefId=${referenceId}`);
+		return await this.get(`PropertyDetails?p_agency_filterid=5&${this.authQueryString}&P_sandbox=true&P_RefId=${referenceId}`);
 	}
 	async listLocation(): Promise<LocationResponse> {
-		return await this.get(`SearchLocations?p_agency_filterid=1&${this.authQueryString}&P_sandbox=true`);
+		return await this.get(`SearchLocations?p_agency_filterid=5&${this.authQueryString}&P_sandbox=true`);
 	}
 	async listPropertyTypeOptions(): Promise<any> {
-		return await this.get(`SearchPropertyTypes?p_agency_filterid=1&${this.authQueryString}&P_sandbox=true`);
+		return await this.get(`SearchPropertyTypes?p_agency_filterid=5&${this.authQueryString}&P_sandbox=true`);
 	}
 }
 
