@@ -2,6 +2,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Image from 'next/image';
+import { Keyboard } from 'swiper/modules';
+import SliderButtons from './SliderButtons';
 
 const swiperData = [
 	{
@@ -38,36 +40,41 @@ const swiperData = [
 
 const WhySpainSlider = () => {
 	return (
-		<Swiper
-			spaceBetween={20}
-			breakpoints={{
-				320: {
-					slidesPerView: 1,
-				},
-				480: {
-					slidesPerView: 2,
-				},
-				1080: {
-					slidesPerView: 3,
-				},
-			}}
-			onSlideChange={() => console.log('slide change')}
-			onSwiper={(swiper) => console.log(swiper)}
-		>
-			{swiperData.map((item, idx) => (
-				<SwiperSlide key={idx}>
-					<Image
-						src={item.image}
-						width={400}
-						height={380}
-						alt={item.title}
-						className={'object-cover mb-[20px] rounded-xl aspect-[400/380] w-full'}
-					/>
-					<h3 className={'text-lg md:text-xl font-semibold mb-[10px]'}>{item.title}</h3>
-					<p className={'md:text-lg'}>{item.perex}</p>
-				</SwiperSlide>
-			))}
-		</Swiper>
+		<div className={'overflow-hidden'}>
+			<Swiper
+				modules={[Keyboard]}
+				spaceBetween={20}
+				breakpoints={{
+					320: {
+						slidesPerView: 1,
+					},
+					640: {
+						slidesPerView: 2,
+					},
+					1080: {
+						slidesPerView: 3,
+					},
+				}}
+				onSlideChange={() => console.log('slide change')}
+				onSwiper={(swiper) => console.log(swiper)}
+				className={'why-spain-slider'}
+			>
+				{swiperData.map((item, idx) => (
+					<SwiperSlide key={idx}>
+						<Image
+							src={item.image}
+							width={400}
+							height={380}
+							alt={item.title}
+							className={'object-cover mb-[20px] rounded-xl aspect-[400/380] w-full'}
+						/>
+						<h3 className={'text-lg md:text-xl font-semibold mb-[10px]'}>{item.title}</h3>
+						<p className={'md:text-lg'}>{item.perex}</p>
+					</SwiperSlide>
+				))}
+				<SliderButtons />
+			</Swiper>
+		</div>
 	);
 };
 

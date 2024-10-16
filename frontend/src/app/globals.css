@@ -70,3 +70,21 @@ body {
 		@apply bg-background text-foreground;
 	}
 }
+
+/* FeaturedPropertiesSlider */
+.featured-properties-slider {
+	@apply !overflow-visible !pb-[3rem];
+
+	.swiper-pagination-bullet {
+		@apply w-[20px] h-[7px] rounded-[17px] bg-muted;
+	}
+
+	.swiper-pagination-bullet-active {
+		@apply w-[42px] h-[7px] bg-primary;
+	}
+}
+
+/* WhySpainSlider */
+.why-spain-slider {
+	@apply !overflow-visible !pt-[4rem];
+}
