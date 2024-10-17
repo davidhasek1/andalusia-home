@@ -30,9 +30,9 @@ export const Footer = () => {
 	return (
 		<>
 			<footer className={'text-white py-[5rem] border-b border-white'}>
-				<div className={'container grid grid-cols-2'}>
+				<div className={'container grid md:grid-cols-2 gap-[2rem] md:gap-0'}>
 					<Image src={'/logo-white.svg'} alt={'logo'} width={160} height={100} className={'object-cover'} />
-					<ul className={'grid grid-cols-2 gap-[1.5rem]'}>
+					<ul className={'grid md:grid-cols-2 gap-[1.5rem]'}>
 						{footerLinks.map((item, idx) => (
 							<li key={idx}>
 								<Link href={item.href}>{item.title}</Link>
@@ -41,7 +41,7 @@ export const Footer = () => {
 					</ul>
 				</div>
 			</footer>
-			<p className={'flex items-center justify-center h-[80px] text-white'}>
+			<p className={'flex items-center justify-center h-[70px] text-white text-sm'}>
 				&copy; {new Date().getFullYear()} Andalusia home. Všechna práva vyhrazena.
 			</p>
 		</>

@@ -6,7 +6,7 @@ const Header = () => {
 	return (
 		<div className={'h-[80vh]'}>
 			<div className={'absolute top-[7rem] sm:top-[10rem] lg:top-[15rem] left-1/2 -translate-x-1/2 mb-[25px] max-w-[850px]'}>
-				<h1 className={'text-4xl sm:text-5xl lg:text-6xl text-center mb-[20px] font-medium text-white '}>
+				<h1 className={'text-4xl sm:text-5xl lg:text-6xl text-center mb-[20px] font-medium text-white'}>
 					Experience the Art of Luxury Living.
 				</h1>
 				<p className={'sm:text-lg lg:text-xl text-center text-white '}>

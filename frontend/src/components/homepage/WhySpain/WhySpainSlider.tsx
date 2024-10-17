@@ -2,8 +2,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Image from 'next/image';
-import { Keyboard } from 'swiper/modules';
 import SliderButtons from './SliderButtons';
+import { Progress } from 'components/ui/progress';
+import { useState } from 'react';
 
 const swiperData = [
 	{
@@ -39,10 +40,11 @@ const swiperData = [
 ];
 
 const WhySpainSlider = () => {
+	const [progress, setProgress] = useState(0);
+
 	return (
 		<div className={'overflow-hidden'}>
 			<Swiper
-				modules={[Keyboard]}
 				spaceBetween={20}
 				breakpoints={{
 					320: {
@@ -55,8 +57,9 @@ const WhySpainSlider = () => {
 						slidesPerView: 3,
 					},
 				}}
-				onSlideChange={() => console.log('slide change')}
-				onSwiper={(swiper) => console.log(swiper)}
+				onSlideChange={(swiper) => {
+					setProgress(swiper.progress * 100);
+				}}
 				className={'why-spain-slider'}
 			>
 				{swiperData.map((item, idx) => (
@@ -73,6 +76,7 @@ const WhySpainSlider = () => {
 					</SwiperSlide>
 				))}
 				<SliderButtons />
+				<Progress value={progress} className={'h-[4px] absolute bottom-0'} />
 			</Swiper>
 		</div>
 	);

@@ -27,27 +27,27 @@ const uspData = [
 const WhyWithUs = () => {
 	return (
 		<div className={'container grid xl:grid-cols-2 gap-[4rem] items-center text-white mb-[120px]'}>
-			<div className={'relative flex flex-wrap xl:left-[-5rem] justify-center items-center order-1 xl:order-none w-full h-full'}>
+			<div className={'grid grid-cols-12 items-center w-fit mx-auto order-1 xl:order-none'}>
 				<Image
 					src={'/assets/beach.webp'}
 					alt={'third'}
 					width={380}
 					height={600}
-					className={'object-cover rounded-lg z-[-1] xl:absolute xl:right-[7rem] top-1/2 xl:-translate-y-1/2'}
+					className={'object-cover rounded-lg col-[2_/_9] row-[1_/_2]'}
 				/>
 				<Image
 					src={'/assets/cycling.webp'}
 					alt={'second'}
 					width={370}
 					height={600}
-					className={'object-cover rounded-lg xl:absolute xl:right-[5rem] top-1/2 xl:-translate-y-1/2'}
+					className={'object-cover rounded-lg col-[3_/_10] row-[1_/_2]'}
 				/>
 				<Image
 					src={'/assets/golf.webp'}
 					alt={'first'}
 					width={400}
 					height={600}
-					className={'object-cover rounded-lg xl:absolute xl:right-0 top-1/2 xl:-translate-y-1/2'}
+					className={'object-cover rounded-lg col-[4_/_12] row-[1_/_2]'}
 				/>
 			</div>
 			<div>

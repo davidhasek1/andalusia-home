@@ -1,4 +1,4 @@
-import FeaturedBlogArticles from 'components/homepage/FeaturedBlogArticles';
+import { BlogList } from 'components/blog/BlogList';
 import FeaturedPropertiesSlider from 'components/homepage/FeaturedPropertiesSlider';
 import Header from 'components/homepage/Header';
 import OurServices from 'components/homepage/OurServices';
@@ -13,7 +13,7 @@ const Homepage = () => {
 			<OurServices />
 			<WhySpain />
 			<FeaturedPropertiesSlider />
-			<FeaturedBlogArticles />
+			<BlogList isHomepage />
 		</main>
 	);
 };

@@ -86,5 +86,5 @@ body {
 
 /* WhySpainSlider */
 .why-spain-slider {
-	@apply !overflow-visible !pt-[4rem];
+	@apply !overflow-visible !pt-[4rem] !pb-[2rem];
 }

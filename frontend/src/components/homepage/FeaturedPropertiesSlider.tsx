@@ -2,10 +2,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Keyboard } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/pagination';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import 'swiper/css/pagination';
 
 const swiperData = [
 	{
@@ -58,9 +57,7 @@ const FeaturedPropertiesSlider = () => {
 				pagination={{ clickable: true }}
 				keyboard={{ enabled: true }}
 				slidesPerView={1}
-				spaceBetween={15}
-				onSlideChange={() => console.log('slide change')}
-				onSwiper={(swiper) => console.log(swiper)}
+				spaceBetween={20}
 				className={'featured-properties-slider'}
 			>
 				{swiperData.map((item, idx) => (
