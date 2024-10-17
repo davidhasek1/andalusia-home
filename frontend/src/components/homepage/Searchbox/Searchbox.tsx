@@ -1,140 +1,118 @@
 'use client';
-import { useForm } from 'react-hook-form';
-import { Form, FormControl, FormField, FormItem } from 'components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from 'components/ui/select';
 import { Button } from 'components/ui/button';
 import { useQuery } from '@apollo/client';
 import { filters_listLocations, filters_listPropertyTypes } from 'components/properties/Filters/FiltersPanel';
-
-type Inputs = {
-	location: string;
-	propertyType: string;
-	bedrooms: string;
-	bathrooms: string;
-};
+import { useFilters } from 'contexts/FiltersContext';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useQueryParams } from 'hooks/useQueryParams';
+import { MultiSelect } from 'components/ui/multi-select';
 
 const Searchbox = () => {
-	const form = useForm({
-		defaultValues: {
-			location: '',
-			propertyType: '',
-			bedrooms: '',
-			bathrooms: '',
-		},
-	});
+	const { filters, setFilters, handleApplyFilters } = useFilters();
+	const router = useRouter();
+	const path = usePathname();
+	const { createOrDeleteQueryParams } = useQueryParams();
+	const searchParams = useSearchParams();
 
 	const { data: locationsList } = useQuery(filters_listLocations);
 	const { data: propertyTypeList } = useQuery(filters_listPropertyTypes);
 
 	const locations = locationsList?.listLocations.LocationData.ProvinceArea.Locations.Location ?? [];
+	const transformedLocations = locations.map((item) => ({ label: item, value: item }));
+
 	const propertyTypes = propertyTypeList?.listPropertyTypes.PropertyTypes.PropertyType ?? [];
 	const flattenPropertyTypes = propertyTypes.flatMap((pt) => pt.SubType.flatMap((st) => st));
-
-	const onSubmit = (values: Inputs) => {
-		console.log(values);
-	};
+	const transformedPropertyTypes = flattenPropertyTypes.map((item) => ({ label: item.Type, value: item.OptionValue }));
 
 	return (
-		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className={'flex flex-col lg:flex-row lg:w-[850px] items-center gap-[20px] bg-white/10 rounded-xl p-[10px] mt-[20px]'}
+		<div className={'flex flex-col lg:flex-row lg:w-[850px] items-center gap-[20px] bg-white/10 rounded-xl p-[10px] mt-[20px]'}>
+			<div className={'flex flex-col lg:flex-row items-center bg-white w-full p-[5px] rounded-xl'}>
+				<MultiSelect
+					options={transformedLocations}
+					onValueChange={(value: string | string[]) => {
+						setFilters((prev) => ({
+							...prev,
+							location: typeof value === 'string' ? value.split(',') : value,
+						}));
+						router.push(`${path}?${createOrDeleteQueryParams('location', value?.toString())}`);
+					}}
+					placeholder={'Lokalita'}
+					variant={'inverted'}
+					animation={2}
+					maxCount={0}
+					className={'border-0 text-black'}
+				/>
+				<MultiSelect
+					options={transformedPropertyTypes}
+					onValueChange={(value: string | string[]) => {
+						setFilters((prev) => ({
+							...prev,
+							propertyType: typeof value === 'string' ? value.split(',') : value,
+						}));
+						router.push(`${path}?${createOrDeleteQueryParams('propertyType', value?.toString())}`);
+					}}
+					placeholder={'Typ nemovitosti'}
+					variant={'inverted'}
+					animation={2}
+					maxCount={0}
+					className={'border-0 text-black'}
+				/>
+				<Select
+					value={filters.bedsCount?.toString()}
+					onValueChange={(value) => {
+						setFilters((prev) => ({
+							...prev,
+							bedsCount: parseInt(value?.toString() ?? ''),
+						}));
+						router.push(`${path}?${createOrDeleteQueryParams('bedsCount', value?.toString())}`);
+					}}
+				>
+					<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
+						<SelectValue placeholder={'Ložnice'} />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value={'1+'}>1+</SelectItem>
+						<SelectItem value={'2+'}>2+</SelectItem>
+						<SelectItem value={'3+'}>3+</SelectItem>
+						<SelectItem value={'4+'}>4+</SelectItem>
+						<SelectItem value={'5+'}>5+</SelectItem>
+					</SelectContent>
+				</Select>
+				<Select
+					value={filters.bathsCount?.toString()}
+					onValueChange={(value) => {
+						setFilters((prev) => ({
+							...prev,
+							bathsCount: parseInt(value?.toString() ?? ''),
+						}));
+						router.push(`${path}?${createOrDeleteQueryParams('bathsCount', value?.toString())}`);
+					}}
+				>
+					<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
+						<SelectValue placeholder={'Koupelny'} />
+					</SelectTrigger>
+					<SelectContent>
+						<SelectItem value={'1+'}>1+</SelectItem>
+						<SelectItem value={'2+'}>2+</SelectItem>
+						<SelectItem value={'3+'}>3+</SelectItem>
+						<SelectItem value={'4+'}>4+</SelectItem>
+						<SelectItem value={'5+'}>5+</SelectItem>
+					</SelectContent>
+				</Select>
+			</div>
+			<Button
+				className={'w-full lg:w-fit'}
+				onClick={() => {
+					if (Object.keys(filters).length !== 0) {
+						router.push(`/properties?${searchParams.toString()}`);
+						handleApplyFilters();
+					}
+				}}
 			>
-				<div className={'flex flex-col lg:flex-row items-center bg-white w-full p-[5px] rounded-xl'}>
-					<FormField
-						control={form.control}
-						name={'location'}
-						render={({ field }) => (
-							<FormItem className={'flex-1'}>
-								<Select onValueChange={field.onChange}>
-									<FormControl>
-										<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
-											<SelectValue placeholder={'Lokalita'} />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent aria-multiselectable>
-										{locations.map((item, idx) => (
-											<SelectItem key={idx} value={item}>
-												{item}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name={'propertyType'}
-						render={({ field }) => (
-							<FormItem className={'flex-1'}>
-								<Select onValueChange={field.onChange}>
-									<FormControl>
-										<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
-											<SelectValue placeholder={'Typ nemovitosti'} />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										{flattenPropertyTypes.map((item, idx) => (
-											<SelectItem key={idx} value={item.OptionValue}>
-												{item.Type}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name={'bedrooms'}
-						render={({ field }) => (
-							<FormItem className={'flex-1'}>
-								<Select onValueChange={field.onChange}>
-									<FormControl>
-										<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
-											<SelectValue placeholder={'Ložnice'} />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										<SelectItem value={'1+'}>1+</SelectItem>
-										<SelectItem value={'2+'}>2+</SelectItem>
-										<SelectItem value={'3+'}>3+</SelectItem>
-										<SelectItem value={'4+'}>4+</SelectItem>
-										<SelectItem value={'5+'}>5+</SelectItem>
-									</SelectContent>
-								</Select>
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name={'bathrooms'}
-						render={({ field }) => (
-							<FormItem className={'flex-1'}>
-								<Select onValueChange={field.onChange}>
-									<FormControl>
-										<SelectTrigger className={'rounded-none border-none ring-0 focus:ring-0 focus:ring-white'}>
-											<SelectValue placeholder={'Koupelny'} />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										<SelectItem value={'1+'}>1+</SelectItem>
-										<SelectItem value={'2+'}>2+</SelectItem>
-										<SelectItem value={'3+'}>3+</SelectItem>
-										<SelectItem value={'4+'}>4+</SelectItem>
-										<SelectItem value={'5+'}>5+</SelectItem>
-									</SelectContent>
-								</Select>
-							</FormItem>
-						)}
-					/>
-				</div>
-				<Button type={'submit'} className={'w-full lg:w-fit'}>
-					Hledat
-				</Button>
-			</form>
-		</Form>
+				Hledat
+			</Button>
+		</div>
 	);
 };
 
