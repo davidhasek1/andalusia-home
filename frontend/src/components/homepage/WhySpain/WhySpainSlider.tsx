@@ -5,25 +5,23 @@ import Image from 'next/image';
 import SliderButtons from './SliderButtons';
 import { Progress } from 'components/ui/progress';
 import { useState } from 'react';
+import { FormattedMessage } from 'components/utils/FormattedMessage';
 
 const swiperData = [
 	{
 		image: '/assets/beach.webp',
-		title: 'Pláže',
-		perex:
-			'Prozkoumejte nádherné pláže Španělska, jako jsou Costa del Sol, Costa Brava a které nabízejí zlatavý písek, prostor pro odpočinek',
+		title: <FormattedMessage id={'homepage.section.why-spain.item1.title'} />,
+		perex: <FormattedMessage id={'homepage.section.why-spain.item1.perex'} />,
 	},
 	{
 		image: '/assets/cycling.webp',
-		title: 'Cyklistika',
-		perex:
-			'Španělsko je rájem pro cyklisty s rozmanitými trasami, které uspokojí jak začátečníky, tak i zkušené jezdce. Od horských stezek v Pyrenejích',
+		title: <FormattedMessage id={'homepage.section.why-spain.item2.title'} />,
+		perex: <FormattedMessage id={'homepage.section.why-spain.item2.perex'} />,
 	},
 	{
 		image: '/assets/golf.webp',
-		title: 'Golf',
-		perex:
-			'Objevte špičková golfová hřiště ve Španělsku, zejména na Costa del Sol, kde můžete hrát golf po celý rok díky příjemnému klimatu. Užijte si luxusní',
+		title: <FormattedMessage id={'homepage.section.why-spain.item3.title'} />,
+		perex: <FormattedMessage id={'homepage.section.why-spain.item3.perex'} />,
 	},
 	{
 		image: '/assets/cycling.webp',
@@ -71,7 +69,7 @@ const WhySpainSlider = () => {
 							alt={item.title}
 							className={'object-cover mb-[20px] rounded-xl aspect-[400/380] w-full'}
 						/>
-						<h3 className={'text-lg md:text-xl font-semibold mb-[10px]'}>{item.title}</h3>
+						<h3 className={'text-xl md:text-3xl font-semibold mb-[10px]'}>{item.title}</h3>
 						<p className={'md:text-lg'}>{item.perex}</p>
 					</SwiperSlide>
 				))}

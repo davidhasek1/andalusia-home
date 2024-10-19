@@ -26,7 +26,7 @@ const Searchbox = () => {
 	const transformedPropertyTypes = flattenPropertyTypes.map((item) => ({ label: item.Type, value: item.OptionValue }));
 
 	return (
-		<div className={'flex flex-col lg:flex-row lg:w-[850px] items-center gap-[20px] bg-white/10 rounded-xl p-[10px] mt-[20px]'}>
+		<div className={'flex flex-col lg:flex-row lg:w-[850px] items-center gap-[20px] bg-white/10 rounded-xl p-[10px] mt-[20px] text-black'}>
 			<div className={'flex flex-col lg:flex-row items-center bg-white w-full p-[5px] rounded-xl'}>
 				<MultiSelect
 					options={transformedLocations}
@@ -41,7 +41,7 @@ const Searchbox = () => {
 					variant={'inverted'}
 					animation={2}
 					maxCount={0}
-					className={'border-0 text-black'}
+					className={'border-0 font-normal'}
 				/>
 				<MultiSelect
 					options={transformedPropertyTypes}
@@ -56,7 +56,7 @@ const Searchbox = () => {
 					variant={'inverted'}
 					animation={2}
 					maxCount={0}
-					className={'border-0 text-black'}
+					className={'border-0 font-normal'}
 				/>
 				<Select
 					value={filters.bedsCount?.toString()}

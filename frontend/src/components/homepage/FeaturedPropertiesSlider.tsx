@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FormattedMessage } from 'components/utils/FormattedMessage';
 
 const swiperData = [
 	{
@@ -70,7 +71,9 @@ const FeaturedPropertiesSlider = () => {
 							className={'object-cover w-full h-full aspect-[300/400] xs:aspect-[300/300] sm:aspect-[1340/750] rounded-xl brightness-50'}
 						/>
 						<div className={'absolute bottom-[30px] left-[20px] sm:bottom-[70px] sm:left-[70px] z-[10] text-white'}>
-							<h3 className={'text-2xl xs:text-3xl lg:text-5xl mb-[10px] sm:mb-[20px]'}>Doporučené výpisy</h3>
+							<h3 className={'text-2xl xs:text-3xl lg:text-5xl mb-[10px] sm:mb-[20px] font-semibold'}>
+								<FormattedMessage id={'homepage.section.featured-properties.title'} />
+							</h3>
 							<p className={'mb-[5px] xs:mb-[10px] sm:text-lg md:text-xl'}>{item.address}</p>
 							<ul className={'grid grid-cols-2 gap-[0.5rem] xs:gap-0 xs:flex items-center sm:text-lg md:text-xl mb-[25px] sm:mb-[35px]'}>
 								<li className={'sm:border-r border-white last:border-r-0 pr-[1rem]'}>{item.price}</li>
@@ -80,7 +83,7 @@ const FeaturedPropertiesSlider = () => {
 							<Link
 								href={'/'}
 								className={
-									'text-sm xs:text-base sm:text-lg rounded-full bg-white text-black py-[0.9rem] sm:py-[1.1rem] px-[2rem] hover:bg-slate-200'
+									'text-sm xs:text-base sm:text-lg rounded-full bg-white text-black py-[0.7rem] sm:py-[0.9rem] px-[2.5rem] hover:bg-slate-200'
 								}
 							>
 								Zjistit více

@@ -9,8 +9,32 @@ import { LoadingScreen } from '../components/LoadingScreen';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { Footer } from 'components/Footer';
+import { Toaster } from 'components/ui/toaster';
 
-const ourFont = localFont({ src: '../fonts/eurostarregularextended.ttf' });
+const customFont = localFont({
+	src: [
+		{
+			path: './fonts/Poppins-Regular.woff2',
+			weight: '400',
+			style: 'normal',
+		},
+		{
+			path: './fonts/Poppins-Medium.woff2',
+			weight: '500',
+			style: 'normal',
+		},
+		{
+			path: './fonts/Poppins-SemiBold.woff2',
+			weight: '600',
+			style: 'normal',
+		},
+		{
+			path: './fonts/Poppins-Bold.woff2',
+			weight: '700',
+			style: 'normal',
+		},
+	],
+});
 
 export const metadata: Metadata = {
 	title: 'Andalusia Home',
@@ -44,7 +68,7 @@ export default async function AppLayout({
 				<meta name={'theme-color'} content={'#000'} />
 				<link rel={'icon'} href={'/favicon.ico'} sizes={'any'} />
 			</head>
-			<body className={ourFont.className}>
+			<body className={`${customFont.className} antialiased`}>
 				<ApolloClientContext>
 					<NextIntlClientProvider messages={messages}>
 						<FiltersProvider>
@@ -56,6 +80,7 @@ export default async function AppLayout({
 						</FiltersProvider>
 					</NextIntlClientProvider>
 				</ApolloClientContext>
+				<Toaster />
 			</body>
 		</html>
 	);

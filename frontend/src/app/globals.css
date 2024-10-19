@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	/* @apply bg-black; */
-}
-
 @layer base {
 	:root {
 		--background: 0 0% 100%;
@@ -14,9 +10,9 @@ body {
 		--card-foreground: 0 0% 3.9%;
 		--popover: 0 0% 100%;
 		--popover-foreground: 0 0% 3.9%;
-		--primary: 151, 98%, 20%;
-		--primary-hover: 151, 98%, 18%;
-		--primary-foreground: 0 0% 98%;
+		--primary: 49, 100%, 49%;
+		--primary-hover: 49, 100%, 44%;
+		--primary-foreground: 0 0% 0%;
 		--secondary: 0 0% 96.1%;
 		--secondary-foreground: 0 0% 9%;
 		--muted: 0 0% 96.1%;
@@ -26,7 +22,7 @@ body {
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 0 0% 98%;
 		--border: 0 0% 89.8%;
-		--input: 0 0% 89.8%;
+		--input: 0 0% 70%;
 		--ring: 0 0% 3.9%;
 		--chart-1: 12 76% 61%;
 		--chart-2: 173 58% 39%;
@@ -76,7 +72,7 @@ body {
 	@apply !overflow-visible !pb-[3rem];
 
 	.swiper-pagination-bullet {
-		@apply w-[20px] h-[7px] rounded-[17px] bg-muted;
+		@apply w-[20px] h-[7px] rounded-[17px] bg-black/90;
 	}
 
 	.swiper-pagination-bullet-active {

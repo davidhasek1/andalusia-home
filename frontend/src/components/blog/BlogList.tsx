@@ -9,9 +9,9 @@ export const BlogList: FC<{ isHomepage?: boolean }> = async ({ isHomepage = fals
 	const homepagePosts = isHomepage ? posts.filter((post) => post.showOnHomepage === true) : [];
 
 	return (
-		<>
+		<div className={'container'}>
 			{isHomepage && <FeaturedBlogArticles items={homepagePosts} />}
 			{!isHomepage && <BlogCard items={posts} />}
-		</>
+		</div>
 	);
 };

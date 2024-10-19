@@ -28,10 +28,10 @@ const footerLinks = [
 
 export const Footer = () => {
 	return (
-		<>
-			<footer className={'text-white py-[5rem] border-b border-white'}>
+		<div className={'bg-black text-white mt-[120px]'}>
+			<footer className={'py-[5rem] border-b border-white container'}>
 				<div className={'container grid md:grid-cols-2 gap-[2rem] md:gap-0'}>
-					<Image src={'/logo-white.svg'} alt={'logo'} width={160} height={100} className={'object-cover'} />
+					<Image src={'/logo-white.svg'} alt={'logo'} width={190} height={120} className={'object-cover'} />
 					<ul className={'grid md:grid-cols-2 gap-[1.5rem]'}>
 						{footerLinks.map((item, idx) => (
 							<li key={idx}>
@@ -41,9 +41,9 @@ export const Footer = () => {
 					</ul>
 				</div>
 			</footer>
-			<p className={'flex items-center justify-center h-[70px] text-white text-sm'}>
+			<p className={'flex items-center justify-center h-[70px] text-sm text-center'}>
 				&copy; {new Date().getFullYear()} Andalusia home. Všechna práva vyhrazena.
 			</p>
-		</>
+		</div>
 	);
 };

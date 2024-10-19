@@ -1,159 +1,128 @@
-/* eslint-disable formatjs/no-literal-string-in-jsx */
 'use client';
-import { Button, Grid, Stack, TextField, Typography, useTheme } from '@mui/material';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import LogoOriginal from '../../public/logo-original.svg';
-import Image from 'next/image';
-import { useOpenSnackbar } from './Snackbar';
-import { usePathname } from 'next/navigation';
 import { FormattedMessage } from './utils/FormattedMessage';
+import { useToast } from 'hooks/use-toast';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from 'components/ui/form';
+import { z } from 'zod';
+import { Input } from 'components/ui/input';
+import { Textarea } from 'components/ui/textarea';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from 'components/ui/button';
+import { useTranslations } from 'next-intl';
 
-type Props = Readonly<{
-	imageSrc?: string | null;
+type ContactFormProps = Readonly<{
 	propertyId?: string;
 }>;
 
-export const ContactForm: FC<Props> = ({ imageSrc, propertyId }) => {
-	const theme = useTheme();
-	const form = useForm({ defaultValues: { name: '', email: '', message: '' } });
-	const values = form.getValues();
-	const { SnackBarComponent, openSnackbar } = useOpenSnackbar();
-	const pathname = usePathname();
+export const ContactForm: FC<ContactFormProps> = ({ propertyId }) => {
+	const t = useTranslations();
 
-	const onSubmit = async (data: typeof values) => {
+	const formSchema = z.object({
+		name: z.string().min(1, {
+			message: t('contact-form.errors.required'),
+		}),
+		email: z
+			.string()
+			.min(1, {
+				message: t('contact-form.errors.required'),
+			})
+			.email({
+				message: t('contact-form.errors.email'),
+			}),
+		message: z.string(),
+	});
+
+	const { toast } = useToast();
+
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			name: '',
+			email: '',
+			message: '',
+		},
+	});
+
+	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
 			const response = await fetch('/api/contact', {
 				method: 'post',
-				body: JSON.stringify({ ...data, propertyId }),
+				body: JSON.stringify({ ...values, propertyId }),
 			});
 			if (response.status === 200) {
-				openSnackbar('Email sent!');
+				toast({
+					title: 'Email sent!',
+				});
 				form.reset();
 			} else {
-				openSnackbar('Failed to send email');
+				toast({
+					title: 'Failed to send email.',
+				});
 			}
 		} catch (error) {
-			openSnackbar('An error occur');
+			toast({
+				title: 'An error occur',
+			});
 		}
 	};
 
 	return (
-		<>
-			<Stack direction={'row'}>
-				<Stack
-					display={{ lg: 'flex', xs: 'none' }}
-					height={'100vh'}
-					width={'60%'}
-					sx={{ backgroundColor: (theme) => theme.palette.common.black }}
-				>
-					<Stack
-						sx={{
-							backgroundImage: `url(${imageSrc})`,
-							backgroundRepeat: 'no-repeat',
-							backgroundSize: 'cover',
-							backgroundPosition: 'bottom center',
-						}}
-						my={{ xl: 20, lg: 10 }}
-						ml={{ xl: 20, lg: 10 }}
-						position={'relative'}
-						height={'100%'}
-					>
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								left: 0,
-								width: '100%',
-								height: '100%',
-								backgroundColor: 'rgba(0, 0, 0, 0.381)',
-							}}
-						/>
-						<Stack zIndex={0} height={'100%'} width={'fit-content'} alignItems={'flex-start'} justifyContent={'center'} ml={5} gap={3}>
-							<Typography
-								variant={'h2'}
-								color={(theme) => theme.palette.common.white}
-								sx={{ textShadow: '3px 3px 4px rgba(0, 0, 0, 0.5)' }}
-							>
-								{pathname === '/contact' ? <FormattedMessage id={'contact-form.title'} /> : <FormattedMessage id={'property.form.title'} />}
-							</Typography>
-							<Grid
-								display={'grid'}
-								gridTemplateColumns={{ xl: '1fr 1fr', lg: '1fr', xs: '1fr' }}
-								gap={4}
-								color={(theme) => theme.palette.common.white}
-								sx={{ textShadow: '3px 3px 4px rgba(0, 0, 0, 0.5)' }}
-							>
-								<Typography variant={'h5'}>info@andalusiahome.cz</Typography>
-								<Typography variant={'h5'}>+420 604 295 800</Typography>
-							</Grid>
-						</Stack>
-					</Stack>
-				</Stack>
-
-				<Stack width={{ lg: '40%', xs: '100%' }} p={5} gap={3} justifyContent={'center'}>
-					<Typography variant={'h2'} mb={2}>
-						<FormattedMessage id={'contact-form.form.title'} />
-					</Typography>
-					<form noValidate onSubmit={form.handleSubmit((data) => onSubmit(data))}>
-						<Stack gap={3}>
-							<TextField
-								label={<FormattedMessage id={'contact-form.label.name'} />}
-								{...form.register('name', { required: { value: true, message: 'Enter your name' } })}
-								error={Boolean(form.formState.errors.email?.message)}
-							/>
-							{Boolean(form.formState.errors.name?.message) && (
-								<Typography variant={'button'} color={'red'}>
-									{form.formState.errors.name?.message}
-								</Typography>
-							)}
-							<TextField
-								label={<FormattedMessage id={'contact-form.label.email'} />}
-								{...form.register('email', {
-									required: { value: true, message: 'Enter an email' },
-									pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/, message: 'Enter a valid email' },
-								})}
-								error={Boolean(form.formState.errors.email?.message)}
-							/>
-							{Boolean(form.formState.errors.email?.message) && (
-								<Typography variant={'button'} color={'red'}>
-									{form.formState.errors.email?.message}
-								</Typography>
-							)}
-							<TextField
-								multiline
-								label={<FormattedMessage id={'contact-form.label.message'} />}
-								{...form.register('message', { required: { value: true, message: 'Enter a message' } })}
-								minRows={10}
-								error={Boolean(form.formState.errors.message?.message)}
-							/>
-							{Boolean(form.formState.errors.message?.message) && (
-								<Typography variant={'button'} color={'red'}>
-									{form.formState.errors.message?.message}
-								</Typography>
-							)}
-							<Button type={'submit'} variant={'contained'}>
-								<FormattedMessage id={'contact-form.button.submit'} />
-							</Button>
-						</Stack>
-					</form>
-
-					<Grid
-						display={{ lg: 'none', xs: 'grid' }}
-						gridTemplateColumns={{ xl: '1fr 1fr', lg: '1fr', xs: '1fr' }}
-						gap={4}
-						color={{ lg: theme.palette.common.white, xs: theme.palette.common.black }}
-						sx={{ textShadow: { lg: '3px 3px 4px rgba(0, 0, 0, 0.5)', xs: 'none' } }}
-					>
-						<Typography variant={'body1'}>info@andalusiahome.cz</Typography>
-						<Typography variant={'body1'}>+420 604 295 800</Typography>
-					</Grid>
-					<Stack marginTop={'auto'} alignItems={'center'}>
-						<Image src={LogoOriginal} alt={'logo'} width={150} style={{ objectFit: 'cover' }} />
-					</Stack>
-				</Stack>
-			</Stack>
-			<SnackBarComponent />
-		</>
+		<div className={'container mt-[50px] max-w-[900px]'}>
+			<h2 className={'text-3xl md:text-5xl font-semibold mb-[30px]'}>
+				<FormattedMessage id={'contact-form.form.title'} />
+			</h2>
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className={'space-y-4'}>
+					<FormField
+						control={form.control}
+						name={'name'}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>
+									<FormattedMessage id={'contact-form.label.name'} />
+								</FormLabel>
+								<FormControl>
+									<Input {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name={'email'}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>
+									<FormattedMessage id={'contact-form.label.email'} />
+								</FormLabel>
+								<FormControl>
+									<Input {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name={'message'}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>
+									<FormattedMessage id={'contact-form.label.message'} />
+								</FormLabel>
+								<FormControl>
+									<Textarea {...field} className={'min-h-[130px]'} />
+								</FormControl>
+							</FormItem>
+						)}
+					/>
+					<Button type={'submit'}>
+						<FormattedMessage id={'contact-form.button.submit'} />
+					</Button>
+				</form>
+			</Form>
+		</div>
 	);
 };

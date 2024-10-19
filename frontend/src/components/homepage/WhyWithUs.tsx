@@ -1,32 +1,29 @@
 import Image from 'next/image';
 import React from 'react';
+import { FormattedMessage } from '../../components/utils/FormattedMessage';
 
 const uspData = [
 	{
-		title: 'Je tady tisíce možností k nákupu jakéhokoliv druhu vysněné nemovitosti',
-		perex:
-			'Mimo neskutečnou přírodu, bezpečí a klid, nabízí Španělsko mnoho možností. Vše je tady máte na dosah. Přírodu, zábavu, restaurace a hlavně slunce více jak 300 dní v roce.',
+		title: <FormattedMessage id={'homepage.section.why-with-us.card1.title'} />,
+		perex: <FormattedMessage id={'homepage.section.why-with-us.card1.perex'} />,
 	},
 	{
-		title: 'Pomůžeme s výdělkem i financováním',
-		perex:
-			'Vybereme Vám nejhezčí domy byty či pozemky, máme v oblasti již letité zkušenosti. Dokážeme poskytnout kompletní podporu od financování koupě až po eventuelní pronájem.',
+		title: <FormattedMessage id={'homepage.section.why-with-us.card2.title'} />,
+		perex: <FormattedMessage id={'homepage.section.why-with-us.card2.perex'} />,
 	},
 	{
-		title: 'Velký ráj pro všechny milovníky sportu i odpočinkové turistiky',
-		perex:
-			'Španělsko je jednou z nejvyhledávanějších destinaci, kde žije mnoho národností právěz důvodu výborné polohy, počasí, dostupnosti a bezpečnosti',
+		title: <FormattedMessage id={'homepage.section.why-with-us.card3.title'} />,
+		perex: <FormattedMessage id={'homepage.section.why-with-us.card3.perex'} />,
 	},
 	{
-		title: 'Servis pro Vás',
-		perex:
-			'Nejsme jen běžní zprostředkovatelé, ve Španělsku máme stálý český tým, a proto s vámi vyřešíme cokoliv, co potřebujete a hlavně v českém jazyce.',
+		title: <FormattedMessage id={'homepage.section.why-with-us.card4.title'} />,
+		perex: <FormattedMessage id={'homepage.section.why-with-us.card4.perex'} />,
 	},
 ];
 
 const WhyWithUs = () => {
 	return (
-		<div className={'container grid xl:grid-cols-2 gap-[4rem] items-center text-white mb-[120px]'}>
+		<div className={'container grid xl:grid-cols-2 gap-[4rem] items-center mb-[120px]'}>
 			<div className={'grid grid-cols-12 items-center w-fit mx-auto order-1 xl:order-none'}>
 				<Image
 					src={'/assets/beach.webp'}
@@ -51,13 +48,17 @@ const WhyWithUs = () => {
 				/>
 			</div>
 			<div>
-				<h2 className={'text-4xl md:text-5xl xl:text-6xl mb-[25px]'}>Proč koupit nemovitost s námi?</h2>
-				<p className={'text-lg md:text-xl mb-[25px]'}>Protože jsme v oblasti nejzkušenější a víme co děléme...</p>
+				<h2 className={'text-4xl md:text-5xl xl:text-6xl mb-[25px] font-semibold'}>
+					<FormattedMessage id={'homepage.section.why-with-us.title'} />
+				</h2>
+				<p className={'text-lg md:text-xl mb-[25px]'}>
+					<FormattedMessage id={'homepage.section.why-with-us.perex'} />
+				</p>
 				<ul className={'grid md:grid-cols-2 gap-[15px]'}>
 					{uspData.map((item, idx) => (
-						<li key={idx} className={'bg-white/10 rounded-lg px-[10px] pt-[15px] pb-[25px]'}>
-							<h3 className={'text-lg text-center font-semibold mb-[15px]'}>{item.title}</h3>
-							<p className={'text-center'}>{item.perex}</p>
+						<li key={idx} className={'rounded-lg px-[20px] pt-[15px] pb-[25px] shadow-box border-2'}>
+							<h3 className={'text-lg font-semibold mb-[10px]'}>{item.title}</h3>
+							<p>{item.perex}</p>
 						</li>
 					))}
 				</ul>

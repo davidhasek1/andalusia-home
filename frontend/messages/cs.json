@@ -19,7 +19,11 @@
 			"message": "Zpráva",
 			"name": "Vaše jméno"
 		},
-		"title": "Kontaktujte nás"
+		"title": "Kontaktujte nás",
+		"errors": {
+			"required": "Pole je povinné.",
+			"email": "Neplatný email."
+		}
 	},
 	"filters": {
 		"price-range": {
@@ -39,18 +43,6 @@
 		"title": "Přestaňte snít, začněte žít"
 	},
 	"homepage": {
-		"benefit1": {
-			"description": "Jsme schopni Vám pomoci při zajišťování pronájmu Vaší nemovitosti a zajistit kompletní servis včetně daňového přiznání vašich příjmů z pronájmu.",
-			"title": "10% roční růst ceny nemovitosti"
-		},
-		"benefit2": {
-			"description": "Od nezávazného pohovoru až po předání klíčů nebo pronájem. O vše se postaráme. Užívejte si dovolenou a pasivní příjem z dobré investice.",
-			"title": "Vše vyřešíme za vás"
-		},
-		"benefit3": {
-			"description": "3 hodiny letu z Prahy a jste ve svém druhém domově na nejjižnějším cípu Evropy, na slunci a v pohodě.",
-			"title": "Život v ráji a v pohodě"
-		},
 		"faq": {
 			"content1": "NIE je státem přiřazené osobní číslo které je neměnné a používá se pro identifikaci subjektu nebo osoby při koupi nemovistosti, auta nebo placení daní",
 			"content2": "odpoved 2.",
@@ -63,49 +55,66 @@
 			"about-us": {
 				"title": "O nás"
 			},
-			"blog": {
-				"title": "Užitečné informace"
-			},
 			"faqs": {
 				"title": "Často kladené otázky"
 			},
-			"featured-properties": {
-				"title": "Vybrané nemovitosti"
-			},
 			"why-spain": {
-				"beach": {
-					"content": "Prozkoumejte nádherné pláže Španělska, jako jsou Costa del Sol, Costa Brava a které nabízejí zlatavý písek, prostor pro odpočinek a širokou škálu vodních sportů. Užijte si slunečné dny a relaxaci na některých z pláží. Ochutnejte speciality v místních restaracích. Klikněte a objevte více o těchto úchvatných destinacích.",
-					"title": "Pláže"
+				"title": "Proč vybrat právě Španělsko",
+				"perex": "España cuenta con una rica culture, hermosos paisajes y un clima cálido, lo que la convierte en el lugar perfecto para un estilode vida lujoso lleno de encanto y una calidad de vida excepcional.",
+				"item1": {
+					"title": "Pláže",
+					"perex": "Prozkoumejte nádherné pláže Španělska, jako jsou Costa del Sol, Costa Brava a které nabízejí zlatavý písek, prostor pro odpočinek a širokou škálu vodních sportů. Užijte si slunečné dny a relaxaci na některých z pláží. Ochutnejte speciality v místních restaracích. Klikněte a objevte více o těchto úchvatných destinacích."
 				},
-				"cycling": {
-					"content": "Španělsko je rájem pro cyklisty s rozmanitými trasami, které uspokojí jak začátečníky, tak i zkušené jezdce. Od horských stezek v Pyrenejích po malebné pobřežní trasy na plážích. Najdete zde ideální podmínky pro cyklistiku po celý rok. Klikněte a zjistěte, proč byste měli Španělsko zařadit na svůj cyklistický seznam.",
-					"title": "Cyklistika"
+				"item2": {
+					"title": "Cyklistika",
+					"perex": "Španělsko je rájem pro cyklisty s rozmanitými trasami, které uspokojí jak začátečníky, tak i zkušené jezdce. Od horských stezek v Pyrenejích po malebné pobřežní trasy na plážích. Najdete zde ideální podmínky pro cyklistiku po celý rok. Klikněte a zjistěte, proč byste měli Španělsko zařadit na svůj cyklistický seznam."
 				},
-				"golf": {
-					"content": "Objevte špičková golfová hřiště ve Španělsku, zejména na Costa del Sol, kde můžete hrát golf po celý rok díky příjemnému klimatu. Užijte si luxusní zázemí a úchvatné výhledy, které tato destinace nabízí golfovým nadšencům. Klikněte a zjistěte více o nejlepších golfových destinacích ve Španělsku.",
-					"title": "Golf"
-				},
-				"title": "Proč vybrat právě Španělsko"
+				"item3": {
+					"title": "Golf",
+					"perex": "Objevte špičková golfová hřiště ve Španělsku, zejména na Costa del Sol, kde můžete hrát golf po celý rok díky příjemnému klimatu. Užijte si luxusní zázemí a úchvatné výhledy, které tato destinace nabízí golfovým nadšencům. Klikněte a zjistěte více o nejlepších golfových destinacích ve Španělsku."
+				}
 			},
 			"why-with-us": {
 				"title": "Proč koupit nemovitost s námi?",
-				"description": "Protože jsme v této oblasti doma a víme co děléme...",
+				"perex": "Protože jsme v této oblasti doma a víme co děléme...",
 				"card1": {
-					"description": "Mimo neskutečnou přírodu, bezpečí a klid, nabízí Španělsko mnoho možností. Vše tady máte na dosah. Přírodu, zábavu, restaurace a hlavně slunce, více jak 300 dní v roce.",
+					"perex": "Mimo neskutečnou přírodu, bezpečí a klid, nabízí Španělsko mnoho možností. Vše tady máte na dosah. Přírodu, zábavu, restaurace a hlavně slunce, více jak 300 dní v roce.",
 					"title": "Je tady tisíce možností k nákupu jakéhokoliv druhu vysněné nemovitosti"
 				},
 				"card2": {
-					"description": "Vybereme Vám nejhezčí domy, byty či pozemky, máme v oblasti již letité zkušenosti. Dokážeme poskytnout kompletní podporu od financování koupě až po eventuelní pronájem.",
+					"perex": "Vybereme Vám nejhezčí domy, byty či pozemky, máme v oblasti již letité zkušenosti. Dokážeme poskytnout kompletní podporu od financování koupě až po eventuelní pronájem.",
 					"title": "Pomůžeme s výdělkem i financováním"
 				},
 				"card3": {
-					"description": "Španělsko je jednou z nejvyhledávanějších destinaci, kde žije mnoho národností právěz důvodu výborné polohy, počasí, dostupnosti a bezpečnosti",
+					"perex": "Španělsko je jednou z nejvyhledávanějších destinaci, kde žije mnoho národností právěz důvodu výborné polohy, počasí, dostupnosti a bezpečnosti",
 					"title": "Velký ráj pro všechny milovníky sportu i odpočinkové turistiky"
 				},
 				"card4": {
-					"description": "Nejsme jen běžní zprostředkovatelé, ve Španělsku máme stálý český tým, a proto s vámi vyřešíme cokoliv, co potřebujete a hlavně v českém jazyce.",
+					"perex": "Nejsme jen běžní zprostředkovatelé, ve Španělsku máme stálý český tým, a proto s vámi vyřešíme cokoliv, co potřebujete a hlavně v českém jazyce.",
 					"title": "Servis pro Vás"
 				}
+			},
+			"our-services": {
+				"title": "Naše služby",
+				"perex": "Poskytujeme komplexní služby v oblasti luxusních nemovitostí s důrazem na individuální přístup a profesionalitu.",
+				"benefit1": {
+					"title": "10% roční růst ceny nemovitosti",
+					"perex": "Jsme schopni Vám pomoci při zajišťování pronájmu Vaší nemovitosti a zajistit kompletní servis včetně daňového přiznání vašich příjmů z pronájmu."
+				},
+				"benefit2": {
+					"title": "Vše vyřešíme za vás",
+					"perex": "Od nezávazného pohovoru až po předání klíčů nebo pronájem. O vše se postaráme. Užívejte si dovolenou a pasivní příjem z dobré investice."
+				},
+				"benefit3": {
+					"title": "Život v ráji a v pohodě",
+					"perex": "3 hodiny letu z Prahy a jste ve svém druhém domově na nejjižnějším cípu Evropy, na slunci a v pohodě."
+				}
+			},
+			"featured-properties": {
+				"title": "Doporučené výpisy"
+			},
+			"blog": {
+				"title": "Objevte naše nejnovější články"
 			}
 		}
 	},

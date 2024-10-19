@@ -67,6 +67,9 @@ module.exports = {
 			backgroundImage: {
 				'our-services': "url('/assets/our-services.png')",
 			},
+			boxShadow: {
+				box: '0 0 15px 0 rgba(0,0,0, 0.15)',
+			},
 		},
 	},
 	plugins: [require('tailwindcss-animate')],

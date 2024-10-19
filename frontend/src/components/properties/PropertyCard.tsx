@@ -14,9 +14,9 @@ import {
 	ZoomOutMapOutlined,
 } from '@mui/icons-material';
 import { useLocalStorage } from '../../hooks/useLocalStoarge';
-import { useOpenSnackbar } from '../Snackbar';
 import { formatNumber } from '../../helpers/formatNumber';
 import { listProperties } from '../../utils/fetchProperties';
+import { useToast } from 'hooks/use-toast';
 
 type PropertyItem = Readonly<{ property: DocumentType<typeof listProperties>['listPropertiesForSale']['Property'][number] }>;
 
@@ -24,8 +24,8 @@ type Props = PropertyItem & { isWatchlisted: boolean };
 
 export const PropertyCard: FC<Props> = ({ property, isWatchlisted }) => {
 	const { setLocalStorage, removeFromLocalStorage } = useLocalStorage('watchlist', 'Reference');
-	const { openSnackbar, SnackBarComponent } = useOpenSnackbar();
 	const [isWatchlistSelected, setIsWatchListSelected] = useState(isWatchlisted);
+	const { toast } = useToast();
 
 	return (
 		<>
@@ -70,7 +70,7 @@ export const PropertyCard: FC<Props> = ({ property, isWatchlisted }) => {
 										e.preventDefault();
 										!isWatchlistSelected ? setLocalStorage(property) : removeFromLocalStorage(property.Reference as never);
 										setIsWatchListSelected(!isWatchlistSelected);
-										openSnackbar(!isWatchlistSelected ? 'Added to watchlist' : 'Removed');
+										toast({ title: !isWatchlistSelected ? 'Added to watchlist' : 'Removed' });
 									}}
 								>
 									{isWatchlistSelected ? <FavoriteOutlined sx={{ color: 'red' }} /> : <FavoriteBorderOutlined />}
@@ -115,7 +115,6 @@ export const PropertyCard: FC<Props> = ({ property, isWatchlisted }) => {
 					</Stack>
 				</Stack>
 			</ButtonBase>
-			<SnackBarComponent />
 		</>
 	);
 };
